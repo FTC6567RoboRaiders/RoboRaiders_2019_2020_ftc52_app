@@ -120,6 +120,7 @@ public class TestingSkyStone extends LinearOpMode {
 
     /**
      * Initialize the Vuforia localization engine.
+     *
      */
     private void initVuforia() {
         /*
