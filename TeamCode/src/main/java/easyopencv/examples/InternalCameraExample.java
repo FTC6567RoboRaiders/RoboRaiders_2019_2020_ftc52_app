@@ -79,7 +79,9 @@ public class InternalCameraExample extends LinearOpMode
          * For a rear facing camera or a webcam, rotation is defined assuming the camera is facing
          * away from the user.
          */
-        phoneCam.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
+//        phoneCam.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
+        phoneCam.startStreaming(640, 480, OpenCvCameraRotation.UPRIGHT);
+        //we can see about one meter, but since each stone is 8 inches, we won't be able to see all of them
 
         /*
          * Wait for the user to press start on the Driver Station
