@@ -22,7 +22,7 @@
  */
 
 //package org.openftc.easyopencv.examples;
-package roboraiders.hubbot;
+package RoboRaiders.hubbot;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
