@@ -92,6 +92,7 @@ public class PipelineStageSwitchingExampleReversed extends LinearOpMode
         Mat thresholdMat = new Mat();
         Mat contoursOnFrameMat = new Mat();
         List<MatOfPoint> contoursList = new ArrayList<>();
+        List<MatOfPoint> stickerContours = new ArrayList<>();
         int numContoursFound;
 
         enum Stage
@@ -136,7 +137,7 @@ public class PipelineStageSwitchingExampleReversed extends LinearOpMode
              */
             Imgproc.cvtColor(input, yCbCrChan2Mat, Imgproc.COLOR_RGB2YCrCb);
             Core.extractChannel(yCbCrChan2Mat, yCbCrChan2Mat, 2);
-            Imgproc.threshold(yCbCrChan2Mat, thresholdMat, 102, 255, Imgproc.THRESH_BINARY_INV);
+            Imgproc.threshold(yCbCrChan2Mat, thresholdMat, 102, 255, Imgproc.THRESH_BINARY);
             Imgproc.findContours(thresholdMat, contoursList, new Mat(), Imgproc.RETR_LIST, Imgproc.CHAIN_APPROX_SIMPLE);
             numContoursFound = contoursList.size();
             input.copyTo(contoursOnFrameMat);
@@ -151,7 +152,10 @@ public class PipelineStageSwitchingExampleReversed extends LinearOpMode
 
                 case THRESHOLD:
                 {
-                    return thresholdMat;
+                    Imgproc.findContours(thresholdMat, stickerContours, new Mat(), Imgproc.RETR_TREE, Imgproc.CHAIN_APPROX_SIMPLE);
+                    input.copyTo(contoursOnFrameMat);
+                    Imgproc.drawContours(contoursOnFrameMat,stickerContours,-1,new Scalar(250,0,0),2);
+                    return contoursOnFrameMat;
                 }
 
                 case CONTOURS_OVERLAYED_ON_FRAME:
