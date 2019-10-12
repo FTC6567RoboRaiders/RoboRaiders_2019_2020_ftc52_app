@@ -154,7 +154,6 @@ public class PipelineStageSwitchingExampleReversed extends LinearOpMode
                 case THRESHOLD:
                 {
                     Imgproc.findContours(thresholdMat, stickerContours, new Mat(), Imgproc.RETR_TREE, Imgproc.CHAIN_APPROX_SIMPLE);
-                    input.copyTo(contoursOnFrameMat);
                     Imgproc.drawContours(contoursOnFrameMat,stickerContours,-1,new Scalar(250,0,0),2);
                     double bestOneSoFar = Double.MAX_VALUE;
                     Rect bestRect = null;
@@ -174,7 +173,7 @@ public class PipelineStageSwitchingExampleReversed extends LinearOpMode
                         double ratioDiffrence = Math.abs(cubeRatio - perfectRatio);
 
                         // Get bounding rect of contour
-                        Imgproc.rectangle(contoursOnFrameMat, rect.tl(), rect.br(), new Scalar(0,0,255),2); // Draw rect
+                        //Imgproc.rectangle(contoursOnFrameMat, rect.tl(), rect.br(), new Scalar(0,0,255),2); // Draw rect
 
                         // If the result is better then the previously tracked one, set this rect as the new best
                         if(ratioDiffrence < bestOneSoFar){
@@ -183,7 +182,7 @@ public class PipelineStageSwitchingExampleReversed extends LinearOpMode
                         }
                     }
                     if (bestRect != null){
-
+                        input.copyTo(contoursOnFrameMat);
                         Imgproc.rectangle(contoursOnFrameMat,bestRect.tl(),bestRect.br(),new Scalar(0,0,255),2);
                         Imgproc.putText(contoursOnFrameMat, "Chosen", bestRect.tl(),0,1,new Scalar(255,255,255));
                     }
