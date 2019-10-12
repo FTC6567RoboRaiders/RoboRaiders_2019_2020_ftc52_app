@@ -1,3 +1,4 @@
+/*
 package RoboRaiders.examples;
 
 
@@ -14,6 +15,7 @@ import org.opencv.imgproc.Imgproc;
 
 import java.util.Locale;
 
+*/
 /**
  * Created by guinea on 10/5/17.
  * -------------------------------------------------------------------------------------
@@ -47,7 +49,8 @@ import java.util.Locale;
  * where a certain color is, in this case, blue.
  *
  * Additionally, the centers of the bounding rectangles of the contours are sent to telemetry.
- */
+ *//*
+
 
 
 
@@ -87,14 +90,16 @@ public class ExampleBlueVisionDemo extends OpMode {
 
      //   CameraDevice.getInstance().setFlashTorchMode(true);
 
-    /*    if (cameraoff) {
+    */
+/*    if (cameraoff) {
             myCamera = Camera.open();
             parms = myCamera.getParameters();
             parms.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
             myCamera.setParameters(parms);
          //   myCamera.startPreview();
             cameraoff = false;
-        }*/
+        }*//*
+
 
 
 
@@ -149,4 +154,4 @@ public class ExampleBlueVisionDemo extends OpMode {
      //   myCamera.stopPreview();
       //  myCamera.release();
     }
-}
+}*/

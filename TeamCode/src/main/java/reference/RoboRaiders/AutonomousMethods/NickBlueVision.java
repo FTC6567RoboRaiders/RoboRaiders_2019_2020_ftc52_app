@@ -1,3 +1,5 @@
+/*
+
 package RoboRaiders.AutonomousMethods;
 
 import org.corningrobotics.enderbots.endercv.OpenCVPipeline;
@@ -11,6 +13,7 @@ import org.opencv.imgproc.Imgproc;
 import java.util.ArrayList;
 import java.util.List;
 
+*/
 /**
  * Created by guinea on 10/5/17.
  * -------------------------------------------------------------------------------------
@@ -42,7 +45,9 @@ import java.util.List;
  * A nice demo class for using OpenCVPipeline. This one also demonstrates how to use OpenCV to threshold
  * for a certain color (blue) and find contours of objects of that color, which is very common in
  * robotics OpenCV applications.
- */
+ *//*
+
+
 
 public class NickBlueVision extends OpenCVPipeline {
     private boolean showContours = true;
@@ -92,3 +97,5 @@ public class NickBlueVision extends OpenCVPipeline {
         return rgba; // display the image seen by the camera
     }
 }
+
+*/

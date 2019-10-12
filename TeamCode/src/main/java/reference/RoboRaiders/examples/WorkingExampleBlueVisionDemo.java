@@ -1,3 +1,4 @@
+/*
 package RoboRaiders.examples;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
@@ -9,6 +10,7 @@ import org.opencv.core.Mat;
 
 import RoboRaiders.Logger.LoggerOId;
 
+*/
 /**
  * Created by guinea on 10/5/17.
  * -------------------------------------------------------------------------------------
@@ -42,7 +44,8 @@ import RoboRaiders.Logger.LoggerOId;
  * where a certain color is, in this case, blue.
  *
  * Additionally, the centers of the bounding rectangles of the contours are sent to telemetry.
- */
+ *//*
+
 @TeleOp(name="Example: Working Blue Vision Demo")
 @Disabled
 public class WorkingExampleBlueVisionDemo extends OpMode {
@@ -106,18 +109,22 @@ public class WorkingExampleBlueVisionDemo extends OpMode {
 
         telemetry.addLine("done outputting data");
 
-       /* telemetry.addLine(outdata.toString());
+       */
+/* telemetry.addLine(outdata.toString());
         telemetry.addLine(String.valueOf(data.length));
-        telemetry.addLine(String.valueOf(image.height()+","+image.width())); */
+        telemetry.addLine(String.valueOf(image.height()+","+image.width())); *//*
 
-      /*  telemetry.addData(
+
+      */
+/*  telemetry.addData(
                 "contour",
                 String.format(
                         Locale.getDefault(),
                         "(%d, %d)",
                         (boundingRect.x + boundingRect.width) / 2, (boundingRect.y + boundingRect.height) / 2
                 )
-        ); */
+        ); *//*
+
 
         //  }
 
@@ -129,3 +136,4 @@ public class WorkingExampleBlueVisionDemo extends OpMode {
         blueVision.disable();
     }
 }
+*/

@@ -40,8 +40,10 @@ import org.openftc.easyopencv.OpenCvPipeline;
 import java.util.ArrayList;
 import java.util.List;
 
+import RoboRaiders.Logger.LoggerOId;
 import easyopencv.examples.InternalCameraExample;
 import easyopencv.examples.WebcamExample;
+import RoboRaiders.Logger.Logger;
 
 /**
  * In this sample, we demonstrate how to use the {@link OpenCvPipeline#onViewportTapped()}
@@ -57,12 +59,14 @@ public class PipelineStageSwitchingExampleReversed extends LinearOpMode
     @Override
     public void runOpMode()
     {
+        Logger L = new Logger(String.valueOf("TEST"));
         /**
          * NOTE: Many comments have been omitted from this sample for the
          * sake of conciseness. If you're just starting out with EasyOpenCv,
          * you should take a look at {@link InternalCameraExample} or its
          * webcam counterpart, {@link WebcamExample} first.
          */
+
 
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         phoneCam = new OpenCvInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
@@ -168,9 +172,17 @@ public class PipelineStageSwitchingExampleReversed extends LinearOpMode
                         double h = rect.height;
                         double perfectRatio = 1.888;
                         double weight = 1.0;
+                        Logger L = new Logger(String.valueOf("TEST"));
+
+                        L.Debug("x", x);
+                        L.Debug("y", y);
+                        L.Debug("w",w);
+                        L.Debug("h", h);
 
                         double cubeRatio = Math.max(Math.abs(h/w), Math.abs(w/h)); // Get the ratio. We use max in case h and w get swapped??? it happens when u account for rotation
                         double ratioDiffrence = Math.abs(cubeRatio - perfectRatio);
+
+                        L.Debug("ratiodiffernce", ratioDiffrence);
 
                         // Get bounding rect of contour
                         //Imgproc.rectangle(contoursOnFrameMat, rect.tl(), rect.br(), new Scalar(0,0,255),2); // Draw rect

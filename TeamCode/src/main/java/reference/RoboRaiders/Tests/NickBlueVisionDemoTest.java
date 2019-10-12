@@ -1,3 +1,4 @@
+/*
 package RoboRaiders.Tests;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
@@ -14,6 +15,7 @@ import java.util.Locale;
 
 import RoboRaiders.AutonomousMethods.NickBlueVision;
 
+*/
 /**
  * Created by guinea on 10/5/17.
  * -------------------------------------------------------------------------------------
@@ -47,7 +49,8 @@ import RoboRaiders.AutonomousMethods.NickBlueVision;
  * where a certain color is, in this case, blue.
  *
  * Additionally, the centers of the bounding rectangles of the contours are sent to telemetry.
- */
+ *//*
+
 @TeleOp(name="Example: Nick Blue Vision Demo")
 @Disabled
 public class NickBlueVisionDemoTest extends OpMode {
@@ -83,3 +86,4 @@ public class NickBlueVisionDemoTest extends OpMode {
         blueVision.disable();
     }
 }
+*/

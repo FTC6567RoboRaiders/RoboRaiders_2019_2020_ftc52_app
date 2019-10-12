@@ -1,8 +1,10 @@
+/*
 package RoboRaiders.examples;
 
 import org.corningrobotics.enderbots.endercv.OpenCVPipeline;
 import org.opencv.core.Mat;
 
+*/
 /**
  * Created by guinea on 10/5/17.
  * -------------------------------------------------------------------------------------
@@ -34,7 +36,8 @@ import org.opencv.core.Mat;
  * A nice demo class for using OpenCVPipeline. This one also demonstrates how to use OpenCV to threshold
  * for a certain color (blue) and find contours of objects of that color, which is very common in
  * robotics OpenCV applications.
- */
+ *//*
+
 
 public class WorkingExampleBlueVision extends OpenCVPipeline {
     private boolean showContours = true;
@@ -60,7 +63,8 @@ public class WorkingExampleBlueVision extends OpenCVPipeline {
 
         image = rgba;
 
-       /* // First, we change the colorspace from RGBA to HSV, which is usually better for color
+       */
+/* // First, we change the colorspace from RGBA to HSV, which is usually better for color
         Imgproc.cvtColor(rgba, hsv, Imgproc.COLOR_RGB2HSV, 3);
         // Then, we threshold our hsv image so that we get a black/white binary image where white
         // is the blues listed in the specified range of values
@@ -107,7 +111,8 @@ public class WorkingExampleBlueVision extends OpenCVPipeline {
                 currentMaxContour = myPoints;
                 //sorts the contour areas and assigns the largest one to currentMaxContour
             }
-        } */
+        } *//*
+
 
     //    MaxContour.add(currentMaxContour); // gets currentMaxContour into the correct type
 
@@ -126,3 +131,4 @@ public class WorkingExampleBlueVision extends OpenCVPipeline {
     }
 
 }
+*/

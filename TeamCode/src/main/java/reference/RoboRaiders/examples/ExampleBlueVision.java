@@ -1,3 +1,4 @@
+/*
 package RoboRaiders.examples;
 
 import org.corningrobotics.enderbots.endercv.OpenCVPipeline;
@@ -12,6 +13,7 @@ import org.opencv.imgproc.Imgproc;
 import java.util.ArrayList;
 import java.util.List;
 
+*/
 /**
  * Created by guinea on 10/5/17.
  * -------------------------------------------------------------------------------------
@@ -43,7 +45,8 @@ import java.util.List;
  * A nice demo class for using OpenCVPipeline. This one also demonstrates how to use OpenCV to threshold
  * for a certain color (blue) and find contours of objects of that color, which is very common in
  * robotics OpenCV applications.
- */
+ *//*
+
 
 public class ExampleBlueVision extends OpenCVPipeline {
 
@@ -116,7 +119,8 @@ public class ExampleBlueVision extends OpenCVPipeline {
             }
         }
 
-     /*   MaxContour.add(currentMaxContour); // gets currentMaxContour into the correct type
+     */
+/*   MaxContour.add(currentMaxContour); // gets currentMaxContour into the correct type
 
        Rect boundingRect = Imgproc.boundingRect(currentMaxContour);
 
@@ -133,10 +137,12 @@ public class ExampleBlueVision extends OpenCVPipeline {
 
       //  double cvheadingrad = Math.atan((xcoordinate - halfWidth)/(focalLength));
 
-     //   double cvheading = Math.toDegrees(cvheadingrad);*/
+     //   double cvheading = Math.toDegrees(cvheadingrad);*//*
+
 
         return rgba; // display the image seen by the camera
 
     }
 
 }
+*/
