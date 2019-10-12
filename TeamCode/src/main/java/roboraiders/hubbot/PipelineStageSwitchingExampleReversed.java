@@ -29,6 +29,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
+import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 import org.openftc.easyopencv.OpenCvCamera;
@@ -140,8 +141,8 @@ public class PipelineStageSwitchingExampleReversed extends LinearOpMode
             Imgproc.threshold(yCbCrChan2Mat, thresholdMat, 102, 255, Imgproc.THRESH_BINARY);
             Imgproc.findContours(thresholdMat, contoursList, new Mat(), Imgproc.RETR_LIST, Imgproc.CHAIN_APPROX_SIMPLE);
             numContoursFound = contoursList.size();
-            input.copyTo(contoursOnFrameMat);
-            Imgproc.drawContours(contoursOnFrameMat, contoursList, -1, new Scalar(0, 0, 255), 3, 8);
+            //input.copyTo(contoursOnFrameMat);
+            //Imgproc.drawContours(contoursOnFrameMat, contoursList, -1, new Scalar(0, 0, 255), 3, 8);
 
             switch (stageToRenderToViewport)
             {
@@ -155,6 +156,37 @@ public class PipelineStageSwitchingExampleReversed extends LinearOpMode
                     Imgproc.findContours(thresholdMat, stickerContours, new Mat(), Imgproc.RETR_TREE, Imgproc.CHAIN_APPROX_SIMPLE);
                     input.copyTo(contoursOnFrameMat);
                     Imgproc.drawContours(contoursOnFrameMat,stickerContours,-1,new Scalar(250,0,0),2);
+                    double bestOneSoFar = Double.MAX_VALUE;
+                    Rect bestRect = null;
+                    for(MatOfPoint cont : stickerContours){
+                        double score = Double.MAX_VALUE;
+
+                        // Get bounding rect of contour
+                        Rect rect = Imgproc.boundingRect(cont);
+                        double x = rect.x;
+                        double y = rect.y;
+                        double w = rect.width;
+                        double h = rect.height;
+                        double perfectRatio = 1.888;
+                        double weight = 1.0;
+
+                        double cubeRatio = Math.max(Math.abs(h/w), Math.abs(w/h)); // Get the ratio. We use max in case h and w get swapped??? it happens when u account for rotation
+                        double ratioDiffrence = Math.abs(cubeRatio - perfectRatio);
+
+                        // Get bounding rect of contour
+                        Imgproc.rectangle(contoursOnFrameMat, rect.tl(), rect.br(), new Scalar(0,0,255),2); // Draw rect
+
+                        // If the result is better then the previously tracked one, set this rect as the new best
+                        if(ratioDiffrence < bestOneSoFar){
+                            bestOneSoFar = ratioDiffrence;
+                            bestRect = rect;
+                        }
+                    }
+                    if (bestRect != null){
+
+                        Imgproc.rectangle(contoursOnFrameMat,bestRect.tl(),bestRect.br(),new Scalar(0,0,255),2);
+                        Imgproc.putText(contoursOnFrameMat, "Chosen", bestRect.tl(),0,1,new Scalar(255,255,255));
+                    }
                     return contoursOnFrameMat;
                 }
 
