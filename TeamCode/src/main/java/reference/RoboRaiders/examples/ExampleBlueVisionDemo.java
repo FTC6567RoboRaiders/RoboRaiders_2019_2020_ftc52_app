@@ -6,17 +6,12 @@ import android.hardware.Camera;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.vuforia.CameraDevice;
 
 import org.corningrobotics.enderbots.endercv.CameraViewDisplay;
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.Rect;
-import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
-import java.security.Policy;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 /**

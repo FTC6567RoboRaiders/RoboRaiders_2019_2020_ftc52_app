@@ -7,7 +7,7 @@ import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import RoboRaiders.AutonomousMethods.AutoOptions.AutoOptions;
 import RoboRaiders.AutonomousMethods.AutoOptions.RoboRaidersPID;
 import RoboRaiders.AutonomousMethods.NostromoAutonomousMethods;
-import RoboRaiders.Logger.Logger;
+import RoboRaiders.Logger.LoggerOId;
 import RoboRaiders.Robot.NostromoBotMotorDumper;
 import RoboRaiders.Robot.RobotTelemetryDisplay;
 
@@ -51,7 +51,7 @@ public class NostromoAutonomousoptionsV3 extends NostromoAutonomousMethods{
         AutoOptions myAO = new AutoOptions(this);
 
         // Set up for logging messages to the log
-        Logger L = new Logger(String.valueOf("FTC6567"));
+        LoggerOId L = new LoggerOId(String.valueOf("FTC6567"));
 
         // Set up robot telemetry
         RobotTelemetryDisplay rtd = new RobotTelemetryDisplay(this,"Nostromo");

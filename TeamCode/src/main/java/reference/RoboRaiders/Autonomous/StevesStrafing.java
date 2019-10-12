@@ -3,12 +3,8 @@ package RoboRaiders.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
-import RoboRaiders.AutonomousMethods.AutoOptions.AutoOptions;
 import RoboRaiders.AutonomousMethods.NostromoAutonomousMethods;
-import RoboRaiders.Logger.Logger;
-import RoboRaiders.Robot.NostromoBot;
 import RoboRaiders.Robot.NostromoBotMotorDumper;
-import RoboRaiders.Robot.RobotTelemetryDisplay;
 
 @Autonomous
 @Disabled

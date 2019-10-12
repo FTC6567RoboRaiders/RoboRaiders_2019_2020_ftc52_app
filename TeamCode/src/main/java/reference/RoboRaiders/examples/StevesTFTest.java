@@ -32,18 +32,16 @@ package RoboRaiders.examples;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.vuforia.CameraDevice;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
-import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer.CameraDirection;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
 import java.util.List;
 
-import RoboRaiders.Logger.Logger;
+import RoboRaiders.Logger.LoggerOId;
 import RoboRaiders.Robot.RobotTelemetryDisplay;
 
 /**
@@ -102,14 +100,14 @@ public class StevesTFTest extends LinearOpMode {
 
     private List<Recognition> updatedRecognitions;
     private RobotTelemetryDisplay rtd;
-    private Logger myLogger;
+    private LoggerOId myLogger;
 
 
     @Override
     public void runOpMode() {
 
         rtd = new RobotTelemetryDisplay(this, "HubBot");
-        myLogger = new Logger("SMKSMK");
+        myLogger = new LoggerOId("SMKSMK");
 
         // The TFObjectDetector uses the camera frames from the VuforiaLocalizer, so we create that
         // first.

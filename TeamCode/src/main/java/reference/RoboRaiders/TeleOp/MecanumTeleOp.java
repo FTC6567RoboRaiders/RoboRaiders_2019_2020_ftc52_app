@@ -1,7 +1,5 @@
 package RoboRaiders.TeleOp;
 
-import com.qualcomm.hardware.lynx.LynxModule;
-import com.qualcomm.hardware.lynx.commands.core.LynxGetBulkInputDataCommand;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;

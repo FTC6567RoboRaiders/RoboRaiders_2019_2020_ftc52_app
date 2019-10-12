@@ -4,18 +4,13 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.vuforia.CameraDevice;
 
-import org.firstinspires.ftc.robotcore.external.ClassFactory;
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 
 import java.util.List;
 
 import RoboRaiders.AutonomousMethods.AutoOptions.RoboRaidersPID;
-import RoboRaiders.Logger.Logger;
-import RoboRaiders.Robot.NostromoBot;
+import RoboRaiders.Logger.LoggerOId;
 import RoboRaiders.Robot.NostromoBotMotorDumper;
 import RoboRaiders.Robot.RobotTelemetryDisplay;
 
@@ -467,7 +462,7 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
         robot.motorFrontLeft.setDirection(DcMotor.Direction.FORWARD);
         robot.motorBackLeft.setDirection(DcMotor.Direction.FORWARD);
 
-        Logger L = new Logger("imuTurnPID");
+        LoggerOId L = new LoggerOId("imuTurnPID");
         rrPID.initialize();
         telemetry.addLine().addData("in", "imuTurnPID");
 
@@ -740,7 +735,7 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
         int numberofrecognized = 0;
         List<Recognition> updatedRecognitions = null;
         double prevGoldConfidence = 0.0;
-        Logger  L = new Logger("detectGoldMineral");
+        LoggerOId L = new LoggerOId("detectGoldMineral");
         int numberOfGoldDetected = 0;
 
 

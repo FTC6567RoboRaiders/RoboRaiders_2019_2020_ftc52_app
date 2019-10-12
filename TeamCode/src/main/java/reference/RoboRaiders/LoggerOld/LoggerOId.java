@@ -5,7 +5,7 @@ import android.util.Log;
 /**
  * LoggerOld is a wrapper class that wraps the android.util.Log class.
  */
-public class Logger {
+public class LoggerOId {
 
 
     private String tag;
@@ -15,7 +15,7 @@ public class Logger {
      * @param tag the tag to prepend to the log message
      */
 
-    public Logger(String tag) {this.tag = tag;}
+    public LoggerOId(String tag) {this.tag = tag;}
 
 
     // Debug

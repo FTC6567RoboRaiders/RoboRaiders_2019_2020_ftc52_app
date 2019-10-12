@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import RoboRaiders.AutonomousMethods.AutoOptions.AutoOptions;
 import RoboRaiders.AutonomousMethods.NostromoAutonomousMethods;
-import RoboRaiders.Logger.Logger;
+import RoboRaiders.Logger.LoggerOId;
 import RoboRaiders.Robot.NostromoBot;
 import RoboRaiders.Robot.RobotTelemetryDisplay;
 
@@ -36,7 +36,7 @@ public class StevesAutonomousOptions extends NostromoAutonomousMethods {
         AutoOptions myAO = new AutoOptions(this);
 
         // Set up for logging messages to the log
-        Logger L = new Logger(String.valueOf("FTC6567"));
+        LoggerOId L = new LoggerOId(String.valueOf("FTC6567"));
 
         // Set up robot telemetry
         RobotTelemetryDisplay rtd = new RobotTelemetryDisplay(this,"Nostromo");

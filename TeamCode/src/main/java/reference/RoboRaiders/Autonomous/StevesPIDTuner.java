@@ -4,7 +4,6 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import RoboRaiders.AutonomousMethods.NostromoAutonomousMethods;
-import RoboRaiders.Robot.NostromoBotMotorDumper;
 import RoboRaiders.Robot.PidUdpReceiver;
 import RoboRaiders.Robot.RobotTelemetryDisplay;
 

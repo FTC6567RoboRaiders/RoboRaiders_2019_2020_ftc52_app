@@ -6,13 +6,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.corningrobotics.enderbots.endercv.CameraViewDisplay;
 import org.opencv.core.Mat;
-import org.opencv.core.Rect;
-import org.opencv.imgproc.Imgproc;
 
-import java.util.List;
-import java.util.Locale;
-
-import RoboRaiders.Logger.Logger;
+import RoboRaiders.Logger.LoggerOId;
 
 /**
  * Created by guinea on 10/5/17.
@@ -52,7 +47,7 @@ import RoboRaiders.Logger.Logger;
 @Disabled
 public class WorkingExampleBlueVisionDemo extends OpMode {
     private WorkingExampleBlueVision blueVision;
-    private Logger l = new Logger("JQ");
+    private LoggerOId l = new LoggerOId("JQ");
     @Override
     public void init() {
         blueVision = new WorkingExampleBlueVision();
