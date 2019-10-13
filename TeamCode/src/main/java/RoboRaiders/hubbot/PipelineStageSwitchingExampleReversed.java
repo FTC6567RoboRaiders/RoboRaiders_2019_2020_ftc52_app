@@ -183,6 +183,10 @@ public class PipelineStageSwitchingExampleReversed extends LinearOpMode
                         double ratioDiffrence = Math.abs(cubeRatio - perfectRatio);
 
                         L.Debug("ratiodiffernce", ratioDiffrence);
+                        L.Debug("cuberatio", cubeRatio);
+                        L.Debug("bestOneSoFar", bestOneSoFar);
+
+
 
                         // Get bounding rect of contour
                         //Imgproc.rectangle(contoursOnFrameMat, rect.tl(), rect.br(), new Scalar(0,0,255),2); // Draw rect
@@ -192,12 +196,14 @@ public class PipelineStageSwitchingExampleReversed extends LinearOpMode
                             bestOneSoFar = ratioDiffrence;
                             bestRect = rect;
                         }
+
                     }
                     if (bestRect != null){
                         input.copyTo(contoursOnFrameMat);
                         Imgproc.rectangle(contoursOnFrameMat,bestRect.tl(),bestRect.br(),new Scalar(0,0,255),2);
                         Imgproc.putText(contoursOnFrameMat, "Chosen", bestRect.tl(),0,1,new Scalar(255,255,255));
                     }
+
                     return contoursOnFrameMat;
                 }
 
