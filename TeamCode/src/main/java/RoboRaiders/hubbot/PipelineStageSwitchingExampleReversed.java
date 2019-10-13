@@ -135,6 +135,8 @@ public class PipelineStageSwitchingExampleReversed extends LinearOpMode
         public Mat processFrame(Mat input)
         {
             contoursList.clear();
+            stickerContours.clear();
+
 
             /*
              * This pipeline finds the contours of yellow blobs such as the Gold Mineral
@@ -162,7 +164,7 @@ public class PipelineStageSwitchingExampleReversed extends LinearOpMode
                     double bestOneSoFar = Double.MAX_VALUE;
                     Rect bestRect = null;
                     for(MatOfPoint cont : stickerContours){
-                        double score = Double.MAX_VALUE;
+                        //double score = Double.MAX_VALUE;
 
                         // Get bounding rect of contour
                         Rect rect = Imgproc.boundingRect(cont);
@@ -171,7 +173,7 @@ public class PipelineStageSwitchingExampleReversed extends LinearOpMode
                         double w = rect.width;
                         double h = rect.height;
                         double perfectRatio = 1.888;
-                        double weight = 1.0;
+                        //double weight = 1.0;
                         Logger L = new Logger(String.valueOf("TEST"));
 
                         L.Debug("x", x);
