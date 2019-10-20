@@ -27,7 +27,7 @@ public class StevesStrafing extends NostromoAutonomousMethods{
         waitForStart();
 
         while (opModeIsActive()) {
-          //  encodersMove(robot,24,1,"right");
+            encodersMove(robot,24,1,"right");
         }
     }
 }
