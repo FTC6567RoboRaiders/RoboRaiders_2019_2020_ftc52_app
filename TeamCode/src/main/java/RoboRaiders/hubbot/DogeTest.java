@@ -19,7 +19,7 @@ import easyopencv.examples.WebcamExample;
 public class DogeTest extends LinearOpMode
 {
     // Detector object
-    private SkystoneDetector detector;
+    private MySkystoneDetector detector;
     private OpenCvInternalCamera phoneCam;
 
     public void runOpMode()
@@ -36,7 +36,7 @@ public class DogeTest extends LinearOpMode
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         phoneCam = new OpenCvInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
         phoneCam.openCameraDevice();
-        detector = new SkystoneDetector();
+        detector = new MySkystoneDetector();
         phoneCam.setPipeline(detector);
         phoneCam.startStreaming(640, 480, OpenCvCameraRotation.UPRIGHT);
 
