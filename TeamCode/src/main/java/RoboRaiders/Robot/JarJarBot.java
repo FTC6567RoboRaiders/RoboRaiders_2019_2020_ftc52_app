@@ -16,10 +16,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
-/**
- * Created by Steve Kocik.
- */
-
 public class JarJarBot {
 
     /* Robot Motors, Servos, CR Servos and Sensors */
@@ -29,8 +25,6 @@ public class JarJarBot {
     public DcMotor motorBackRight = null;
     public BNO055IMU imu;
 
-//me too and because im stupid i didnt do any of it before work
-    //I shouldn't (be)complain(ing) tho im sure I don't have as much as you
     /* Local OpMode Members */
     public HardwareMap hwMap = null;
 

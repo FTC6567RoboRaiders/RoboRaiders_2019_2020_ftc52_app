@@ -37,8 +37,9 @@ public class DogeTest extends LinearOpMode
         phoneCam = new OpenCvInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
         phoneCam.openCameraDevice();
         detector = new MySkystoneDetector();
+        detector.useDefaults();
         phoneCam.setPipeline(detector);
-        phoneCam.startStreaming(640, 480, OpenCvCameraRotation.UPRIGHT);
+        phoneCam.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
 
         waitForStart();
 
@@ -46,6 +47,7 @@ public class DogeTest extends LinearOpMode
         {
             telemetry.addData("Num contours found", detector.getScreenPosition());
             telemetry.addData("rectangle", detector.foundRectangle());
+            telemetry.addData("score", detector.getBestDifference());
             telemetry.update();
             sleep(100);
         }
