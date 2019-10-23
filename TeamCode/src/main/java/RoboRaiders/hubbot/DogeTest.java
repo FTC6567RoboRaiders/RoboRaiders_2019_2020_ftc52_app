@@ -47,7 +47,7 @@ public class DogeTest extends LinearOpMode
         {
             telemetry.addData("Num contours found", detector.getScreenPosition());
             telemetry.addData("rectangle", detector.foundRectangle());
-            telemetry.addData("score", detector.getBestDifference());
+            telemetry.addData("score", detector.getBestScore());
             telemetry.update();
             sleep(100);
         }
