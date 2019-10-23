@@ -37,6 +37,7 @@ public class MySkystoneDetector extends DogeCVDetector {
     private boolean found = false; // Is the gold mineral found
     private Point screenPosition = new Point(); // Screen position of the mineral
     private Rect foundRect = new Rect(); // Found rect
+    private double bestDifference = Double.MAX_VALUE; // MAX_VALUE since less difference = better
 
     private Mat rawImage = new Mat();
     private Mat workingMat = new Mat();
@@ -58,6 +59,9 @@ public class MySkystoneDetector extends DogeCVDetector {
         detectorName = "Skystone Detector";
     }
 
+    public double getBestScore(){ return bestDifference;}
+
+
     @Override
     public Mat process(Mat input) {
         input.copyTo(rawImage);
@@ -76,7 +80,7 @@ public class MySkystoneDetector extends DogeCVDetector {
 
         // Current result
         Rect bestRect = foundRect;
-        double bestDifference = Double.MAX_VALUE; // MAX_VALUE since less difference = better
+
 
         // Loop through the contours and score them, searching for the best result
         for(MatOfPoint cont : contoursYellow){
@@ -115,7 +119,7 @@ public class MySkystoneDetector extends DogeCVDetector {
         }
         if(bestRect != null) {
             // Show chosen result
-            Imgproc.rectangle(displayMat, bestRect.tl(), bestRect.br(), new Scalar(0,0,255),4);
+            Imgproc.rectangle(displayMat, bestRect.tl(), bestRect.br(), new Scalar(255,0,0),4);
             Imgproc.putText(displayMat, "Chosen", bestRect.tl(),0,1,new Scalar(255,255,255));
 
             screenPosition = new Point(bestRect.x, bestRect.y);

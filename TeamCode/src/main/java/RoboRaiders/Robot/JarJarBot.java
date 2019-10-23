@@ -131,7 +131,7 @@ public class JarJarBot {
         double COUNTS;
 
         int DIAMETER = 4; //diameter of wheel
-        double GEAR_RATIO = (2.0 / 3.0); //gear ratio
+        double GEAR_RATIO = (1.0 / 1.0); //gear ratio
         int PULSES = 1120; //encoder counts in one revolution
         double CIRCUMFERENCE = Math.PI * DIAMETER; //gives you circumference
         double ROTATIONS = (distance / CIRCUMFERENCE) * GEAR_RATIO; //gives the rotations
