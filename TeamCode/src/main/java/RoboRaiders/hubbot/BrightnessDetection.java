@@ -30,31 +30,12 @@ public class BrightnessDetection extends LinearOpMode {
 
     SamplePipeline stone_pipeline;
     public void runOpMode() {
-
-     }
-
-    //public OCVPhoneCamera(Robot robot) {
-    //    super(robot);
-    //}
-
-    //@Override
-    public void registerHardware(HardwareMap hwmap) {
-        int cameraMonitorViewId = hwmap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hwmap.appContext.getPackageName());
+        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         phone_camera = new OpenCvInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
-    }
-
-    //@Override
-    public void startup() {
-        //super.startup();
-
         phone_camera.openCameraDevice();
 
         stone_pipeline = new SamplePipeline();
         phone_camera.setPipeline(stone_pipeline);
-    }
-
-    @Override
-   public void updateTelemetry(Telemetry telemetry) {
         super.updateTelemetry(telemetry);
         telemetry.addData("FRAME", phone_camera.getFrameCount());
         telemetry.addData("FPS", String.format("%.2f", phone_camera.getFps()));
@@ -66,24 +47,15 @@ public class BrightnessDetection extends LinearOpMode {
         telemetry.addData("RIGHT RECT", stone_pipeline.right_hue + " " + stone_pipeline.right_br);
         telemetry.addData("PATTERN", stone_pipeline.pattern);
 
-    }
-
-    //@Override
-    public void update(OpMode opmode) {
-        //super.update(opmode);
-    }
-
-    //@Override
-    public void shutdown() {
-    }
-
-    public void start_streaming() {
         phone_camera.startStreaming(320, 240, OpenCvCameraRotation.UPSIDE_DOWN);
-    }
-
-    public void stop_streaming() {
         phone_camera.stopStreaming();
-    }
+
+     }
+
+    //public OCVPhoneCamera(Robot robot) {
+    //    super(robot);
+    //}
+
 
     class SamplePipeline extends OpenCvPipeline {
         int left_hue;
