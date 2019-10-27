@@ -16,10 +16,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
-/**
- * Created by Steve Kocik.
- */
-
 public class JarJarBot {
 
     /* Robot Motors, Servos, CR Servos and Sensors */
