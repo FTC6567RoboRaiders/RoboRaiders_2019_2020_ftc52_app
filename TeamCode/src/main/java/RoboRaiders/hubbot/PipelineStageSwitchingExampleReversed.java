@@ -131,6 +131,8 @@ public class PipelineStageSwitchingExampleReversed extends LinearOpMode
             stageToRenderToViewport = stages[nextStageNum];
         }
 
+
+
         @Override
         public Mat processFrame(Mat input)
         {
