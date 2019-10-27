@@ -31,11 +31,18 @@ public class BrightnessDetection extends LinearOpMode {
     SamplePipeline stone_pipeline;
     public void runOpMode() {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+
         phone_camera = new OpenCvInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
         phone_camera.openCameraDevice();
 
         stone_pipeline = new SamplePipeline();
         phone_camera.setPipeline(stone_pipeline);
+
+        phone_camera.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
+
+        waitForStart();
+
+        while (opModeIsActive()) {
         super.updateTelemetry(telemetry);
         telemetry.addData("FRAME", phone_camera.getFrameCount());
         telemetry.addData("FPS", String.format("%.2f", phone_camera.getFps()));
@@ -45,17 +52,10 @@ public class BrightnessDetection extends LinearOpMode {
         telemetry.addData("MAX FPS", phone_camera.getCurrentPipelineMaxFps());
         telemetry.addData("LEFT RECT", stone_pipeline.left_hue + " " + stone_pipeline.left_br);
         telemetry.addData("RIGHT RECT", stone_pipeline.right_hue + " " + stone_pipeline.right_br);
-        telemetry.addData("PATTERN", stone_pipeline.pattern);
+        telemetry.addData("PATTERN", stone_pipeline.pattern); }
 
-        phone_camera.startStreaming(320, 240, OpenCvCameraRotation.UPSIDE_DOWN);
         phone_camera.stopStreaming();
-
      }
-
-    //public OCVPhoneCamera(Robot robot) {
-    //    super(robot);
-    //}
-
 
     class SamplePipeline extends OpenCvPipeline {
         int left_hue;
@@ -122,8 +122,12 @@ public class BrightnessDetection extends LinearOpMode {
             right_br = get_brightness((int) right_mean.val[0], (int) right_mean.val[1], (int) right_mean.val[2]);
 
             if (left_br > 100 && right_br > 100) pattern = 1;
+            //skystone is not in frame
+            //above 100 is normal, bellow 100 is skystone
             else if (left_br > 100 && right_br < 100) pattern = 2;
+            //skystone is on right
             else if (left_br < 100 && right_br > 100) pattern = 3;
+            //skystone is on left
             else if (left_br < 100 && right_br < 100) {
                 if (left_br > right_br) {
                     pattern = 1;
@@ -133,12 +137,9 @@ public class BrightnessDetection extends LinearOpMode {
                     pattern = 3;
                 }
             }
-            while (opModeIsActive())
-            {
                 telemetry.addData("position", pattern);
                 telemetry.update();
                 sleep(100);
-            }
 
             return input;
         }
