@@ -52,6 +52,8 @@ public class JarJarsTeleOp extends OpMode {
             setMotorPower(backLeft, backRight, frontLeft, frontRight);  // This line is an implementation of the public void
             // "setMotorPower" below. It sets the power of the motors to the joystick input values in
             // the floats.
+
+
         }
 
         @Override
@@ -70,6 +72,7 @@ public class JarJarsTeleOp extends OpMode {
             motorBackRight.setPower(backRight);
             motorFrontLeft.setPower(frontLeft);
             motorFrontRight.setPower(frontRight);
+
         }
 
         double scaleInput(double dVal) {        // When implemented above, this double scales the joystick input values
