@@ -72,8 +72,9 @@ public class BrightnessDetection extends LinearOpMode {
             input.convertTo(input, CV_8UC1, 1, 10);
 
             int[] left_rect = {
-                    (int) (input.cols() * (9f / 32f)),
-                    (int) (input.rows() * (5f / 32f)),
+                    //the second number here possibly represents the amount of sections you are splitting the screen into??   32
+                    (int) (input.cols() * (9f / 32f)), //the first number goes from left to right increasing, controls x axis
+                    (int) (input.rows() * (5f / 32f)), //the first number here controls the y axis
                     (int) (input.cols() * (15f / 32f)),
                     (int) (input.rows() * (7f / 32f))
             };
