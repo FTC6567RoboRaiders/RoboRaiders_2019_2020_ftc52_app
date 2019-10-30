@@ -12,6 +12,10 @@ import RoboRaiders.Robot.JarJarBot;
 public class JarJarsTeleOp extends OpMode {
 
         DcMotor motorBackLeft, motorBackRight, motorFrontLeft, motorFrontRight, intakeMotorLeft, intakeMotorRight;
+        public boolean currStateX = false;
+        public boolean currStateY = false;
+        public boolean prevStateX = false;
+        public boolean prevStateY = false;
 
         @Override
         public void init() { /*This is the initialization routine that the robot undergoes. */
@@ -53,7 +57,44 @@ public class JarJarsTeleOp extends OpMode {
             // "setMotorPower" below. It sets the power of the motors to the joystick input values in
             // the floats.
 
+            currStateX = gamepad2.x;
+            currStateY = gamepad2.y;
 
+           /* if (currStateX && currStateX != prevStateX) {
+
+                intakeMotorRight.setPower(.3);
+                intakeMotorLeft.setPower(.3);
+                prevStateX = currStateX;
+            }
+            else if (!currStateX && currStateX != prevStateX) {
+
+                prevStateX = currStateX;
+            }
+
+            if (currStateY && currStateY != prevStateY) {
+
+                intakeMotorLeft.setPower(-.3);
+                intakeMotorRight.setPower(-.3);
+                prevStateY = currStateY;
+            }
+            else if (!currStateY && currStateY != prevStateY) {
+
+                prevStateY = currStateY;
+            }
+            */
+
+            if (currStateX) {
+                intakeMotorRight.setPower(-.5);
+                intakeMotorLeft.setPower(.5);
+            }
+            else if (currStateY) {
+                intakeMotorRight.setPower(.5);
+                intakeMotorLeft.setPower(-.5);
+            }
+            else {
+                intakeMotorRight.setPower(0);
+                intakeMotorLeft.setPower(0);
+            }
         }
 
         @Override
