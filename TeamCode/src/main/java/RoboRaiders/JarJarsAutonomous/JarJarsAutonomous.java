@@ -23,14 +23,7 @@ public class JarJarsAutonomous extends JarJarAutonomousMethods {
 
         waitForStart();
 
-        //encodersMove( robot , 12,0.5, "forward" );
-
-        encodersMoveStrafe(robot,24,.5,"left");
-
-        robotSleep(500);
-
-        encodersMove(robot, 12, .3, "backward");
-        runIntake(robot, .5);
+        imuTurn(robot,90,.5,"right");
 
 
 

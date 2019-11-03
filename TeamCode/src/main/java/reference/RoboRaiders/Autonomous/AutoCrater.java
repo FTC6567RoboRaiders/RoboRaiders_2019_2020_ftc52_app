@@ -1,16 +1,17 @@
-package RoboRaiders.Autonomous;
+
+//package RoboRaiders.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import RoboRaiders.AutonomousMethods.AutoOptions.RoboRaidersPID;
-import RoboRaiders.AutonomousMethods.NostromoAutonomousMethods;
+//import RoboRaiders.AutonomousMethods.NostromoAutonomousMethods;
 import RoboRaiders.Robot.NostromoBotMotorDumper;
 import RoboRaiders.Robot.RobotTelemetryDisplay;
 
-@Autonomous(name="Auto: Robot Starts Towards Crater")
+//@Autonomous(name="Auto: Robot Starts Towards Crater")
 @Disabled
-
+/*
 public class AutoCrater extends NostromoAutonomousMethods {
 
     NostromoBotMotorDumper robot = new NostromoBotMotorDumper();
@@ -37,3 +38,4 @@ public class AutoCrater extends NostromoAutonomousMethods {
 
     }
 
+*/

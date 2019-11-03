@@ -1,3 +1,4 @@
+/*
 package RoboRaiders.AutonomousMethods;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -30,7 +31,8 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
 
     RobotTelemetryDisplay rtd = new RobotTelemetryDisplay(this, "Nostormo");
 
-    /*public void farRedDepot(RoboRaidersPID robotPID, NostromoBotMotorDumper robot) {
+    */
+/*public void farRedDepot(RoboRaidersPID robotPID, NostromoBotMotorDumper robot) {
         EncoderDrivePID( robot, 50, "forward");
 
         rtd.displayRobotTelemetry("Moving");
@@ -274,7 +276,8 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
         robotSleep(500);
 
     }
-*/
+*//*
+
     public void parkFromCraterStart(RoboRaidersPID drivePID, RoboRaidersPID turnPID, NostromoBotMotorDumper robot) {
 
         encodersMovePID(drivePID, robot, 43,  "backward");
@@ -311,7 +314,8 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
        imuTurn(robot, 20, .45, "right");
        robotSleep(500);
        encodersMove(robot, 5, .45,"backward");
-        /*
+        */
+/*
        imuTurnPID(turnPID, robot, 170,  "right");
        encodersMovePID(drivePID, robot, 10.0, "forward");
        double intakeCOUNTS = Math.abs(robot.calculateCOUNTSREVMotor(3.5));
@@ -329,7 +333,8 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
        //robot.setMotorDrawerSlide(-0.75);
        //robotSleep(2000);
        //robot.setMotorDrawerSlide(0);
-       */
+       *//*
+
 
 
        //encodersMovePID(drivePID, robot, 6,  "backward");
@@ -337,13 +342,15 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
 
 
 
-    /**
+    */
+/**
      * Tuner method to tune the PID variables for driving straight
      * @param robotPID
      * @param robot
      * @param wantedDistance
      * @param direction
-     */
+     *//*
+
     public void encoderDrivePIDTuner(RoboRaidersPID robotPID, NostromoBotMotorDumper robot, double wantedDistance, double direction) {
 
 
@@ -373,7 +380,8 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
         }
     }
 
-    /* public void imuTurnWithPID (NostromoBot robot, float degrees, String direction ) {
+    */
+/* public void imuTurnWithPID (NostromoBot robot, float degrees, String direction ) {
          robot.resetIMU();
          float finalHeading = robot.getHeading() + degrees;
 
@@ -398,13 +406,16 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
 
          robot.setDriveMotorPower(0.0, 0.0, 0.0, 0.0); //stops robot
      }
-     }*/
-   /* public void EncoderDrivePID(NostromoBotMotorDumper robot, double wantedDistance, double direction) {
+     }*//*
+
+   */
+/* public void EncoderDrivePID(NostromoBotMotorDumper robot, double wantedDistance, double direction) {
         //    robot.resetEncoders();
         //    robot.runWithEncoders();
         RoboRaidersPID pidClass = new RoboRaidersPID();   // create new pidClass
 
-        EncoderDrivePID(pidClass, robot, wantedDistance, direction);*/
+        EncoderDrivePID(pidClass, robot, wantedDistance, direction);*//*
+
 
 
 
@@ -447,13 +458,15 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
         robot.setDriveMotorPower(0.0, 0.0, 0.0, 0.0); //stops robot
     }
 
-    /**
+    */
+/**
      * turning with PID
      * @param robot
      * @param rrPID
      * @param degreesToTurn
      * @param direction
-     */
+     *//*
+
 
     }public void imuTurnPID(RoboRaidersPID rrPID, NostromoBotMotorDumper robot, float degreesToTurn, String direction) { //gets hardware from
         double power = 0.0;
@@ -576,10 +589,12 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
         L.Debug("End");
 
 
-    /**
+    */
+/**
      * This will lower the robot from the lander and opens the claw
      * @param robot
-     */
+     *//*
+
     public void DeployRobot(NostromoBotMotorDumper robot) {
 
         double startDeployTime = System.currentTimeMillis();
@@ -605,7 +620,8 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
     }
 
     public void DeployTeamMarker(RoboRaidersPID drivePID, RoboRaidersPID turnPID, NostromoBotMotorDumper robot, boolean startLocation) {
-         /*long t = System.currentTimeMillis();
+         */
+/*long t = System.currentTimeMillis();
         long end = t + 500;
         while (System.currentTimeMillis() < end) {//up
             robot.motorDumpp.setPower(-0.7);
@@ -613,7 +629,8 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
 
 
 
-        robot.motorDumpp.setPower(0); */
+        robot.motorDumpp.setPower(0); *//*
+
 
         if (startLocation) {//are we starting from the crater?)
             imuTurnPID(turnPID, robot, 20,  "right");
@@ -622,7 +639,8 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
         robot.dumpWrist.setPosition(robot.dropTeamMarker);//put elbow down
         robotSleep(1000);
 
-         /*while (System.currentTimeMillis() < end) {//down
+         */
+/*while (System.currentTimeMillis() < end) {//down
             robot.motorDumpp.setPower(0.7);
         }
         robot.motorDumpp.setPower(0);
@@ -631,7 +649,8 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
             robot.motorDumpp.setPower(-0.7);
         }
         robot.motorDumpp.setPower(0);
-        */
+        *//*
+
         robot.dumpWrist.setPosition(robot.bringMarkerBack);
         robotSleep(500);
 
@@ -642,12 +661,14 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
 
     }
 
-    /**
+    */
+/**
      * * Will detect the location of the gold mineral
      * @param drivePID
      * @param turnPID
      * @param robot
-     */
+     *//*
+
     public void samplingMineralsDepot(RoboRaidersPID drivePID, RoboRaidersPID turnPID, NostromoBotMotorDumper robot, boolean sampleWait) {
 
 
@@ -686,12 +707,14 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
         }
     }
 
-    /**
+    */
+/**
      * * Will detect the location of the gold mineral
      * @param drivePID
      * @param turnPID
      * @param robot
-     */
+     *//*
+
     public void samplingMineralsCrater(RoboRaidersPID drivePID, RoboRaidersPID turnPID, NostromoBotMotorDumper robot, boolean sampleWait) {
 
         encodersMove(robot, 2, .45,"forward");
@@ -725,11 +748,13 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
         }
     }
 
-    /**
+    */
+/**
      * will detect the gold mineral location
      *
      * @return the location of the gold mineral
-     */
+     *//*
+
     public int detectGoldMineral(NostromoBotMotorDumper robot) {
         int goldPostion = -1;
         int numberofrecognized = 0;
@@ -744,7 +769,9 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
         CameraDevice.getInstance().setFlashTorchMode(true);
 
         if (opModeIsActive()) {
-            /** Activate Tensor Flow Object Detection. */
+            */
+/** Activate Tensor Flow Object Detection. *//*
+
 
             if (robot.tfod != null) {
                 robot.tfod.activate();
@@ -1007,7 +1034,8 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
 
 
 
-    /*  public void DistanceDrivePID() {
+    */
+/*  public void DistanceDrivePID() {
         while (opModeIsActive() && robot.getSensorDistance() < Target) {
             motor_power = drivePID.pidWithDistance(robot.getSensorDistance(), Target);
             robot.setDriveMotorPower(motor_power, motor_power, motor_power, motor_power);
@@ -1016,7 +1044,8 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
             telemetry.addData("Target Distance", Target);
             telemetry.update();
 
-        }*/
+        }*//*
+
     public void encodersMove(NostromoBotMotorDumper robot, double distance, double power, String direction) { //sets the parameters
 
                     robot.resetEncoders(); //resets encoders
@@ -1082,13 +1111,15 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
         robot.runWithoutEncoders(); //sets the mode back to run without encoder
     }
 
-    /**
+    */
+/**
      * Tuner method to tune the PID variables for driving straight
      * @param robotPID
      * @param robot
      * @param distance
      * @param direction- "forward" drive forward, "backward" drive backwards
-     */
+     *//*
+
     public void encodersMovePID(RoboRaidersPID robotPID, NostromoBotMotorDumper robot, double distance, String direction) {
 
 
@@ -1166,11 +1197,13 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
         robot.runWithoutEncoders(); //sets the mode back to run without encoder
     }
 
-    /**
+    */
+/**
      * make the robot sleep (wait)
      *
      * @param timeToSleep time in milliseconds
-     */
+     *//*
+
     public void robotSleep(int timeToSleep) {
         try {
             Thread.sleep(timeToSleep);
@@ -1179,11 +1212,13 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
         }
     }
 
-    /**
+    */
+/**
      * make the robot sleep (wait)
      *
      * @param timeToSleep time in milliseconds
-     */
+     *//*
+
     public void RRsleep(long timeToSleep) {
 
         long startTime = System.currentTimeMillis();
@@ -1200,3 +1235,4 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
 
     }
 }
+*/
