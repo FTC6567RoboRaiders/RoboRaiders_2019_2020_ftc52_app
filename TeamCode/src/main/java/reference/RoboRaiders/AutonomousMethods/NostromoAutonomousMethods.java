@@ -454,7 +454,8 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
      * @param degreesToTurn
      * @param direction
      */
-    public void imuTurnPID(RoboRaidersPID rrPID, NostromoBotMotorDumper robot, float degreesToTurn, String direction) { //gets hardware from
+
+    }public void imuTurnPID(RoboRaidersPID rrPID, NostromoBotMotorDumper robot, float degreesToTurn, String direction) { //gets hardware from
         double power = 0.0;
         int loopcount = 0;
 
@@ -484,16 +485,16 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
             L.Debug("Turning Right");
             L.Debug("finalHeading: ",finalHeading);
 
-           // power = rrPID.CalculatePIDPowers(finalHeading,currentHeading);
+            // power = rrPID.CalculatePIDPowers(finalHeading,currentHeading);
             telemetry.addLine().addData("power", power);
 
             L.Debug("Calculated PID Power (power): ",power);
 
-          //  robot.setDriveMotorPower(power, power, power, power); //the robot will turn right
+            //  robot.setDriveMotorPower(power, power, power, power); //the robot will turn right
 
             while((opModeIsActive() && (loopcount < 20 &&
                     !(currentHeading < finalHeading + 3.5 && currentHeading > finalHeading - 3.5)))){
-                    //&& Math.abs(power) > 0.1) {
+                //&& Math.abs(power) > 0.1) {
                 currentHeading = robot.getIntegratedZAxis();
                 power = rrPID.CalculatePIDPowers(finalHeading,currentHeading) * 0.75;
 
@@ -529,7 +530,7 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
 
         }
         else { //if the desired direction is left
-           finalHeading = currentHeading + degreesToTurn;
+            finalHeading = currentHeading + degreesToTurn;
 
             L.Debug("Turning Left");
             L.Debug("finalHeading: ",finalHeading);
@@ -573,7 +574,6 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
 
 
         L.Debug("End");
-    }
 
 
     /**
