@@ -79,10 +79,10 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
         robot.runWithoutEncoders(); //sets the mode back to run without encoder
     }
 
-    public void runIntake(JarJarBot robot){
+    public void runIntake(JarJarBot robot, double power){
         double startIntakeTime = System.currentTimeMillis();
-        robot.intakeMotorLeft.setPower(.5);
-        robot.intakeMotorRight.setPower(.5);
+        robot.intakeMotorLeft.setPower(power);
+        robot.intakeMotorRight.setPower(power);
         while (opModeIsActive() && System.currentTimeMillis() - startIntakeTime < 1500) {
         }
 
