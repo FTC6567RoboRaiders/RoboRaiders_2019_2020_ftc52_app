@@ -112,6 +112,8 @@ public class JarJarBot {
     }
 
 
+
+
     public double calculateCOUNTS(double distance) {
 
         double COUNTS;
