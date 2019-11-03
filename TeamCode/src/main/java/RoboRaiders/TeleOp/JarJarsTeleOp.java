@@ -11,6 +11,8 @@ import RoboRaiders.Robot.JarJarBot;
 
 public class JarJarsTeleOp extends OpMode {
 
+    public JarJarBot robot = new JarJarBot();
+
         DcMotor motorBackLeft, motorBackRight, motorFrontLeft, motorFrontRight, intakeMotorLeft, intakeMotorRight;
         public boolean currStateX = false;
         public boolean currStateY = false;
@@ -38,10 +40,10 @@ public class JarJarsTeleOp extends OpMode {
         @Override
         public void loop() {
 
-            float backLeft = gamepad1.left_stick_y - gamepad1.left_stick_x + gamepad1.right_stick_x;    // These lines establish the joystick input values as
-            float backRight = gamepad1.left_stick_y + gamepad1.left_stick_x - gamepad1.right_stick_x;   // the float variables "backLeft", "backRight", "frontLeft", and "frontRight", which
-            float frontLeft = gamepad1.left_stick_y + gamepad1.left_stick_x + gamepad1.right_stick_x;   //correspond to the back left, back right, front left,
-            float frontRight = gamepad1.left_stick_y - gamepad1.left_stick_x - gamepad1.right_stick_x;  // and front right wheels of the robot.
+            float backLeft = -gamepad1.left_stick_y - gamepad1.left_stick_x + gamepad1.right_stick_x;    // These lines establish the joystick input values as
+            float backRight = -gamepad1.left_stick_y + gamepad1.left_stick_x - gamepad1.right_stick_x;   // the float variables "backLeft", "backRight", "frontLeft", and "frontRight", which
+            float frontLeft = -gamepad1.left_stick_y + gamepad1.left_stick_x + gamepad1.right_stick_x;   //correspond to the back left, back right, front left,
+            float frontRight = -gamepad1.left_stick_y - gamepad1.left_stick_x - gamepad1.right_stick_x;  // and front right wheels of the robot.
 
             backLeft = Range.clip(backLeft, -1, 1);     // These lines clip the extreme ends of the joystick input
             backRight = Range.clip(backRight, -1, 1);   // values in the resulting floats to avoid exceeding
@@ -57,8 +59,8 @@ public class JarJarsTeleOp extends OpMode {
             // "setMotorPower" below. It sets the power of the motors to the joystick input values in
             // the floats.
 
-            currStateX = gamepad2.x;
-            currStateY = gamepad2.y;
+            currStateX = gamepad1.x;
+            currStateY = gamepad1.y;
 
            /* if (currStateX && currStateX != prevStateX) {
 

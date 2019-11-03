@@ -25,7 +25,7 @@ public class JarJarsAutonomous extends JarJarAutonomousMethods {
 
         //encodersMove( robot , 12,0.5, "forward" );
 
-        encodersMoveStrafe(robot,10,.5,"forward");
+        encodersMoveStrafe(robot,24,.5,"left");
 
 
     }
