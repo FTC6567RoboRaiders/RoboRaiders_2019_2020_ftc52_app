@@ -1,5 +1,9 @@
+
 /*
 package RoboRaiders.AutonomousMethods;
+=======
+/*package RoboRaiders.AutonomousMethods;
+>>>>>>> Stashed changes
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -276,9 +280,14 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
         robotSleep(500);
 
     }
+<<<<<<< Updated upstream
 *//*
 
     public void parkFromCraterStart(RoboRaidersPID drivePID, RoboRaidersPID turnPID, NostromoBotMotorDumper robot) {
+=======
+*/
+    /*public void parkFromCraterStart(RoboRaidersPID drivePID, RoboRaidersPID turnPID, NostromoBotMotorDumper robot) {
+>>>>>>> Stashed changes
 
         encodersMovePID(drivePID, robot, 43,  "backward");
 
@@ -333,7 +342,10 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
        //robot.setMotorDrawerSlide(-0.75);
        //robotSleep(2000);
        //robot.setMotorDrawerSlide(0);
+<<<<<<< Updated upstream
        *//*
+=======
+>>>>>>> Stashed changes
 
 
 
@@ -342,16 +354,25 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
 
 
 
+<<<<<<< Updated upstream
     */
 /**
+=======
+
+>>>>>>> Stashed changes
      * Tuner method to tune the PID variables for driving straight
      * @param robotPID
      * @param robot
      * @param wantedDistance
      * @param direction
+<<<<<<< Updated upstream
      *//*
 
     public void encoderDrivePIDTuner(RoboRaidersPID robotPID, NostromoBotMotorDumper robot, double wantedDistance, double direction) {
+=======
+
+    public encoderDrivePIDTuner(RoboRaidersPID robotPID, NostromoBotMotorDumper robot, double wantedDistance, double direction) {
+>>>>>>> Stashed changes
 
 
         robot.resetEncoders();
@@ -406,16 +427,25 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
 
          robot.setDriveMotorPower(0.0, 0.0, 0.0, 0.0); //stops robot
      }
+<<<<<<< Updated upstream
      }*//*
 
    */
 /* public void EncoderDrivePID(NostromoBotMotorDumper robot, double wantedDistance, double direction) {
+=======
+     }
+    public void EncoderDrivePID(NostromoBotMotorDumper robot, double wantedDistance, double direction) {
+>>>>>>> Stashed changes
         //    robot.resetEncoders();
         //    robot.runWithEncoders();
         RoboRaidersPID pidClass = new RoboRaidersPID();   // create new pidClass
 
+<<<<<<< Updated upstream
         EncoderDrivePID(pidClass, robot, wantedDistance, direction);*//*
 
+=======
+        EncoderDrivePID(pidClass, robot, wantedDistance, direction);
+>>>>>>> Stashed changes
 
 
 
@@ -468,7 +498,7 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
      *//*
 
 
-    }public void imuTurnPID(RoboRaidersPID rrPID, NostromoBotMotorDumper robot, float degreesToTurn, String direction) { //gets hardware from
+    }/*public void imuTurnPID(RoboRaidersPID rrPID, NostromoBotMotorDumper robot, float degreesToTurn, String direction) { //gets hardware from
         double power = 0.0;
         int loopcount = 0;
 

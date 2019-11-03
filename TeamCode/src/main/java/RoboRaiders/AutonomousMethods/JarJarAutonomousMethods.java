@@ -124,9 +124,9 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
 
         // robot.getHeading(); returns the current heading of the IMU
 
-        if (direction.equals("right")) { //if the desired direction is right
+        if (direction.equals("left")) { //if the desired direction is right
             finalHeading = currentHeading - degreesToTurn;
-            robot.setDriveMotorPower(power, -power, power, -power); //the robot will turn right
+            robot.setDriveMotorPower(-power, power, -power, power); //the robot will turn right
             while(opModeIsActive() && robot.getIntegratedZAxis() > finalHeading) {
                 //robot.angles = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
                 //currentHeading = robot.getIntegratedZAxis();
@@ -138,7 +138,7 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
         }
         else { //if the desired direction is left
             finalHeading = currentHeading + degreesToTurn;
-            robot.setDriveMotorPower(-power, power, -power, power); //the robot will turn left
+            robot.setDriveMotorPower(power, -power, power, -power); //the robot will turn left
             while(opModeIsActive() && robot.getIntegratedZAxis() < finalHeading) {
                 //robot.angles = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
                 //currentHeading = robot.getIntegratedZAxis();

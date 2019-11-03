@@ -23,7 +23,9 @@ public class JarJarsAutonomous extends JarJarAutonomousMethods {
 
         waitForStart();
 
-        imuTurn(robot,90,.5,"right");
+        imuTurn(robot,90,.4,"left");
+
+
 
 
 
