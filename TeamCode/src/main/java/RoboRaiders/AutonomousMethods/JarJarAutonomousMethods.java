@@ -40,4 +40,42 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
             }
         }
     }
+
+    public void encodersMoveStrafe(JarJarBot robot, double distance, double power, String direction){
+        robot.resetEncoders();
+        robot.runWithEncoders();
+
+        final double v = robot.calculateCOUNTS(distance);
+        double COUNTS = v; //COUNTS is now equal to the value calculated
+
+        if (direction.equals("right")) { //if the desired direction is right
+
+            robot.setDriveMotorPower(power, -power-0.3, -power-0.3, power); //start strafing right
+
+            while (robot.getSortedEncoderCount() < COUNTS && opModeIsActive()) { //while the current count is
+                //still less than the desired count and the opMode has not been stopped
+
+                telemetry.addData("COUNTS", COUNTS);
+                telemetry.addData("Encoder Count", robot.getSortedEncoderCount());
+                telemetry.update();
+            }
+
+            robot.setDriveMotorPower(0.0, 0.0, 0.0, 0.0); //stop the robot
+        } else if (direction.equals("left")) { //if the desired direction is left
+
+            robot.setDriveMotorPower(-power, power, power, -power); //start strafing left
+
+            while (robot.getSortedEncoderCount() < COUNTS && opModeIsActive()) { //while the current count is
+                //still greater than the desired count and the opMode has not been stopped
+
+                telemetry.addData("COUNTS", COUNTS);
+                telemetry.addData("Encoder Count", robot.getSortedEncoderCount());
+                telemetry.update();
+            }
+
+            robot.setDriveMotorPower(0.0, 0.0, 0.0, 0.0); //stop the robot
+        }
+
+        robot.runWithoutEncoders(); //sets the mode back to run without encoder
+    }
 }
