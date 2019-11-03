@@ -34,6 +34,11 @@ public class JarJarBot {
     /* Public Variables */
     public BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
     public Orientation angles;
+    public double integratedZAxis;
+    public double iza_lastHeading = 0.0;
+    public double iza_deltaHeading;
+    public float iza_newHeading;
+    public Orientation iza_angles;
 
     /**
      * Constructor for Robot class, current does nothing but is needed since every class needs a constructor
@@ -217,7 +222,35 @@ public class JarJarBot {
     /**
      * Initialize the Vuforia localization engine.
      */
+    public double getIntegratedZAxis() {
 
+        // This sets up the how we want the IMU to report data
+        iza_angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+
+        // Obtain the heading (Z-Axis)
+        iza_newHeading = iza_angles.firstAngle;
+
+        // Calculate the change in the heading from the previous heading
+        iza_deltaHeading = iza_newHeading - iza_lastHeading;
+
+        // Bosch IMU wraps at 180, so compensate for this
+        if (iza_deltaHeading <= -180.0) {
+
+            iza_deltaHeading += 360.0;
+        }
+        else if (iza_deltaHeading >= 180.0) {
+
+            iza_deltaHeading -= 360;
+        }
+
+        // Calculate the integratedZAxis
+        integratedZAxis += iza_deltaHeading;
+
+        // Save the current heading for the next call to this method
+        iza_lastHeading = iza_newHeading;
+
+        return integratedZAxis;
+    }
 
  }
 
