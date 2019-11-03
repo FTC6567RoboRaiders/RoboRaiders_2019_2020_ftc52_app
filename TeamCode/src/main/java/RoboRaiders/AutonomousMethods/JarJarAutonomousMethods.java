@@ -14,7 +14,7 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
         final double v = robot.calculateCOUNTS(distance);
         double COUNTS = v; //COUNTS is now equal to the value calculated
 
-        if (direction.equals("forward")) { //if the desired direction is forward
+        if (direction.equals("backward")) { //if the desired direction is forward
 
             robot.setDriveMotorPower(power, power, power, power); //start driving forward
 
@@ -27,7 +27,7 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
             }
 
             robot.setDriveMotorPower(0, 0, 0, 0); //stop the robot
-        } else if (direction.equals("backward")) { //if the desired direction is backward
+        } else if (direction.equals("forward")) { //if the desired direction is backward
 
             robot.setDriveMotorPower(-power, -power, -power, -power); //start driving backward
 
