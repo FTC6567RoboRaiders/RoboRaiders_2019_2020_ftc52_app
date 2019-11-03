@@ -10,7 +10,7 @@ import RoboRaiders.Robot.NostromoBotMotorDumper;
 import RoboRaiders.Robot.RobotTelemetryDisplay;
 
 //@Autonomous(name="Auto: Robot Starts Towards Crater")
-@Disabled
+//@Disabled
 /*
 public class AutoCrater extends NostromoAutonomousMethods {
 
