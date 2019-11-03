@@ -90,4 +90,12 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
         robot.intakeMotorLeft.setPower(0.0);
 
     }
+
+    public void robotSleep(int timeToSleep) {
+        try {
+            Thread.sleep(timeToSleep);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
 }

@@ -923,7 +923,7 @@ public abstract class NostromoAutonomousMethods extends LinearOpMode {
     public void  mineralLeftCrater(RoboRaidersPID drivePID, RoboRaidersPID turnPID, NostromoBotMotorDumper robot) {
 
         //encodersMove(robot, 8, .5, "forward");
-        //robotSleep(500);
+        robotSleep(500);
 
         imuTurnPID(turnPID, robot,65, "right");
         //robotSleep(250);
