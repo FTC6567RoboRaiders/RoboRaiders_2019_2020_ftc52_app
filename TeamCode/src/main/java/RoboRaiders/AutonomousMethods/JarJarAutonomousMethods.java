@@ -30,7 +30,7 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
 
         if (direction.equals("forward")) { //if the desired direction is forward
 
-            robot.setDriveMotorPower(power, power, power, power); //start driving forward
+            robot.setDriveMotorPower(-power, -power, -power, -power); //start driving forward
 
             while (robot.getSortedEncoderCount() < COUNTS && opModeIsActive()) { //while the current count is
                 //still less than the desired count and the opMode has not been stopped
@@ -43,7 +43,7 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
             robot.setDriveMotorPower(0, 0, 0, 0); //stop the robot
         } else if (direction.equals("backward")) { //if the desired direction is backward
 
-            robot.setDriveMotorPower(-power, -power, -power, -power); //start driving backward
+            robot.setDriveMotorPower(power, power, power, power); //start driving backward
 
             while (robot.getSortedEncoderCount() < COUNTS && opModeIsActive()) { //while the current count is
                 //still greater than the desired count and the opMode has not been stopped
@@ -97,12 +97,21 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
         double startIntakeTime = System.currentTimeMillis();
         robot.intakeMotorLeft.setPower(power);
         robot.intakeMotorRight.setPower(power);
-        while (opModeIsActive() && System.currentTimeMillis() - startIntakeTime < 1500) {
+        while (opModeIsActive() && System.currentTimeMillis() - startIntakeTime < 4000) {
         }
 
         robot.intakeMotorRight.setPower(0.0);
         robot.intakeMotorLeft.setPower(0.0);
 
+    }
+
+    public void collectStone(JarJarBot robot){
+        double startIntakeTime = System.currentTimeMillis();
+        encodersMove(robot, 28, .5, "forward");
+        runIntake(robot, -.5);
+        while (opModeIsActive() && System.currentTimeMillis() - startIntakeTime < 4000){
+        }
+        runIntake(robot, 0);
     }
 
     public void robotSleep(int timeToSleep) {
