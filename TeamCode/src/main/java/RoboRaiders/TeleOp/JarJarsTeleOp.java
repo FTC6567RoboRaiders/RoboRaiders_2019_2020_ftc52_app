@@ -67,15 +67,13 @@ public class JarJarsTeleOp extends OpMode {
             currStateRightBumper = gamepad1.right_bumper;
             currStateLeftBumper = gamepad1.left_bumper;
 
-          if (currStateLeftBumper){
-             robot.takeSkystone.setPosition(robot.takeSkystoneUp);
-          }
+          //if (currStateLeftBumper){
+            // robot.takeSkystoneDown();
+          //}
 
-          else if (currStateRightBumper){
-              robot.takeSkystone.setPosition(robot.takeSkystoneDown);
-          }
-
-
+          //else if (currStateRightBumper){
+            //  robot.takeSkystoneUp();
+          //}
 
           if (currStateX) {
               intakeMotorRight.setPower(-.5);
