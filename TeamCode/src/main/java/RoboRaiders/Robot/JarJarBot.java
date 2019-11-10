@@ -26,6 +26,7 @@ public class JarJarBot {
     public DcMotor motorBackRight = null;
     public DcMotor intakeMotorRight = null;
     public DcMotor intakeMotorLeft = null;
+    public Servo takeSkystone = null;
     public BNO055IMU imu;
 
     /* Local OpMode Members */
@@ -39,6 +40,8 @@ public class JarJarBot {
     public double iza_deltaHeading;
     public float iza_newHeading;
     public Orientation iza_angles;
+    public double takeSkystoneUp = 0.0;
+    public double takeSkystoneDown = 1.0;
 
     /**
      * Constructor for Robot class, current does nothing but is needed since every class needs a constructor
@@ -65,6 +68,8 @@ public class JarJarBot {
         intakeMotorLeft = hwMap.get(DcMotor.class, "intakeMotorLeft");
         intakeMotorRight = hwMap.get (DcMotor.class, "intakeMotorRight");
 
+        takeSkystone = hwMap.servo.get("takeSkystone");
+
         // Defines the directions the motors will spin
         motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
         motorFrontRight.setDirection(DcMotor.Direction.FORWARD);
@@ -83,6 +88,8 @@ public class JarJarBot {
         intakeMotorLeft.setPower(0);
         intakeMotorRight.setPower(0);
 
+        takeSkystone.setPosition(0.0);
+
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODER if encoders are installed, and we wouldn't use encoders for teleop, even if we
         motorFrontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER); //will use them in teleop.
@@ -98,6 +105,7 @@ public class JarJarBot {
         parameters.mode = BNO055IMU.SensorMode.IMU;
         imu.initialize(parameters);
     }
+
         public ModernRoboticsI2cRangeSensor mrDistance;
 
     /**
@@ -108,6 +116,8 @@ public class JarJarBot {
      * @param leftBack   power setting for the left back motor
      * @param rightBack  power setting for the right back motor
      */
+
+
     public void setDriveMotorPower(double leftFront, double rightFront, double leftBack, double rightBack) {
 
         motorFrontLeft.setPower(leftFront);
@@ -115,6 +125,9 @@ public class JarJarBot {
         motorBackLeft.setPower(leftBack);
         motorBackRight.setPower(rightBack);
     }
+
+    public void takeSkystoneDown(){ takeSkystone.setPosition(1.0);}
+    public void takeSkystoneUp() {takeSkystone.setPosition(0.0);}
 
 
 

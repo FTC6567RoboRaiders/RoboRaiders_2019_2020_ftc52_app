@@ -1,6 +1,7 @@
 package RoboRaiders.AutonomousMethods;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
@@ -104,6 +105,7 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
         robot.intakeMotorLeft.setPower(0.0);
 
     }
+
 
     public void collectStone(JarJarBot robot){
         double startIntakeTime = System.currentTimeMillis();

@@ -23,11 +23,8 @@ public class JarJarsAutonomous extends JarJarAutonomousMethods {
 
         waitForStart();
 
-        //runIntake(robot,-.5);
-        //encodersMove(robot,36,.5,"forward");
-        collectStone(robot);
-        encodersMove(robot, 70,.5,"forward");
-        encodersMoveStrafe(robot,36,.5,"left");
+        runIntake(robot, .5);
+
 
 
 

@@ -18,6 +18,8 @@ public class JarJarsTeleOp extends OpMode {
         public boolean currStateY = false;
         public boolean prevStateX = false;
         public boolean prevStateY = false;
+        public boolean currStateRightBumper = false;
+        public boolean currStateLeftBumper = false;
 
         @Override
         public void init() { /*This is the initialization routine that the robot undergoes. */
@@ -62,41 +64,32 @@ public class JarJarsTeleOp extends OpMode {
             currStateX = gamepad1.x;
             currStateY = gamepad1.y;
 
-           /* if (currStateX && currStateX != prevStateX) {
+            currStateRightBumper = gamepad1.right_bumper;
+            currStateLeftBumper = gamepad1.left_bumper;
 
-                intakeMotorRight.setPower(.3);
-                intakeMotorLeft.setPower(.3);
-                prevStateX = currStateX;
-            }
-            else if (!currStateX && currStateX != prevStateX) {
+          if (currStateLeftBumper){
+             robot.takeSkystone.setPosition(robot.takeSkystoneUp);
+          }
 
-                prevStateX = currStateX;
-            }
+          else if (currStateRightBumper){
+              robot.takeSkystone.setPosition(robot.takeSkystoneDown);
+          }
 
-            if (currStateY && currStateY != prevStateY) {
 
-                intakeMotorLeft.setPower(-.3);
-                intakeMotorRight.setPower(-.3);
-                prevStateY = currStateY;
-            }
-            else if (!currStateY && currStateY != prevStateY) {
 
-                prevStateY = currStateY;
-            }
-            */
+          if (currStateX) {
+              intakeMotorRight.setPower(-.5);
+              intakeMotorLeft.setPower(.5);
+          }
+          else if (currStateY) {
+              intakeMotorRight.setPower(.5);
+              intakeMotorLeft.setPower(-.5);
+          }
+          else {
+              intakeMotorRight.setPower(0);
+              intakeMotorLeft.setPower(0);
+          }
 
-            if (currStateX) {
-                intakeMotorRight.setPower(-.5);
-                intakeMotorLeft.setPower(.5);
-            }
-            else if (currStateY) {
-                intakeMotorRight.setPower(.5);
-                intakeMotorLeft.setPower(-.5);
-            }
-            else {
-                intakeMotorRight.setPower(0);
-                intakeMotorLeft.setPower(0);
-            }
         }
 
         @Override
