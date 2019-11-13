@@ -29,8 +29,8 @@ public class TestingBlockIntake extends JarJarAutonomousMethods {
         intakeArmAuto(robot, 0.0);
         robotSleep(1000);
 
-        //encodersMove(robot, 2.0,.5,"backward");
-        robotSleep(1000);
+        encodersMove(robot, 2.0,.5,"backward");
+        robotSleep(3000);
 
         encodersMove(robot, 7.0, .4, "forward");
 

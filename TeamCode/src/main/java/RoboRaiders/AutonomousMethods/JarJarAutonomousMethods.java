@@ -33,7 +33,7 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
 
             robot.setDriveMotorPower(power, power, power, power); //start driving forward
 
-            while (robot.getSortedEncoderCount() < COUNTS && opModeIsActive()) { //while the current count is
+            while ((double)robot.getSortedEncoderCount() < COUNTS && opModeIsActive()) { //while the current count is
                 //still less than the desired count and the opMode has not been stopped
 
                 //telemetry.addData("COUNTS", COUNTS);
@@ -46,7 +46,7 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
 
             robot.setDriveMotorPower(-power, -power, -power, -power); //start driving backward
 
-            while (robot.getSortedEncoderCount() < COUNTS && opModeIsActive()) { //while the current count is
+            while ((double)robot.getSortedEncoderCount() < COUNTS && opModeIsActive()) { //while the current count is
                 //still greater than the desired count and the opMode has not been stopped
 
                 telemetry.addData("COUNTS", COUNTS);
