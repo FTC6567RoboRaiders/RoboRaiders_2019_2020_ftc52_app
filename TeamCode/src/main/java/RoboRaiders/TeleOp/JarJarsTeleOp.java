@@ -13,7 +13,10 @@ public class JarJarsTeleOp extends OpMode {
 
     public JarJarBot robot = new JarJarBot();
 
-        DcMotor motorBackLeft, motorBackRight, motorFrontLeft, motorFrontRight, intakeMotorLeft, intakeMotorRight;
+        float backLeft;   // Power for left back motor
+        float backRight;  // Power for right back motor
+        float frontLeft;  // Power for left front motor
+        float frontRight; // Power for right front motor
         public boolean currStateX = false;
         public boolean currStateY = false;
         public boolean prevStateX = false;
@@ -24,28 +27,21 @@ public class JarJarsTeleOp extends OpMode {
         @Override
         public void init() { /*This is the initialization routine that the robot undergoes. */
 
-
-            motorBackLeft = hardwareMap.dcMotor.get("motorBackLeft");           // These lines establish a link between
-            motorBackRight = hardwareMap.dcMotor.get("motorBackRight");         // the code and the hardware for the
-            motorFrontLeft = hardwareMap.dcMotor.get("motorFrontLeft");         // motors. The names in quotations are
-            motorFrontRight = hardwareMap.dcMotor.get("motorFrontRight");       //the names of the motors we set on the phone.
-            intakeMotorLeft = hardwareMap.dcMotor.get ("intakeMotorLeft");
-            intakeMotorRight = hardwareMap.dcMotor.get ("intakeMotorRight");
-
-
-            motorBackRight.setDirection(DcMotor.Direction.REVERSE);             //These lines reverse the right motors
-            motorFrontRight.setDirection(DcMotor.Direction.REVERSE);            //in order to negate the fact that the
+            robot.initialize(hardwareMap);
+                       //in order to negate the fact that the
             //motors are placed on the robot
             //to mirror each other.
+            telemetry.addData("Initialized", true);
+            telemetry.update();
         }
 
         @Override
         public void loop() {
 
-            float backLeft = -gamepad1.left_stick_y - gamepad1.left_stick_x + gamepad1.right_stick_x;    // These lines establish the joystick input values as
-            float backRight = -gamepad1.left_stick_y + gamepad1.left_stick_x - gamepad1.right_stick_x;   // the float variables "backLeft", "backRight", "frontLeft", and "frontRight", which
-            float frontLeft = -gamepad1.left_stick_y + gamepad1.left_stick_x + gamepad1.right_stick_x;   //correspond to the back left, back right, front left,
-            float frontRight = -gamepad1.left_stick_y - gamepad1.left_stick_x - gamepad1.right_stick_x;  // and front right wheels of the robot.
+            backLeft = -gamepad1.left_stick_y - gamepad1.left_stick_x + gamepad1.right_stick_x;    // These lines establish the joystick input values as
+            backRight = -gamepad1.left_stick_y + gamepad1.left_stick_x - gamepad1.right_stick_x;   // the float variables "backLeft", "backRight", "frontLeft", and "frontRight", which
+            frontLeft = -gamepad1.left_stick_y + gamepad1.left_stick_x + gamepad1.right_stick_x;   //correspond to the back left, back right, front left,
+            frontRight = -gamepad1.left_stick_y - gamepad1.left_stick_x - gamepad1.right_stick_x;  // and front right wheels of the robot.
 
             backLeft = Range.clip(backLeft, -1, 1);     // These lines clip the extreme ends of the joystick input
             backRight = Range.clip(backRight, -1, 1);   // values in the resulting floats to avoid exceeding
@@ -67,25 +63,22 @@ public class JarJarsTeleOp extends OpMode {
             currStateRightBumper = gamepad1.right_bumper;
             currStateLeftBumper = gamepad1.left_bumper;
 
-          //if (currStateLeftBumper){
-            // robot.takeSkystoneDown();
-          //}
+          if (currStateLeftBumper){
+            robot.intakeArmDown();
+          }
 
-          //else if (currStateRightBumper){
-            //  robot.takeSkystoneUp();
-          //}
+          else if (currStateRightBumper){
+             robot.intakeArmUp();
+          }
 
           if (currStateX) {
-              intakeMotorRight.setPower(-.5);
-              intakeMotorLeft.setPower(.5);
+             robot.setInakePower(.5);
           }
           else if (currStateY) {
-              intakeMotorRight.setPower(.5);
-              intakeMotorLeft.setPower(-.5);
+            robot.setInakePower(-.5);
           }
           else {
-              intakeMotorRight.setPower(0);
-              intakeMotorLeft.setPower(0);
+             robot.setInakePower(0);
           }
 
         }
@@ -96,16 +89,8 @@ public class JarJarsTeleOp extends OpMode {
         }
 
         public void setMotorPower(float backLeft, float backRight, float frontLeft, float frontRight) { // This public void, when implemented
-            // above, sets the power of the four motors.
-            // Whatever is inputted into each of the four
-            // parameters above is then substituted
-            // into its corresponding spot in the
-            // public void.
 
-            motorBackLeft.setPower(backLeft);   // These lines set the power of each motor to the desired power.
-            motorBackRight.setPower(backRight);
-            motorFrontLeft.setPower(frontLeft);
-            motorFrontRight.setPower(frontRight);
+            robot.givePower(backLeft,backRight,frontLeft,frontRight);
 
         }
 

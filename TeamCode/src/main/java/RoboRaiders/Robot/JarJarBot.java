@@ -26,7 +26,8 @@ public class JarJarBot {
     public DcMotor motorBackRight = null;
     public DcMotor intakeMotorRight = null;
     public DcMotor intakeMotorLeft = null;
-    //public Servo takeSkystone = null;
+
+    public Servo intakeArm = null;
     public BNO055IMU imu;
 
     /* Local OpMode Members */
@@ -68,16 +69,15 @@ public class JarJarBot {
         intakeMotorLeft = hwMap.get(DcMotor.class, "intakeMotorLeft");
         intakeMotorRight = hwMap.get (DcMotor.class, "intakeMotorRight");
 
-        //takeSkystone = hwMap.servo.get("takeSkystone");
+        intakeArm = hwMap.servo.get("intakeArm");
 
         // Defines the directions the motors will spin
-        motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
-        motorFrontRight.setDirection(DcMotor.Direction.FORWARD);
-        motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
-        motorBackRight.setDirection(DcMotor.Direction.FORWARD);
-        intakeMotorRight.setDirection(DcMotor.Direction.FORWARD);
+        motorFrontLeft.setDirection(DcMotor.Direction.FORWARD);
+        motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
+        motorBackLeft.setDirection(DcMotor.Direction.FORWARD);
+        motorBackRight.setDirection(DcMotor.Direction.REVERSE);
+        intakeMotorRight.setDirection(DcMotor.Direction.REVERSE);
         intakeMotorLeft.setDirection(DcMotor.Direction.REVERSE);
-
 
 //have the motors on the drivetrain break here.
         // Set all motors to zero power
@@ -88,7 +88,7 @@ public class JarJarBot {
         intakeMotorLeft.setPower(0);
         intakeMotorRight.setPower(0);
 
-        //takeSkystone.setPosition(0.0);
+        intakeArm.setPosition(1.0);
 
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODER if encoders are installed, and we wouldn't use encoders for teleop, even if we
@@ -263,6 +263,20 @@ public class JarJarBot {
         iza_lastHeading = iza_newHeading;
 
         return integratedZAxis;
+    }
+    public void setInakePower(double intake){
+        intakeMotorLeft.setPower(intake);
+        intakeMotorRight.setPower(-1*intake);
+    }
+    public void intakeArmDown() {   intakeArm.setPosition(1.0); }
+
+    public void intakeArmUp() {   intakeArm.setPosition(0.0); }
+
+    public void givePower(float backLeft, float backRight, float frontLeft, float frontRight) {
+        motorBackLeft.setPower(backLeft);   // These lines set the power of each motor to the desired power.
+        motorBackRight.setPower(backRight);
+        motorFrontLeft.setPower(frontLeft);
+        motorFrontRight.setPower(frontRight);
     }
 
  }
