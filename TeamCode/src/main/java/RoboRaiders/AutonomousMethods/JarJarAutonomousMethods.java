@@ -106,6 +106,14 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
 
     }
 
+    public void intakeArmDown (JarJarBot robot) {
+        robot.intakeArmDown();
+    }
+
+    public void intakeArmUp (JarJarBot robot) {
+        robot.intakeArmUp();
+    }
+
 
     public void collectStone(JarJarBot robot){
         double startIntakeTime = System.currentTimeMillis();

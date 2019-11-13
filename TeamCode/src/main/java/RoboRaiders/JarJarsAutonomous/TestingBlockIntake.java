@@ -6,9 +6,9 @@ import RoboRaiders.AutonomousMethods.JarJarAutonomousMethods;
 import RoboRaiders.Robot.JarJarBot;
 import RoboRaiders.Robot.RobotTelemetryDisplay;
 
-@Autonomous (name= "Movement Test For JarJar")
+@Autonomous (name= "Testing Block Intake")
 
-public class JarJarsAutonomous extends JarJarAutonomousMethods {
+public class TestingBlockIntake extends JarJarAutonomousMethods {
 
     JarJarBot robot = new JarJarBot();
 
@@ -23,7 +23,16 @@ public class JarJarsAutonomous extends JarJarAutonomousMethods {
 
         waitForStart();
 
-        encodersMove(robot, 12, .5, "forward");
+        encodersMove(robot, 10, .3,"forward");
+        wait(1000);
+        intakeArmDown(robot);
+        wait(1000);
+        encodersMove(robot, 10, .3, "backward");
+        wait(2000);
+        runIntake(robot, .6);
+        encodersMove(robot, 3, .1, "forward");
+        wait(500);
+        intakeArmUp(robot);
 
 
 
