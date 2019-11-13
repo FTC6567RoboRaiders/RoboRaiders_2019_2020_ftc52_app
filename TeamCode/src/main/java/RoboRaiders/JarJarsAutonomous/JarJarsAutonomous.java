@@ -6,7 +6,7 @@ import RoboRaiders.AutonomousMethods.JarJarAutonomousMethods;
 import RoboRaiders.Robot.JarJarBot;
 import RoboRaiders.Robot.RobotTelemetryDisplay;
 
-@Autonomous (name= "Movement Test For JarJar")
+@Autonomous (name= "Movement Test For BotLord")
 
 public class JarJarsAutonomous extends JarJarAutonomousMethods {
 
@@ -23,7 +23,7 @@ public class JarJarsAutonomous extends JarJarAutonomousMethods {
 
         waitForStart();
 
-        encodersMove(robot, 12, .5, "forward");
+        encodersMove(robot, 5, .5, "backward");
 
 
 

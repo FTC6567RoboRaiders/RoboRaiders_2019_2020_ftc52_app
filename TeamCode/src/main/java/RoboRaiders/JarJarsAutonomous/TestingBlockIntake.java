@@ -24,15 +24,24 @@ public class TestingBlockIntake extends JarJarAutonomousMethods {
         waitForStart();
 
         encodersMove(robot, 10, .3,"forward");
-        wait(1000);
-        intakeArmDown(robot);
-        wait(1000);
-        encodersMove(robot, 10, .3, "backward");
-        wait(2000);
-        runIntake(robot, .6);
-        encodersMove(robot, 3, .1, "forward");
-        wait(500);
-        intakeArmUp(robot);
+        robotSleep(1000);
+
+        intakeArmAuto(robot, 0.0);
+        robotSleep(1000);
+
+        //encodersMove(robot, 2.0,.5,"backward");
+        robotSleep(1000);
+
+        encodersMove(robot, 7.0, .4, "forward");
+
+
+        runIntake(robot, .4);
+        robotSleep(3000);
+
+
+        robotSleep(1000);
+
+        intakeArmAuto(robot, 1.0);
 
 
 

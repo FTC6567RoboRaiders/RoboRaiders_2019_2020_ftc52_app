@@ -272,6 +272,10 @@ public class JarJarBot {
 
     public void intakeArmUp() {   intakeArm.setPosition(0.0); }
 
+    public void intakeArmAuto (double position) {
+        intakeArm.setPosition(position);
+    }
+
     public void givePower(float backLeft, float backRight, float frontLeft, float frontRight) {
         motorBackLeft.setPower(backLeft);   // These lines set the power of each motor to the desired power.
         motorBackRight.setPower(backRight);
