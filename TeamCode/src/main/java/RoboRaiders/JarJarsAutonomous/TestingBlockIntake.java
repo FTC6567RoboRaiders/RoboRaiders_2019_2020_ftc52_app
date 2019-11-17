@@ -19,7 +19,7 @@ public class TestingBlockIntake extends JarJarAutonomousMethods {
 
         robot.initialize(hardwareMap);
 
-        rtd.displayRobotTelemetry("Initialized, Waiting For Start");
+        rtd.displayRobotTelemetry("Initialized, Wai ting For Start");
 
         waitForStart();
         collectStone(robot);
@@ -31,7 +31,6 @@ public class TestingBlockIntake extends JarJarAutonomousMethods {
         robotSleep(1000);
 
     }
-
 
 }
 
