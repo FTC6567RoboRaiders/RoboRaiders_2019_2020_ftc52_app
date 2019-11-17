@@ -27,7 +27,6 @@ import static org.opencv.core.CvType.CV_8UC1;
 @TeleOp
 public class BrightnessDetection extends LinearOpMode {
     OpenCvCamera phone_camera;
-
     SamplePipeline stone_pipeline;
     public void runOpMode() {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());

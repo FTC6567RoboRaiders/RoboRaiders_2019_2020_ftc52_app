@@ -23,9 +23,6 @@ public class JarJarsAutonomous extends JarJarAutonomousMethods {
 
         waitForStart();
 
-        encodersMove(robot, 5, .5, "backward");
-
-
 
 
 

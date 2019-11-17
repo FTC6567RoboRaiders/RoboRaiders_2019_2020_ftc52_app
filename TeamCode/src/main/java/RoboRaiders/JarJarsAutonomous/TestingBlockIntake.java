@@ -22,30 +22,11 @@ public class TestingBlockIntake extends JarJarAutonomousMethods {
         rtd.displayRobotTelemetry("Initialized, Waiting For Start");
 
         waitForStart();
-
-        encodersMove(robot, 10, .3,"forward");
+        collectStone(robot);
         robotSleep(1000);
 
-        intakeArmAuto(robot, 0.0);
+        encodersMove(robot, 28, .3,"backward");
         robotSleep(1000);
-
-        encodersMove(robot, 2.0,.5,"backward");
-        robotSleep(3000);
-
-        encodersMove(robot, 7.0, .4, "forward");
-
-
-        runIntake(robot, .4);
-        robotSleep(3000);
-
-
-        robotSleep(1000);
-
-        intakeArmAuto(robot, 1.0);
-
-
-
-
 
     }
 

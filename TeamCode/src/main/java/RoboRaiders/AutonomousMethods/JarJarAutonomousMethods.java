@@ -5,8 +5,10 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
+import org.openftc.easyopencv.OpenCvCamera;
 
 import RoboRaiders.Robot.JarJarBot;
+import RoboRaiders.hubbot.BrightnessDetection;
 
 public abstract class JarJarAutonomousMethods extends LinearOpMode {
 
@@ -53,6 +55,7 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
                 telemetry.addData("Encoder Count", robot.getSortedEncoderCount());
                 telemetry.update();
             }
+            robot.setDriveMotorPower(0,0,0,0);
         }
     }
 
@@ -111,8 +114,8 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
 
     public void collectStone(JarJarBot robot){
         double startIntakeTime = System.currentTimeMillis();
-        encodersMove(robot, 28, .5, "forward");
-        runIntake(robot, -.5);
+        encodersMove(robot, 28, .15, "forward");
+        runIntake(robot, -.6);
         while (opModeIsActive() && System.currentTimeMillis() - startIntakeTime < 4000){
         }
         runIntake(robot, 0);
@@ -160,5 +163,9 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
                 //telemetry.update();
             }
         }
+    }
+
+    public void stoneDetection(JarJarBot robot, int pattern){
+
     }
 }
