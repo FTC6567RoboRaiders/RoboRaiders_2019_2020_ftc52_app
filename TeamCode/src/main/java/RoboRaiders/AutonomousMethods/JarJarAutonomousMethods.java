@@ -179,7 +179,7 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
     public void stoneDetection(JarJarBot robot, int pattern){
             OpenCvCamera phone_camera;
             RoboRaiders.JarJarsAutonomous.BrightnessDetectionAuto.SamplePipeline stone_pipeline;
-            int pattern = 999;
+            public int pattern = 999;
             public void runOpMode() throws InterruptedException{
                 int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
 
@@ -223,9 +223,7 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
                 int right_br;
 
 
-
-                @Override
-                public Mat processFrame(Mat input) {
+                public Mat processFrame(Mat input, int pattern) {
 
                     input.convertTo(input, CV_8UC1, 1, 10);
 
