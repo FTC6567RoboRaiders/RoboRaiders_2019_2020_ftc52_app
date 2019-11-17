@@ -100,10 +100,10 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
     public void runIntake(JarJarBot robot, double power) {
         double startIntakeTime = System.currentTimeMillis();
         robot.setInakePower(power);
-        while (opModeIsActive() && System.currentTimeMillis() - startIntakeTime < 4000) {
+        /*while (opModeIsActive() && System.currentTimeMillis() - startIntakeTime < 4000) {
         }
 
-        robot.setInakePower(0);
+        robot.setInakePower(0);*/
 
     }
 
@@ -114,8 +114,8 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
 
     public void collectStone(JarJarBot robot){
         double startIntakeTime = System.currentTimeMillis();
-        encodersMove(robot, 28, .15, "forward");
         runIntake(robot, -.6);
+        encodersMove(robot, 28, .15, "forward");
         while (opModeIsActive() && System.currentTimeMillis() - startIntakeTime < 4000){
         }
         runIntake(robot, 0);

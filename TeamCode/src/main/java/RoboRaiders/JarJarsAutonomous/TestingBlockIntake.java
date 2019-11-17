@@ -25,6 +25,8 @@ public class TestingBlockIntake extends JarJarAutonomousMethods {
         collectStone(robot);
         robotSleep(1000);
 
+        runIntake(robot,0);
+
         encodersMove(robot, 28, .3,"backward");
         robotSleep(1000);
 
