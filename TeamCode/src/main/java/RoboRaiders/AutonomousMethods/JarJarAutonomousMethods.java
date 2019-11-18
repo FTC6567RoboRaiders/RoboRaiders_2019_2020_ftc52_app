@@ -179,7 +179,7 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
 
     public void stoneDetection(JarJarBot robot, RoboRaidersPipeline ){
             OpenCvCamera phone_camera;
-            RoboRaiders.JarJarsAutonomous.BrightnessDetectionAuto.RoboRaidersPipeline stone_pipeline;
+            RoboRaidersPipeline stone_pipeline;
             int pattern = 999;
             public void runOpMode() throws InterruptedException{
                 int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
@@ -187,7 +187,7 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
                 phone_camera = new OpenCvInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
                 phone_camera.openCameraDevice();
 
-                stone_pipeline = new RoboRaiders.JarJarsAutonomous.BrightnessDetectionAuto.RoboRaidersPipeline();
+                stone_pipeline = new(RoboRaidersPipeline);
                 phone_camera.setPipeline(stone_pipeline);
 
                 phone_camera.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
