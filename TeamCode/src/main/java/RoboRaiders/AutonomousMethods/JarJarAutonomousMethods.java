@@ -199,31 +199,31 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
 
     }
 
-    public void stoneSampling(int pattern, JarJarBot robot, RoboRaidersPID drivePID){
+    public void stoneSampling(int pattern, JarJarBot robot){
         int stoneLocation = stoneDetection(robot);
 
         switch (stoneLocation){
             case 1: //stone is on leftmost (not if the frame)
-                leftStone(robot, drivePID);
+                leftStone(robot);
                 break;
             case 2: //stone is on the right
-                rightStone(robot, drivePID);
+                rightStone(robot);
                 break;
             case 3: //stone is on the left (middle)
-                middleStone(robot, drivePID);
+                middleStone(robot);
                 break;
         }
     }
 
-    public void leftStone(JarJarBot robot, RoboRaidersPID drivePID){
+    public void leftStone(JarJarBot robot){
 
     }
 
-    public void middleStone(JarJarBot robot, RoboRaidersPID drivePID){
+    public void middleStone(JarJarBot robot){
 
     }
 
-    public void rightStone(JarJarBot robot, RoboRaidersPID drivePID){
+    public void rightStone(JarJarBot robot){
 
     }
 }
