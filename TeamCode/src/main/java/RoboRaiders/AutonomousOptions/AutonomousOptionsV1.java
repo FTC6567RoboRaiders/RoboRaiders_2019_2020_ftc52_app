@@ -7,7 +7,7 @@ import RoboRaiders.Robot.RobotTelemetryDisplay;
 
 @Autonomous
 
-public abstract class AutonomousOptionsV1 extends JarJarAutonomousMethods {
+public class AutonomousOptionsV1 extends JarJarAutonomousMethods {
 
     public boolean getSkystone = false;
     public boolean selectionsAreGood = false;
@@ -50,6 +50,7 @@ public abstract class AutonomousOptionsV1 extends JarJarAutonomousMethods {
 
         if(getSkystone){
             stoneDetection(robot);
+            stoneSampling(robot);
         }
     }
 }
