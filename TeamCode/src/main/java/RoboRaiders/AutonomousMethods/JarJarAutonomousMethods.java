@@ -190,7 +190,7 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
 
             phone_camera.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
 
-            while (opModeIsActive() && pattern == 999) {
+            while (opModeIsActive() && stone_pipeline.getPattern() == 999) {
             }
             phone_camera.stopStreaming();
             telemetry.addData("PATTERN", pattern);

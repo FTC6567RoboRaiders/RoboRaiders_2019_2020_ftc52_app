@@ -91,6 +91,8 @@ public class RoboRaidersPipeline extends OpenCvPipeline{
                     pattern = 3;
                 }
             }
+            setPattern(pattern);
+
 
             return input;
         }
@@ -124,4 +126,14 @@ public class RoboRaidersPipeline extends OpenCvPipeline{
     private int get_brightness(int red, int green, int blue) {
         return (int) (((double) (red + green + blue)) / 3);
     }
+
+    public void setPattern(int thePattern){
+            pattern = thePattern;
+    }
+
+    public int getPattern(){
+            return pattern;
+    }
+
+
 }
