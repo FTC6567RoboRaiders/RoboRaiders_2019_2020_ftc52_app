@@ -9,8 +9,8 @@ import org.openftc.easyopencv.OpenCvPipeline;
 
 import static org.opencv.core.CvType.CV_8UC1;
 
-public class RoboRaidersPipeline {
-    class SamplePipeline extends OpenCvPipeline {
+public class RoboRaidersPipeline extends OpenCvPipeline{
+
         int left_hue;
         int right_hue;
 
@@ -94,7 +94,7 @@ public class RoboRaidersPipeline {
 
             return input;
         }
-    }
+
     private int get_hue(int red, int green, int blue) {
 
         float min = Math.min(Math.min(red, green), blue);

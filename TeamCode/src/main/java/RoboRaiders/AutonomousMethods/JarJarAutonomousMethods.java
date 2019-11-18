@@ -177,43 +177,24 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
         }
     }
 
-    public void stoneDetection(JarJarBot robot, RoboRaidersPipeline ){
+    public void stoneDetection(JarJarBot robot){
             OpenCvCamera phone_camera;
             RoboRaidersPipeline stone_pipeline;
             int pattern = 999;
-            public void runOpMode() throws InterruptedException{
-                int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+            int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
 
-                phone_camera = new OpenCvInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
-                phone_camera.openCameraDevice();
+            phone_camera = new OpenCvInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
+            phone_camera.openCameraDevice();
+            stone_pipeline = new RoboRaidersPipeline();
+            phone_camera.setPipeline(stone_pipeline);
 
-                stone_pipeline = new RoboRaidersPipeline();
-                phone_camera.setPipeline(stone_pipeline);
+            phone_camera.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
 
-                phone_camera.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
-
-                while (opModeIsActive() && pattern == 999) {
-                    //super.updateTelemetry(telemetry);
-                    //telemetry.addData("FRAME", phone_camera.getFrameCount());
-                    //telemetry.addData("FPS", String.format("%.2f", phone_camera.getFps()));
-                    //telemetry.addData("TFT MS", phone_camera.getTotalFrameTimeMs());
-                    //telemetry.addData("PT MS", phone_camera.getPipelineTimeMs());
-                    //telemetry.addData("OT MS", phone_camera.getOverheadTimeMs());
-                    //telemetry.addData("MAX FPS", phone_camera.getCurrentPipelineMaxFps());
-                    //telemetry.addData("LEFT RECT", stone_pipeline.left_hue + " " + stone_pipeline.left_br);
-                    //telemetry.addData("RIGHT RECT", stone_pipeline.right_hue + " " + stone_pipeline.right_br);
-                    //telemetry.addData("PATTERN", pattern);
-                    //telemetry.update();
-                }
-
-                phone_camera.stopStreaming();
-
-                telemetry.addData("PATTERN", pattern);
-                telemetry.update();
-
-                //Thread.sleep(2000);
+            while (opModeIsActive() && pattern == 999) {
             }
-
+            phone_camera.stopStreaming();
+            telemetry.addData("PATTERN", pattern);
+            telemetry.update();
 
     }
 }
