@@ -49,7 +49,6 @@ public class AutonomousOptionsV1 extends JarJarAutonomousMethods {
         telemetry.update();
 
         if(getSkystone){
-            stoneDetection(robot);
             stoneSampling(robot);
         }
     }
