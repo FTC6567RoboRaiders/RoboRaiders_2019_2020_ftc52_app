@@ -19,6 +19,8 @@ public class RoboRaidersPipeline extends OpenCvPipeline{
 
         int pattern;
 
+        public RoboRaidersPipeline(int pattern){ this.pattern = pattern;}
+
         @Override
         public Mat processFrame(Mat input) {
 

@@ -245,10 +245,12 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
     }
 
     public void middleStone(JarJarBot robot){
+        encodersMove(robot, 3, .4, "forward");
 
     }
 
     public void rightStone(JarJarBot robot){
+        encodersMove(robot, 3, .4, "forward");
 
     }
 }
