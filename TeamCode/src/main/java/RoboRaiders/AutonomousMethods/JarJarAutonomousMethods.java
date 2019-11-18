@@ -177,7 +177,7 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
         }
     }
 
-    public void stoneDetection(JarJarBot robot){
+    public int stoneDetection(JarJarBot robot){
             OpenCvCamera phone_camera;
             RoboRaidersPipeline stone_pipeline;
             int pattern = 999;
@@ -195,6 +195,35 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
             phone_camera.stopStreaming();
             telemetry.addData("PATTERN", pattern);
             telemetry.update();
+            return stone_pipeline.getPattern();
+
+    }
+
+    public void stoneSampling(int pattern, JarJarBot robot, RoboRaidersPID drivePID){
+        int stoneLocation = stoneDetection(robot);
+
+        switch (stoneLocation){
+            case 1: //stone is on leftmost (not if the frame)
+                leftStone(robot, drivePID);
+                break;
+            case 2: //stone is on the right
+                rightStone(robot, drivePID);
+                break;
+            case 3: //stone is on the left (middle)
+                middleStone(robot, drivePID);
+                break;
+        }
+    }
+
+    public void leftStone(JarJarBot robot, RoboRaidersPID drivePID){
+
+    }
+
+    public void middleStone(JarJarBot robot, RoboRaidersPID drivePID){
+
+    }
+
+    public void rightStone(JarJarBot robot, RoboRaidersPID drivePID){
 
     }
 }
