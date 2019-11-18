@@ -112,15 +112,25 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
     public void runIntake(JarJarBot robot, double power) {
         double startIntakeTime = System.currentTimeMillis();
         robot.setInakePower(power);
-        /*while (opModeIsActive() && System.currentTimeMillis() - startIntakeTime < 4000) {
+        while (opModeIsActive() && System.currentTimeMillis() - startIntakeTime < 3000) {
         }
 
-        robot.setInakePower(0);*/
+        robot.setInakePower(0);
 
     }
 
     public void intakeArmAuto (JarJarBot robot, double position) {
       robot.intakeArmAuto(position);
+    }
+
+    public void stoneSampleServo (JarJarBot robot) {
+        intakeArmAuto(robot, 0.0);
+        robotSleep(1000);
+        encodersMove(robot, 15, .3, "backward");
+        robotSleep(1000);
+        encodersMove(robot, 2, .3, "forward");
+        robotSleep(1000);
+        runIntake(robot, -.5);
     }
 
 
@@ -199,7 +209,7 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
 
     }
 
-    public void stoneSampling(JarJarBot robot){
+    public void stoneSampling(JarJarBot robot){ //NOTE THE PATTERNS MAY OR MAY NOT BE SCREWED UP!!!
         int stoneLocation = stoneDetection(robot);
 
         switch (stoneLocation){
@@ -218,15 +228,17 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
         }
     }
 
+
     public void leftStone(JarJarBot robot){
-        encodersMove(robot, 14, .4, "forward");
-        encodersMoveStrafe(robot, 5, .4, "left");
+        encodersMove(robot, 20, .4, "forward");
+        robotSleep(1000);
+        encodersMoveStrafe(robot, 3, .1, "right");
+        robotSleep(1000);
+        stoneSampleServo(robot);
 
     }
 
     public void middleStone(JarJarBot robot){
-        encodersMove(robot, 14, .4, "forward");
-        encodersMoveStrafe(robot, 3, .4, "right");
 
     }
 
