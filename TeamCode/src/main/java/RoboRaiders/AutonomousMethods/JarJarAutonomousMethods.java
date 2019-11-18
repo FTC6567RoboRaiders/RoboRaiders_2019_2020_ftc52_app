@@ -195,7 +195,7 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
 
             phone_camera = new OpenCvInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
             phone_camera.openCameraDevice();
-            stone_pipeline = new RoboRaidersPipeline();
+            stone_pipeline = new RoboRaidersPipeline(pattern);
             phone_camera.setPipeline(stone_pipeline);
 
             phone_camera.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
