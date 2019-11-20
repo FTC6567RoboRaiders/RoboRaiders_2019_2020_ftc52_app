@@ -1,9 +1,13 @@
 package RoboRaiders.Robot;
 
+import android.hardware.Sensor;
+
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
+import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
@@ -30,6 +34,8 @@ public class JarJarBot {
     public Servo intakeArm = null;
     public BNO055IMU imu;
 
+    public DistanceSensor stoneRange = null;
+
     /* Local OpMode Members */
     public HardwareMap hwMap = null;
 
@@ -41,6 +47,9 @@ public class JarJarBot {
     public double iza_deltaHeading;
     public float iza_newHeading;
     public Orientation iza_angles;
+
+
+    //public ModernRoboticsI2cRangeSensor distance;
     //public double takeSkystoneUp = 0.0;
     //public double takeSkystoneDown = 1.0;
 
@@ -70,6 +79,8 @@ public class JarJarBot {
         intakeMotorRight = hwMap.get (DcMotor.class, "intakeMotorRight");
 
         intakeArm = hwMap.servo.get("intakeArm");
+
+        stoneRange = hwMap.get(DistanceSensor.class, "sensor_range");
 
         // Defines the directions the motors will spin
         motorFrontLeft.setDirection(DcMotor.Direction.FORWARD);
@@ -107,6 +118,7 @@ public class JarJarBot {
     }
 
         public ModernRoboticsI2cRangeSensor mrDistance;
+        Rev2mDistanceSensor sensorTimeOfFlight = (Rev2mDistanceSensor)stoneRange;
 
     /**
      * This method will set the power for the drive motors
@@ -125,6 +137,7 @@ public class JarJarBot {
         motorBackLeft.setPower(leftBack);
         motorBackRight.setPower(rightBack);
     }
+
 
     //public void takeSkystoneDown(){ takeSkystone.setPosition(1.0);}
     //public void takeSkystoneUp() {takeSkystone.setPosition(0.0);}
@@ -221,6 +234,11 @@ public class JarJarBot {
 
         return heading;
     }
+
+    public double getRange(){
+        return stoneRange.getDistance(DistanceUnit.INCH);
+    }
+
     public void resetIMU() {
 
         imu.initialize(parameters);

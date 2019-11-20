@@ -22,7 +22,7 @@ public class JarJarsAutonomous extends JarJarAutonomousMethods {
         rtd.displayRobotTelemetry("Initialized, Waiting For Start");
 
         waitForStart();
-        leftStone(robot);
+        runIntake(robot, -.4);
 
 
 

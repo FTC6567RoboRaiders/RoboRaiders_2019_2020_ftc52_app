@@ -110,9 +110,8 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
     }
 
     public void runIntake(JarJarBot robot, double power) {
-        double startIntakeTime = System.currentTimeMillis();
         robot.setInakePower(power);
-        while (opModeIsActive() && System.currentTimeMillis() - startIntakeTime < 3000) {
+        while (opModeIsActive() && robot.getRange() > 1) {
         }
 
         robot.setInakePower(0);
@@ -219,13 +218,13 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
         int stoneLocation = stoneDetection();
 
         switch (stoneLocation){
-            case 1: //stone is on leftmost (not if the frame)
+            case 3: //stone is on leftmost (not if the frame)
                 leftStone(robot);
                 break;
             case 2: //stone is on the left (middle)
                 middleStone(robot);
                 break;
-            case 3: //stone is on the right
+            case 1: //stone is on the right
                 rightStone(robot);
                 break;
             case 999:
