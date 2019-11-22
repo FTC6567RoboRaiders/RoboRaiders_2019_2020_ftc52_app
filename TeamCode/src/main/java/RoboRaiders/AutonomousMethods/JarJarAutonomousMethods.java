@@ -110,9 +110,8 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
     }
 
     public void runIntake(JarJarBot robot, double power) {
-        double startIntakeTime = System.currentTimeMillis();
         robot.setInakePower(power);
-        while (opModeIsActive() && System.currentTimeMillis() - startIntakeTime < 3000) {
+        while (opModeIsActive() && robot.getRange() > 1) {
         }
 
         robot.setInakePower(0);
@@ -222,10 +221,10 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
             case 1: //stone is on leftmost (not if the frame)
                 leftStone(robot);
                 break;
-            case 2: //stone is on the left (middle)
+            case 3: //stone is on the left (middle)
                 middleStone(robot);
                 break;
-            case 3: //stone is on the right
+            case 2: //stone is on the right
                 rightStone(robot);
                 break;
             case 999:
@@ -238,19 +237,32 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
     public void leftStone(JarJarBot robot){
         encodersMove(robot, 20, .4, "forward");
         robotSleep(1000);
-        encodersMoveStrafe(robot, 3, .1, "right");
+        encodersMoveStrafe(robot, 7.5, .1, "right");
+        robotSleep(1000);
+        encodersMove(robot, 1, .3, "forward");
+        robotSleep(1000);
         robotSleep(1000);
         stoneSampleServo(robot);
 
     }
 
     public void middleStone(JarJarBot robot){
-        encodersMove(robot, 3, .4, "forward");
+        encodersMove(robot, 20, .4, "forward");
+        robotSleep(1000);
+        stoneSampleServo(robot);
 
     }
 
     public void rightStone(JarJarBot robot){
-        encodersMove(robot, 3, .4, "forward");
+        encodersMove(robot, 20, .4, "forward");
+        robotSleep(1000);
+        encodersMoveStrafe(robot,5,.5,"right");
+        robotSleep(1000);
+        stoneSampleServo(robot);
 
+    }
+
+    public void crossSkyBridge(JarJarBot robot){
+        encodersMoveStrafe(robot, 35, .4, "right");
     }
 }

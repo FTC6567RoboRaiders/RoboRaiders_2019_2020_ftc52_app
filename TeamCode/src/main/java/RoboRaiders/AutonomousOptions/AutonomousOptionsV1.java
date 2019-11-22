@@ -10,6 +10,7 @@ import RoboRaiders.Robot.RobotTelemetryDisplay;
 public class AutonomousOptionsV1 extends JarJarAutonomousMethods {
 
     public boolean getSkystone = false;
+    public boolean crossSkyBridge = false;
     public boolean selectionsAreGood = false;
 
     public JarJarBot robot = new JarJarBot();
@@ -31,6 +32,7 @@ public class AutonomousOptionsV1 extends JarJarAutonomousMethods {
             telemetry.setAutoClear(false);
             telemetry.addLine().addData("Autonomous", "Selections");
             telemetry.addLine().addData("get Skystone", getSkystone ? "Yes  " : "No  ");
+            telemetry.addLine().addData("cross SkyBridge?", crossSkyBridge ? "Yes " : "No ");
             telemetry.update();
 
             // Verify that the autonomous selections are good, if so we are ready to rumble.  If not, well ask again.
@@ -43,6 +45,7 @@ public class AutonomousOptionsV1 extends JarJarAutonomousMethods {
         gamepad1.reset();
         rtd.displayRobotTelemetry("Initialized Waiting for Start");
         rtd.displayRobotTelemetry("get Skystone",getSkystone ? "Yes" : "No");
+        rtd.displayRobotTelemetry("cross SkyBridge ", crossSkyBridge ? "Yes " : "No ");
         waitForStart();
 
         telemetry.setAutoClear(true);
@@ -50,6 +53,10 @@ public class AutonomousOptionsV1 extends JarJarAutonomousMethods {
 
         if(getSkystone){
             stoneSampling(robot);
+        }
+
+        if(crossSkyBridge){
+            crossSkyBridge(robot);
         }
     }
 }
