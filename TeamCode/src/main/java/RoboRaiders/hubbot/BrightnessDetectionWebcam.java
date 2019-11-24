@@ -42,12 +42,9 @@ public class BrightnessDetectionWebcam extends LinearOpMode {
 
         webcam.openCameraDevice();
         stone_pipeline = new SamplePipeline();
-        webcam.setPipeline(SamplePipeline.stone_pipeline());
+        webcam.setPipeline(stone_pipeline);
 
         webcam.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
-
-
-        stone_pipeline = new SamplePipeline();
 
         waitForStart();
 
