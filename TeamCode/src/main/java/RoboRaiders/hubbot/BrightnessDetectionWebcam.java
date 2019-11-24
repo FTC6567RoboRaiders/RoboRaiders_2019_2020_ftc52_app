@@ -44,7 +44,7 @@ public class BrightnessDetectionWebcam extends LinearOpMode {
         stone_pipeline = new SamplePipeline();
         webcam.setPipeline(stone_pipeline);
 
-        webcam.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
+        webcam.startStreaming(320, 240, OpenCvCameraRotation.SIDEWAYS_RIGHT);
 
         waitForStart();
 
@@ -76,14 +76,14 @@ public class BrightnessDetectionWebcam extends LinearOpMode {
                     (int) (input.cols() * (9f / 32f)), //the first number goes from left to right increasing, controls x axis
                     (int) (input.rows() * (5f / 32f)), //the first number here controls the y axis
                     (int) (input.cols() * (15f / 32f)),
-                    (int) (input.rows() * (7f / 32f))
+                    (int) (input.rows() * (15 / 32f))
             };
 
             int[] right_rect = {
-                    (int) (input.cols() * (17f / 32f)),
                     (int) (input.rows() * (5f / 32f)),
-                    (int) (input.cols() * (23f / 32f)),
-                    (int) (input.rows() * (7f / 32f))
+                    (int) (input.cols() * (5f / 32f)),
+                    (int) (input.rows() * (15f / 32f)),
+                    (int) (input.cols() * (15f / 32f))
             };
 
             Imgproc.rectangle(
