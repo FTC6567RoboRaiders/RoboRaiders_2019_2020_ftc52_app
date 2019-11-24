@@ -77,19 +77,31 @@ public class RoboRaidersPipeline extends OpenCvPipeline{
             left_br = get_brightness((int) left_mean.val[0], (int) left_mean.val[1], (int) left_mean.val[2]);
             right_br = get_brightness((int) right_mean.val[0], (int) right_mean.val[1], (int) right_mean.val[2]);
 
+            // The skystone is not in frame since the stones in frame are "bright"
             if (left_br > 100 && right_br > 100) pattern = 1;
-                //skystone is not in frame
-                //above 100 is normal, bellow 100 is skystone
+
+            // The skystone is in frame but located on the right
             else if (left_br > 100 && right_br < 100) pattern = 2;
-                //skystone is on right
+
+            // The skeystone is in frame but located on the left
             else if (left_br < 100 && right_br > 100) pattern = 3;
-                //skystone is on left
+
+            // The skystone has not been found, so look at the brightness of the stones in frame
+            // If both stones are not "bright"
             else if (left_br < 100 && right_br < 100) {
+
+                // The left stone in frame is brighter than the right stone in frame
                 if (left_br > right_br) {
                     pattern = 2;
-                } else if (left_br < right_br) {
+                }
+
+                // The right stone in frame is brighter than the left stone in frame
+                else if (left_br < right_br) {
                     pattern = 3;
-                } else {
+                }
+
+                // Both stones are the same brightness so the stone is assumed to be out of frame
+                else {
                     pattern = 1;
                 }
             }
