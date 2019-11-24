@@ -19,13 +19,10 @@ import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
 import org.openftc.easyopencv.OpenCvPipeline;
-import org.openftc.easyopencv.OpenCvWebcam;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
-import easyopencv.examples.WebcamExample;
 
 import static org.opencv.core.CvType.CV_8UC1;
 
@@ -33,19 +30,29 @@ import static org.opencv.core.CvType.CV_8UC1;
 public class BrightnessDetectionWebcam extends LinearOpMode {
     public static final String TAG = "Vuforia Navigation Sample";
 
-    OpenCvCamera webcam;
-   // BrightnessDetection.SamplePipeline stone_pipeline;
+    OpenGLMatrix lastLocation = null;
+
+    int captureCounter = 0;
+    File captureDirectory = AppUtil.ROBOT_DATA_DIR;
+
+    VuforiaLocalizer vuforia;
+
+    WebcamName webcamName;
     SamplePipeline stone_pipeline;
     public void runOpMode() {
+        webcamName = hardwareMap.get(WebcamName.class, "Webcam 1");
+
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-        webcam = new OpenCvWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
+        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
 
-        webcam.openCameraDevice();
-        stone_pipeline = new SamplePipeline();
-        webcam.setPipeline(SamplePipeline.stone_pipeline());
+        parameters.vuforiaLicenseKey = "AQtKTtX/////AAABmfCVDnG3Wkl+t3/cSsQi4wJ8MamIxi85/5YwDHuFQouE5izFNRrr+wOX79YUBRgu+LlkdG6uZbafFtF7AvVOZk/FxEu9b6izaShrRW0E73hnbiDRYAaXKA7LKcL8zCbIHaceDE0rx2pN3824HtsvNwaHWXdW7vOl3Jbxs94pRt1SLHxKNot3vIbuT4j6leOoYYiN+ZAQ7q/CuuUnEbkqUp9fCr9XsHUKgEzr36Hm+zGz+eW2F20zuPsI7w4DSQQXhCIjObhseLDJliVXJ6nrq53uKVTEppnm3YcgS5PzCs7aN820GLqFi2BoKo80KPLep7GrNuOzxK3W3xPDbJpKJn2dCxNSgZc0EwuvRtv+huOM";
+        parameters.cameraName = webcamName;
 
-        webcam.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
+        vuforia = ClassFactory.getInstance().createVuforia(parameters);
 
+        vuforia.enableConvertFrameToBitmap();
+
+        AppUtil.getInstance().ensureDirectoryExists(captureDirectory);
 
         stone_pipeline = new SamplePipeline();
 
