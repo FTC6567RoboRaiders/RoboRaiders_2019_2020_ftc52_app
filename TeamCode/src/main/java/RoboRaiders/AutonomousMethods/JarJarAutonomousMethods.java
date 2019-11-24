@@ -252,7 +252,6 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
         robotSleep(1000);
         stoneSampleServo(robot);
 
-
     }
 
     public void rightStone(JarJarBot robot){
