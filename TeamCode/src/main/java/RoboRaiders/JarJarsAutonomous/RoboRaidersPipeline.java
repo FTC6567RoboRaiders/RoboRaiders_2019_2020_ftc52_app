@@ -86,11 +86,11 @@ public class RoboRaidersPipeline extends OpenCvPipeline{
                 //skystone is on left
             else if (left_br < 100 && right_br < 100) {
                 if (left_br > right_br) {
-                    pattern = 1;
-                } else if (left_br < right_br) {
                     pattern = 2;
-                } else {
+                } else if (left_br < right_br) {
                     pattern = 3;
+                } else {
+                    pattern = 1;
                 }
             }
             setPattern(pattern);

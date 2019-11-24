@@ -206,10 +206,11 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
                 telemetry.addData("PT MS", phone_camera.getPipelineTimeMs());
                 telemetry.addData("OT MS", phone_camera.getOverheadTimeMs());
                 telemetry.addData("MAX FPS", phone_camera.getCurrentPipelineMaxFps());
-                telemetry.addData("PATTERN", pattern);
+                telemetry.addData("PATTERN", stone_pipeline.getPattern());
+                telemetry.update();
             }
             phone_camera.stopStreaming();
-            telemetry.addData("PATTERN", pattern);
+            telemetry.addData("PATTERN", stone_pipeline.getPattern());
             telemetry.update();
             return stone_pipeline.getPattern();
 
@@ -252,13 +253,12 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
         robotSleep(1000);
         stoneSampleServo(robot);
 
-
     }
 
     public void rightStone(JarJarBot robot){
-        encodersMove(robot, 60, .4, "forward");
+        encodersMove(robot, 20, .4, "forward");
         robotSleep(1000);
-        encodersMoveStrafe(robot,5,.5,"right");
+        encodersMoveStrafe(robot,5,.5,"left");
         robotSleep(1000);
         stoneSampleServo(robot);
 
