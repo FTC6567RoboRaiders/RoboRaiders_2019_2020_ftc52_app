@@ -29,10 +29,11 @@ public class AutonomousOptionsV1 extends JarJarAutonomousMethods {
         while (!selectionsAreGood) {
 
             getSkystone = myAO.selectGetSkystone();
+            crossSkyBridge = myAO.crossSkyBridge();
             telemetry.setAutoClear(false);
             telemetry.addLine().addData("Autonomous", "Selections");
             telemetry.addLine().addData("get Skystone", getSkystone ? "Yes  " : "No  ");
-            telemetry.addLine().addData("cross SkyBridge?", crossSkyBridge ? "Yes " : "No ");
+            telemetry.addLine().addData("cross SkyBridge", crossSkyBridge ? "Yes " : "No ");
             telemetry.update();
 
             // Verify that the autonomous selections are good, if so we are ready to rumble.  If not, well ask again.

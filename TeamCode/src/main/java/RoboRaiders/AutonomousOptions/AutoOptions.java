@@ -64,6 +64,14 @@ public class AutoOptions {
         return index == 0;
     }
 
+    public boolean crossSkyBridge (){
+        String[] crossing = new String[] {"Yes", "No"};
+
+        int index = makeSelection( "cross SkyBridge?", crossing);
+
+        return index == 0;
+    }
+
 
     public boolean selectionsGood() {
 

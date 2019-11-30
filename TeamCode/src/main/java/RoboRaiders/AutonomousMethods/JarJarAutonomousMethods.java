@@ -78,7 +78,7 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
         final double v = robot.calculateCOUNTS(distance);
         double COUNTS = v; //COUNTS is now equal to the value calculated
 
-        if (direction.equals("left")) { //if the desired direction is right
+        if (direction.equals("right")) { //if the desired direction is right
 
             robot.setDriveMotorPower(power, -power, -power, power); //start strafing right
 
@@ -91,7 +91,7 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
             }
 
             robot.setDriveMotorPower(0.0, 0.0, 0.0, 0.0); //stop the robot
-        } else if (direction.equals("right")) { //if the desired direction is left
+        } else if (direction.equals("left")) { //if the desired direction is left
 
             robot.setDriveMotorPower(-power, power, power, -power); //start strafing left
 

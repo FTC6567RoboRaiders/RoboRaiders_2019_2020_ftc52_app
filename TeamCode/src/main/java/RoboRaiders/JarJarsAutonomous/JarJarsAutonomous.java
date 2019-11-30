@@ -22,7 +22,13 @@ public class JarJarsAutonomous extends JarJarAutonomousMethods {
         rtd.displayRobotTelemetry("Initialized, Waiting For Start");
 
         waitForStart();
-        runIntake(robot, -.4);
+        encodersMoveStrafe(robot,20,0.4, "left");
+        robotSleep(500);
+        encodersMoveStrafe(robot,15,0.4,"right");
+        robotSleep(500);
+        encodersMoveStrafe(robot,10,0.4,"left");
+        robotSleep(500);
+        encodersMoveStrafe(robot,5,0.4,"right");
 
 
 
