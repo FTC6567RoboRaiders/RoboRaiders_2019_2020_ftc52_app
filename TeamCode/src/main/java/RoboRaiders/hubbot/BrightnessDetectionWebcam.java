@@ -78,12 +78,12 @@ public class BrightnessDetectionWebcam extends LinearOpMode {
                     (int) (input.cols() * (15f / 32f)),
                     (int) (input.rows() * (15f / 32f))
             };
-
+//because we rotated the camera, collumns are now rows and vice versa. Rows are now on the x-axis!
             int[] right_rect = {
-                    (int) (input.cols() * (5f / 32f)),
+                    (int) (input.cols() * (9f / 32f)),
                     (int) (input.rows() * (17f / 32f)),
                     (int) (input.cols() * (15f / 32f)),
-                    (int) (input.rows() * (15f / 32f))
+                    (int) (input.rows() * (27f / 32f))
             };
 
             Imgproc.rectangle(
