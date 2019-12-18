@@ -38,6 +38,7 @@ public class EncoderTestTeleop extends LinearOpMode {
     // wait for the start button to be pressed.
     waitForStart();
 
+
     // while the op mode is active, loop and read the light levels.
     // Note we use opModeIsActive() as our loop condition because it is an interruptible method.
     while (opModeIsActive()) {
