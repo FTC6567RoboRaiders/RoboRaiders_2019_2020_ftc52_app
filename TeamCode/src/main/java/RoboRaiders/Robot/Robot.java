@@ -30,8 +30,8 @@ public class Robot {
     public DcMotor motorBackRight = null;
     public DcMotor intakeMotorRight = null;
     public DcMotor intakeMotorLeft = null;
+    public DcMotor liftMotor = null;
 
-    public Servo intakeArm = null;
     public BNO055IMU imu;
 
     public DistanceSensor stoneRange = null;
@@ -52,6 +52,7 @@ public class Robot {
     //public ModernRoboticsI2cRangeSensor distance;
     //public double takeSkystoneUp = 0.0;
     //public double takeSkystoneDown = 1.0;
+    public double i
 
     /**
      * Constructor for Robot class, current does nothing but is needed since every class needs a constructor
@@ -77,8 +78,7 @@ public class Robot {
         motorBackRight = hwMap.get(DcMotor.class, "motorBackRight");
         intakeMotorLeft = hwMap.get(DcMotor.class, "intakeMotorLeft");
         intakeMotorRight = hwMap.get (DcMotor.class, "intakeMotorRight");
-
-        intakeArm = hwMap.servo.get("intakeArm");
+        liftMotor = hwMap.get (DcMotor.class, "liftMotor");
 
         stoneRange = hwMap.get(DistanceSensor.class, "sensor_range");
 
@@ -98,8 +98,7 @@ public class Robot {
         motorBackLeft.setPower(0);
         intakeMotorLeft.setPower(0);
         intakeMotorRight.setPower(0);
-
-        intakeArm.setPosition(1.0);
+        liftMotor.setPower(0);
 
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODER if encoders are installed, and we wouldn't use encoders for teleop, even if we
@@ -289,13 +288,7 @@ public class Robot {
         intakeMotorLeft.setPower(intake);
         intakeMotorRight.setPower(-1*intake);
     }
-    public void intakeArmDown() {   intakeArm.setPosition(1.0); }
 
-    public void intakeArmUp() {   intakeArm.setPosition(0.0); }
-
-    public void intakeArmAuto (double position) {
-        intakeArm.setPosition(position);
-    }
 
  }
 

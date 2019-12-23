@@ -64,25 +64,27 @@ public class BotChungusTeleOp extends OpMode {
         currStateRightBumper = gamepad1.right_bumper;
         currStateLeftBumper = gamepad1.left_bumper;
 
-
+    //The following controls handle the intake motors for the Skystones
 
       if (currStateLeftBumper){
-        robot.intakeArmDown();
+          robot.setInakePower(-.5);
       }
 
       else if (currStateRightBumper){
-         robot.intakeArmUp();
+          robot.setInakePower(.5);
+      }
+
+      else {
+          robot.setInakePower(0);
       }
 
       if (currStateX) {
-         robot.setInakePower(.5);
+
       }
       else if (currStateY) {
-        robot.setInakePower(-.5);
+
       }
-      else {
-         robot.setInakePower(0);
-      }
+
 
     }
 
@@ -93,7 +95,7 @@ public class BotChungusTeleOp extends OpMode {
 
 
 
-    }
+
 
     double scaleInput(double dVal) {        // When implemented above, this double scales the joystick input values
         // in the floats.
