@@ -60,17 +60,17 @@ public class BotChungusTeleOp extends OpMode {
         // "setMotorPower" below. It sets the power of the motors to the joystick input values in
         // the floats.
 
-        currStateX = gamepad1.x;
-        currStateY = gamepad1.y;
+        currStateX = gamepad2.x;
+        currStateY = gamepad2.y;
 
-        currStateA = gamepad1.a;
-        currStateB = gamepad1.b;
+        currStateA = gamepad2.a;
+        currStateB = gamepad2.b;
 
-        currStateLeftTrigger = gamepad1.left_trigger;
-        currStateRightTrigger = gamepad1.right_trigger;
+        currStateLeftTrigger = gamepad2.left_trigger;
+        currStateRightTrigger = gamepad2.right_trigger;
 
-        currStateRightBumper = gamepad1.right_bumper;
-        currStateLeftBumper = gamepad1.left_bumper;
+        currStateRightBumper = gamepad2.right_bumper;
+        currStateLeftBumper = gamepad2.left_bumper;
 
     //Handles bringing the stone into the center of robot
 
