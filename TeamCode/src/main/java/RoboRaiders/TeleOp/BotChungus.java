@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.util.Range;
 
 import RoboRaiders.Robot.Robot;
 
-@TeleOp (name= "BotLord Test TeleOp")
+@TeleOp (name= "BotChungus TeleOp")
 
 public class BotChungus extends OpMode {
 
