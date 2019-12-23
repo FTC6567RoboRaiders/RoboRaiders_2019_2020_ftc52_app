@@ -52,7 +52,7 @@ public class Robot {
 
     //Robot Constants
     private static final double CAPTURE_SERVO_UP = 0.0;
-    private static final double CAPTURE_SSERVO_DOWN = 1.0;
+    private static final double CAPTURE_SERVO_DOWN = 1.0;
 
     //public ModernRoboticsI2cRangeSensor distance;
     //public double takeSkystoneUp = 0.0;
@@ -97,13 +97,13 @@ public class Robot {
 
 //have the motors on the drivetrain break here.
         // Set all motors to zero power
-        motorFrontRight.setPower(0);
-        motorFrontLeft.setPower(0);
-        motorBackRight.setPower(0);
-        motorBackLeft.setPower(0);
-        intakeMotorLeft.setPower(0);
-        intakeMotorRight.setPower(0);
-        liftMotor.setPower(0);
+        motorFrontRight.setPower(0.0);
+        motorFrontLeft.setPower(0.0);
+        motorBackRight.setPower(0.0);
+        motorBackLeft.setPower(0.0);
+        intakeMotorLeft.setPower(0.0);
+        intakeMotorRight.setPower(0.0);
+        liftMotor.setPower(0.0);
 
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODER if encoders are installed, and we wouldn't use encoders for teleop, even if we
@@ -119,6 +119,9 @@ public class Robot {
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
         parameters.mode = BNO055IMU.SensorMode.IMU;
         imu.initialize(parameters);
+
+        //Define and initialize Servos
+        stoneCaptureServo = hwMap.servo.get("stoneCaptureServo");
     }
 
         public ModernRoboticsI2cRangeSensor mrDistance;
@@ -306,7 +309,7 @@ public class Robot {
 
     public void setSkystoneCaptureDown (){
 
-        setCaptureServoPosition (CAPTURE_SSERVO_DOWN);
+        setCaptureServoPosition (CAPTURE_SERVO_DOWN);
     }
 
 
