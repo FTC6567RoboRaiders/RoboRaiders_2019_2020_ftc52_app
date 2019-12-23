@@ -2,16 +2,15 @@ package RoboRaiders.TeleOp;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.Range;
 
-import RoboRaiders.Robot.JarJarBot;
+import RoboRaiders.Robot.Robot;
 
 @TeleOp (name= "BotLord Test TeleOp")
 
 public class JarJarsTeleOp extends OpMode {
 
-    public JarJarBot robot = new JarJarBot();
+    public Robot robot = new Robot();
 
         float backLeft;   // Power for left back motor
         float backRight;  // Power for right back motor

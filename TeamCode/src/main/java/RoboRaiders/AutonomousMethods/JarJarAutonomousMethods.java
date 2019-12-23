@@ -1,27 +1,16 @@
 package RoboRaiders.AutonomousMethods;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
-import org.opencv.core.Core;
-import org.opencv.core.Mat;
-import org.opencv.core.Point;
-import org.opencv.core.Scalar;
-import org.opencv.imgproc.Imgproc;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
-import org.openftc.easyopencv.OpenCvPipeline;
 
-import RoboRaiders.JarJarsAutonomous.BrightnessDetectionAuto;
 import RoboRaiders.JarJarsAutonomous.RoboRaidersPipeline;
 import RoboRaiders.Logger.Logger;
-import RoboRaiders.Robot.JarJarBot;
-import RoboRaiders.hubbot.BrightnessDetection;
-
-import static org.opencv.core.CvType.CV_8UC1;
+import RoboRaiders.Robot.Robot;
 
 public abstract class JarJarAutonomousMethods extends LinearOpMode {
 
@@ -36,7 +25,7 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
     public Orientation iza_angles;
 
 
-    public void encodersMove(JarJarBot robot, double distance, double power, String direction) { //sets the parameters
+    public void encodersMove(Robot robot, double distance, double power, String direction) { //sets the parameters
 
         robot.resetEncoders(); //resets encoders
         robot.runWithEncoders(); //sets the mode back to run with encoder
@@ -72,7 +61,7 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
         }
     }
 
-    public void encodersMoveStrafe(JarJarBot robot, double distance, double power, String direction) {
+    public void encodersMoveStrafe(Robot robot, double distance, double power, String direction) {
         robot.resetEncoders();
         robot.runWithEncoders();
 
@@ -110,7 +99,7 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
         robot.runWithoutEncoders(); //sets the mode back to run without encoder
     }
 
-    public void runIntake(JarJarBot robot, double power) {
+    public void runIntake(Robot robot, double power) {
         robot.setInakePower(power);
         while (opModeIsActive() && robot.getRange() > 1) {
         }
@@ -119,11 +108,11 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
 
     }
 
-    public void intakeArmAuto (JarJarBot robot, double position) {
+    public void intakeArmAuto (Robot robot, double position) {
       robot.intakeArmAuto(position);
     }
 
-    public void stoneSampleServo (JarJarBot robot) {
+    public void stoneSampleServo (Robot robot) {
         intakeArmAuto(robot, 0.0);
         robotSleep(1000);
         encodersMove(robot, 15, .3, "backward");
@@ -134,7 +123,7 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
     }
 
 
-    public void collectStone(JarJarBot robot){
+    public void collectStone(Robot robot){
         double startIntakeTime = System.currentTimeMillis();
         runIntake(robot, -.6);
         encodersMove(robot, 28, .15, "forward");
@@ -151,7 +140,7 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
         }
     }
 
-    public void imuTurn(JarJarBot robot, float degreesToTurn, double power, String direction) { //gets hardware from
+    public void imuTurn(Robot robot, float degreesToTurn, double power, String direction) { //gets hardware from
         //Robot and defines degrees as a
         //float, power as a double, and direction as a string
         //robot.angles = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
@@ -195,7 +184,7 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
      * @param direction
      */
     public void imuTurnPID(RoboRaiders.AutonomousMethods.AutoOptions.RoboRaidersPID rrPID,
-                           JarJarBot robot,
+                           Robot robot,
                            float degreesToTurn, String direction) {
 
         double power = 0.0;
@@ -374,7 +363,7 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
 
     }
 
-    public void stoneSampling(JarJarBot robot){ //NOTE THE PATTERNS MAY OR MAY NOT BE SCREWED UP!!!
+    public void stoneSampling(Robot robot){ //NOTE THE PATTERNS MAY OR MAY NOT BE SCREWED UP!!!
         int stoneLocation = stoneDetection();
 
         switch (stoneLocation){
@@ -394,7 +383,7 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
     }
 
 
-    public void leftStone(JarJarBot robot){
+    public void leftStone(Robot robot){
         encodersMove(robot, 20, .4, "forward");
         robotSleep(1000);
         encodersMoveStrafe(robot, 7.5, .1, "right");
@@ -406,14 +395,14 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
 
     }
 
-    public void middleStone(JarJarBot robot){
+    public void middleStone(Robot robot){
         encodersMove(robot, 18, .4, "forward");
         robotSleep(1000);
         stoneSampleServo(robot);
 
     }
 
-    public void rightStone(JarJarBot robot){
+    public void rightStone(Robot robot){
         encodersMove(robot, 20, .4, "forward");
         robotSleep(1000);
         encodersMoveStrafe(robot,5,.5,"left");
@@ -422,7 +411,7 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
 
     }
 
-    public void crossSkyBridge(JarJarBot robot){
+    public void crossSkyBridge(Robot robot){
         encodersMoveStrafe(robot, 35, .4, "right");
     }
 }

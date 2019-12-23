@@ -21,7 +21,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
-public class JarJarBot {
+public class Robot {
 
     /* Robot Motors, Servos, CR Servos and Sensors */
     public DcMotor motorFrontLeft = null;
@@ -56,7 +56,7 @@ public class JarJarBot {
     /**
      * Constructor for Robot class, current does nothing but is needed since every class needs a constructor
      */
-    public JarJarBot() {
+    public Robot() {
 
     }
 

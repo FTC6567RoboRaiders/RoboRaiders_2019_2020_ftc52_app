@@ -2,7 +2,7 @@ package RoboRaiders.AutonomousOptions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import RoboRaiders.AutonomousMethods.JarJarAutonomousMethods;
-import RoboRaiders.Robot.JarJarBot;
+import RoboRaiders.Robot.Robot;
 import RoboRaiders.Robot.RobotTelemetryDisplay;
 
 @Autonomous
@@ -13,7 +13,7 @@ public class AutonomousOptionsV1 extends JarJarAutonomousMethods {
     public boolean crossSkyBridge = false;
     public boolean selectionsAreGood = false;
 
-    public JarJarBot robot = new JarJarBot();
+    public Robot robot = new Robot();
 
     public void runOpMode() throws InterruptedException {
         robot.initialize(hardwareMap);

@@ -6,13 +6,13 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import RoboRaiders.AutonomousMethods.AutoOptions.RoboRaidersPID;
 import RoboRaiders.AutonomousMethods.JarJarAutonomousMethods;
 
-import RoboRaiders.Robot.JarJarBot;
+import RoboRaiders.Robot.Robot;
 import RoboRaiders.Robot.PidUdpReceiver;
 import RoboRaiders.Robot.RobotTelemetryDisplay;
 @Autonomous
 @Disabled
 public class PIDTurnTest extends JarJarAutonomousMethods {
-    public JarJarBot robot = new JarJarBot();
+    public Robot robot = new Robot();
 
 
     private PidUdpReceiver pidUdpReceiver;

@@ -3,14 +3,14 @@ package RoboRaiders.JarJarsAutonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import RoboRaiders.AutonomousMethods.JarJarAutonomousMethods;
-import RoboRaiders.Robot.JarJarBot;
+import RoboRaiders.Robot.Robot;
 import RoboRaiders.Robot.RobotTelemetryDisplay;
 
 @Autonomous (name= "Movement Test For BotLord")
 
 public class JarJarsAutonomous extends JarJarAutonomousMethods {
 
-    JarJarBot robot = new JarJarBot();
+    Robot robot = new Robot();
 
     RobotTelemetryDisplay rtd = new RobotTelemetryDisplay(this,"JarJar");
 
