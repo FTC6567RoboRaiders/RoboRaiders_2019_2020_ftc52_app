@@ -123,6 +123,7 @@ public class BotChungusTeleOp extends OpMode {
 
 
 
+
     double scaleInput(double dVal) {        // When implemented above, this double scales the joystick input values
         // in the floats.
 

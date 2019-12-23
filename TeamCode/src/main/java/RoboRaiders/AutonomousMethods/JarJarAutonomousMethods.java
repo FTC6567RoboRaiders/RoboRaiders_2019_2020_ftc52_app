@@ -30,7 +30,7 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
         robot.resetEncoders(); //resets encoders
         robot.runWithEncoders(); //sets the mode back to run with encoder
 
-        final double v = robot.calculateCOUNTS(distance);
+        final double v = robot.driveTrainCalculateCounts(distance);
         double COUNTS = v; //COUNTS is now equal to the value calculated
 
         if (direction.equals("forward")) { //if the desired direction is forward
@@ -65,7 +65,7 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
         robot.resetEncoders();
         robot.runWithEncoders();
 
-        final double v = robot.calculateCOUNTS(distance);
+        final double v = robot.driveTrainCalculateCounts(distance);
         double COUNTS = v; //COUNTS is now equal to the value calculated
 
         if (direction.equals("right")) { //if the desired direction is right

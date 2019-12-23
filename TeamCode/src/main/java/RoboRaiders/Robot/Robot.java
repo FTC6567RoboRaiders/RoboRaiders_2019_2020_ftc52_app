@@ -23,6 +23,8 @@ import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
 public class Robot {
 
+
+
     /* Robot Motors, Servos, CR Servos and Sensors */
     public DcMotor motorFrontLeft = null;
     public DcMotor motorFrontRight = null;
@@ -160,13 +162,18 @@ public class Robot {
     //public void takeSkystoneDown(){ takeSkystone.setPosition(1.0);}
     //public void takeSkystoneUp() {takeSkystone.setPosition(0.0);}
 
-    public double calculateCOUNTS(double distance) {
+    /**
+     * Calculates the number of encoder counts to travel a given distance
+     * @param distance
+     * @return
+     */
+    public double driveTrainCalculateCounts(double distance) {
 
         double COUNTS;
 
         int DIAMETER = 4; //diameter of wheel
         double GEAR_RATIO = (1.0 / 1.0); //gear ratio
-        double PULSES = 537.6; //encoder counts in one revolution
+        double PULSES = 537.6; //encoder counts in one revolution - neverest 20 orbital
         double CIRCUMFERENCE = Math.PI * DIAMETER; //gives you circumference
         double ROTATIONS = (distance / CIRCUMFERENCE) * GEAR_RATIO; //gives the rotations
         COUNTS = PULSES * ROTATIONS; //gives the counts
@@ -175,6 +182,29 @@ public class Robot {
 
 
     }
+
+
+    /**
+     * Calculates the number of encoder counts to travel a given distance for the lift
+     * @param distance
+     * @return
+     */
+    public double liftCalculateCounts(double distance) {
+
+        double COUNTS;
+
+        double DIAMETER = 2.5; //diameter of lift spool
+        double GEAR_RATIO = (1.0 / 1.0); //gear ratio
+        double PULSES = 1120; //encoder counts in one revolution - neverest 40 motor
+        double CIRCUMFERENCE = Math.PI * DIAMETER; //gives you circumference
+        double ROTATIONS = (distance / CIRCUMFERENCE) * GEAR_RATIO; //gives the rotations
+        COUNTS = PULSES * ROTATIONS; //gives the counts
+
+        return COUNTS;
+
+
+    }
+
     public int getSortedEncoderCount() {
 
         int[] encoderArray = new int[4];
