@@ -6,9 +6,9 @@ import com.qualcomm.robotcore.util.Range;
 
 import RoboRaiders.Robot.Robot;
 
-@TeleOp (name= "BotChungus TeleOp")
+@TeleOp (name="BotChungus TeleOp")
 
-public class BotChungus extends OpMode {
+public class BotChungusTeleOp extends OpMode {
 
     public Robot robot = new Robot();
 
