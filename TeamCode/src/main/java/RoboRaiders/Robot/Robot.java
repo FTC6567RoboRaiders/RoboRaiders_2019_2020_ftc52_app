@@ -54,8 +54,8 @@ public class Robot {
     //Robot Constants
     private static final double CAPTURE_SERVO_UP = 0.0;
     private static final double CAPTURE_SERVO_DOWN = 1.0;
-    private static final double SWING_SERVO_LEFT = 0.0;
-    private static final double SWING_SERVO_RIGHT = 1.0;
+    private static final double SWING_SERVO_OUT = 0.0;
+    private static final double SWING_SERVO_IN = 1.0;
 
     //public ModernRoboticsI2cRangeSensor distance;
     //public double takeSkystoneUp = 0.0;
@@ -321,14 +321,14 @@ public class Robot {
         stoneSwingServo.setPosition(position);
     }
 
-    public void setStoneSwingServoLeft () {
+    public void setStoneSwingServoOut () {
 
-        setStoneSwingPosition(SWING_SERVO_LEFT);
+        setStoneSwingPosition(SWING_SERVO_OUT);
     }
 
-    public void setStoneSwingServoRight () {
+    public void setStoneSwingServoIn () {
 
-        setStoneSwingPosition(SWING_SERVO_RIGHT);
+        setStoneSwingPosition(SWING_SERVO_IN);
     }
 
 

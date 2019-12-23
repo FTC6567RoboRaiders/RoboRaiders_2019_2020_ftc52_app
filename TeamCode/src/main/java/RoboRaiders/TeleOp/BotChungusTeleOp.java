@@ -90,11 +90,11 @@ public class BotChungusTeleOp extends OpMode {
 
       //Handles the swing
       if (currStateA) {
-          robot.setStoneSwingServoLeft();
+          robot.setStoneSwingServoOut();
       }
 
       else if (currStateB) {
-          robot.setStoneSwingServoRight();
+          robot.setStoneSwingServoIn();
       }
 
 
