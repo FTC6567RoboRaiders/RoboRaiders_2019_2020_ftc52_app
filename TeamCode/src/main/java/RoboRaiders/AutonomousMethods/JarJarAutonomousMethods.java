@@ -108,12 +108,12 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
 
     }
 
-    public void intakeArmAuto (Robot robot, double position) {
+    /*public void intakeArmAuto (Robot robot, double position) {
       robot.intakeArmAuto(position);
-    }
+    }*/
 
     public void stoneSampleServo (Robot robot) {
-        intakeArmAuto(robot, 0.0);
+       // intakeArmAuto(robot, 0.0);
         robotSleep(1000);
         encodersMove(robot, 15, .3, "backward");
         robotSleep(1000);
@@ -415,3 +415,5 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
         encodersMoveStrafe(robot, 35, .4, "right");
     }
 }
+
+
