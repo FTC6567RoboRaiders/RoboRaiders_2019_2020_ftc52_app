@@ -37,6 +37,8 @@ public class BotChungusTeleOp extends OpMode {
     @Override
     public void loop() {
 
+        // Drive Train motor processing
+
         backLeft = -gamepad1.left_stick_y - gamepad1.left_stick_x + gamepad1.right_stick_x;    // These lines establish the joystick input values as
         backRight = -gamepad1.left_stick_y + gamepad1.left_stick_x - gamepad1.right_stick_x;   // the float variables "backLeft", "backRight", "frontLeft", and "frontRight", which
         frontLeft = -gamepad1.left_stick_y + gamepad1.left_stick_x + gamepad1.right_stick_x;   //correspond to the back left, back right, front left,
@@ -61,6 +63,8 @@ public class BotChungusTeleOp extends OpMode {
 
         currStateRightBumper = gamepad1.right_bumper;
         currStateLeftBumper = gamepad1.left_bumper;
+
+
 
       if (currStateLeftBumper){
         robot.intakeArmDown();
