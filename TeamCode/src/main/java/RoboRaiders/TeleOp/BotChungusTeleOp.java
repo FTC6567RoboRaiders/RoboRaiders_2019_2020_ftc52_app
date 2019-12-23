@@ -18,8 +18,8 @@ public class BotChungusTeleOp extends OpMode {
     float frontRight; // Power for right front motor
     public boolean currStateX = false;
     public boolean currStateY = false;
-    public boolean prevStateX = false;
-    public boolean prevStateY = false;
+    public boolean currStateA = false;
+    public boolean currStateB = false;
     public boolean currStateRightBumper = false;
     public boolean currStateLeftBumper = false;
 
@@ -64,7 +64,7 @@ public class BotChungusTeleOp extends OpMode {
         currStateRightBumper = gamepad1.right_bumper;
         currStateLeftBumper = gamepad1.left_bumper;
 
-    //The following controls handle the intake motors for the Skystones
+    //Handles bringing the stone into the center of robot
 
       if (currStateLeftBumper){
           robot.setInakePower(-.5);
@@ -78,11 +78,23 @@ public class BotChungusTeleOp extends OpMode {
           robot.setInakePower(0);
       }
 
+      //Handles capturing the stone
       if (currStateX) {
+        robot.setSkystoneCaptureUp();
 
       }
       else if (currStateY) {
+          robot.setSkystoneCaptureDown();
 
+      }
+
+      //Handles the swing
+      if (currStateA) {
+          robot.setStoneSwingServoLeft();
+      }
+
+      else if (currStateB) {
+          robot.setStoneSwingServoRight();
       }
 
 

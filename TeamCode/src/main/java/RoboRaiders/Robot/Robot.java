@@ -33,6 +33,7 @@ public class Robot {
     public DcMotor liftMotor = null;
 
     public Servo stoneCaptureServo = null;
+    public Servo stoneSwingServo = null;
 
     public BNO055IMU imu;
 
@@ -53,6 +54,8 @@ public class Robot {
     //Robot Constants
     private static final double CAPTURE_SERVO_UP = 0.0;
     private static final double CAPTURE_SERVO_DOWN = 1.0;
+    private static final double SWING_SERVO_LEFT = 0.0;
+    private static final double SWING_SERVO_RIGHT = 1.0;
 
     //public ModernRoboticsI2cRangeSensor distance;
     //public double takeSkystoneUp = 0.0;
@@ -122,6 +125,7 @@ public class Robot {
 
         //Define and initialize Servos
         stoneCaptureServo = hwMap.servo.get("stoneCaptureServo");
+        stoneSwingServo = hwMap.servo.get("stoneSwingServo");
     }
 
         public ModernRoboticsI2cRangeSensor mrDistance;
@@ -310,6 +314,21 @@ public class Robot {
     public void setSkystoneCaptureDown (){
 
         setCaptureServoPosition (CAPTURE_SERVO_DOWN);
+    }
+
+    public void setStoneSwingPosition (double position) {
+
+        stoneSwingServo.setPosition(position);
+    }
+
+    public void setStoneSwingServoLeft () {
+
+        setStoneSwingPosition(SWING_SERVO_LEFT);
+    }
+
+    public void setStoneSwingServoRight () {
+
+        setStoneSwingPosition(SWING_SERVO_RIGHT);
     }
 
 
