@@ -34,6 +34,8 @@ public class Robot {
 
     public Servo stoneCaptureServo = null;
     public Servo stoneSwingServo = null;
+    public Servo foundationGrabberLeft = null;
+    public Servo foundationGrabberRight = null;
 
     public BNO055IMU imu;
 
@@ -56,6 +58,8 @@ public class Robot {
     private static final double CAPTURE_SERVO_DOWN = 1.0;
     private static final double SWING_SERVO_OUT = 0.0;
     private static final double SWING_SERVO_IN = 1.0;
+    private static final double GRABBER_SERVO_GRAB = 0.0;
+    private static final double GRABBER_SERVO_UNGRAB = 1.0;
 
     //public ModernRoboticsI2cRangeSensor distance;
     //public double takeSkystoneUp = 0.0;
@@ -126,6 +130,8 @@ public class Robot {
         //Define and initialize Servos
         stoneCaptureServo = hwMap.servo.get("stoneCaptureServo");
         stoneSwingServo = hwMap.servo.get("stoneSwingServo");
+        foundationGrabberLeft = hwMap.servo.get("foundationGrabberLeft");
+        foundationGrabberRight = hwMap.servo.get("foundationGrabberRight");
     }
 
         public ModernRoboticsI2cRangeSensor mrDistance;
@@ -148,16 +154,11 @@ public class Robot {
         motorBackLeft.setPower(leftBack);
         motorFrontRight.setPower(rightFront);
 
-
-
     }
 
 
     //public void takeSkystoneDown(){ takeSkystone.setPosition(1.0);}
     //public void takeSkystoneUp() {takeSkystone.setPosition(0.0);}
-
-
-
 
     public double calculateCOUNTS(double distance) {
 
@@ -329,6 +330,19 @@ public class Robot {
     public void setStoneSwingServoIn () {
 
         setStoneSwingPosition(SWING_SERVO_IN);
+    }
+
+    public void setfoundationGrabberPostion (double position) {
+        foundationGrabberRight.setPosition(position);
+        foundationGrabberLeft.setPosition(position);
+    }
+
+    public void setFoundationGrabberGrabbed () {
+        setfoundationGrabberPostion(GRABBER_SERVO_GRAB);
+
+    }
+    public void setFOundationGrabberUnGrabbed () {
+        setfoundationGrabberPostion(GRABBER_SERVO_UNGRAB);
     }
 
 

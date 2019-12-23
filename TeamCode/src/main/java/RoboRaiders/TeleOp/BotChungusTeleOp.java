@@ -22,6 +22,8 @@ public class BotChungusTeleOp extends OpMode {
     public boolean currStateB = false;
     public boolean currStateRightBumper = false;
     public boolean currStateLeftBumper = false;
+    public double currStateRightTrigger = 0.0;
+    public double currStateLeftTrigger = 0.0;
 
     @Override
     public void init() { /*This is the initialization routine that the robot undergoes. */
@@ -61,6 +63,11 @@ public class BotChungusTeleOp extends OpMode {
         currStateX = gamepad1.x;
         currStateY = gamepad1.y;
 
+        currStateA = gamepad1.a;
+        currStateB = gamepad1.b;
+
+
+
         currStateRightBumper = gamepad1.right_bumper;
         currStateLeftBumper = gamepad1.left_bumper;
 
@@ -97,7 +104,12 @@ public class BotChungusTeleOp extends OpMode {
           robot.setStoneSwingServoIn();
       }
 
-
+      if (currStateRightTrigger > 0.0 ) {
+          robot.setFoundationGrabberGrabbed();
+      }
+      else if (currStateLeftTrigger > 0.0 ) {
+          robot.setFOundationGrabberUnGrabbed();
+      }
     }
 
     @Override
