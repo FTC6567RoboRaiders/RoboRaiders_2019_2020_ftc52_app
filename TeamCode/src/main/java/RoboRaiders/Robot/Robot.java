@@ -32,6 +32,8 @@ public class Robot {
     public DcMotor intakeMotorLeft = null;
     public DcMotor liftMotor = null;
 
+    public Servo skyStoneCapturer = null;
+
     public BNO055IMU imu;
 
     public DistanceSensor stoneRange = null;
@@ -48,11 +50,10 @@ public class Robot {
     public float iza_newHeading;
     public Orientation iza_angles;
 
-
     //public ModernRoboticsI2cRangeSensor distance;
     //public double takeSkystoneUp = 0.0;
     //public double takeSkystoneDown = 1.0;
-    public double i
+
 
     /**
      * Constructor for Robot class, current does nothing but is needed since every class needs a constructor
@@ -287,6 +288,21 @@ public class Robot {
     public void setInakePower(double intake){
         intakeMotorLeft.setPower(intake);
         intakeMotorRight.setPower(-1*intake);
+    }
+
+    public void setCaptureServoPosition (double position) {
+
+        skyStoneCapturer.setPosition(position);
+    }
+
+    public void setSkystoneCaptureUp () {
+
+        setCaptureServoPosition(0.0); //Captures the skystone
+    }
+
+    public void setSkystoneCaptureDown (){
+
+        setCaptureServoPosition (1.0);
     }
 
 

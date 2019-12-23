@@ -79,7 +79,7 @@ public class BotChungusTeleOp extends OpMode {
       }
 
       if (currStateX) {
-
+        robot.sky
       }
       else if (currStateY) {
 
