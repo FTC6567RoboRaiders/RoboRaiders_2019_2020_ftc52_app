@@ -32,7 +32,7 @@ public class Robot {
     public DcMotor intakeMotorLeft = null;
     public DcMotor liftMotor = null;
 
-    public Servo skyStoneCapturer = null;
+    public Servo stoneCaptureServo = null;
 
     public BNO055IMU imu;
 
@@ -49,6 +49,10 @@ public class Robot {
     public double iza_deltaHeading;
     public float iza_newHeading;
     public Orientation iza_angles;
+
+    //Robot Constants
+    private static final double CAPTURE_SERVO_UP = 0.0;
+    private static final double CAPTURE_SSERVO_DOWN = 1.0;
 
     //public ModernRoboticsI2cRangeSensor distance;
     //public double takeSkystoneUp = 0.0;
@@ -292,17 +296,17 @@ public class Robot {
 
     public void setCaptureServoPosition (double position) {
 
-        skyStoneCapturer.setPosition(position);
+        stoneCaptureServo.setPosition(position);
     }
 
     public void setSkystoneCaptureUp () {
 
-        setCaptureServoPosition(0.0); //Captures the skystone
+        setCaptureServoPosition(CAPTURE_SERVO_UP); //Captures the skystone
     }
 
     public void setSkystoneCaptureDown (){
 
-        setCaptureServoPosition (1.0);
+        setCaptureServoPosition (CAPTURE_SSERVO_DOWN);
     }
 
 
