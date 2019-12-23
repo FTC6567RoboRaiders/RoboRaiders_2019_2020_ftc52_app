@@ -132,10 +132,12 @@ public class JarJarBot {
 
     public void setDriveMotorPower(double leftFront, double rightFront, double leftBack, double rightBack) {
 
-     motorBackRight.setPower(rightBack);
-        motorFrontRight.setPower(rightFront);
         motorFrontLeft.setPower(leftFront);
+        motorBackRight.setPower(rightBack);
         motorBackLeft.setPower(leftBack);
+        motorFrontRight.setPower(rightFront);
+
+
 
     }
 

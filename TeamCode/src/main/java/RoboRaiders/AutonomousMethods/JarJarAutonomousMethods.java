@@ -17,6 +17,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
 
 import RoboRaiders.JarJarsAutonomous.BrightnessDetectionAuto;
 import RoboRaiders.JarJarsAutonomous.RoboRaidersPipeline;
+import RoboRaiders.Logger.Logger;
 import RoboRaiders.Robot.JarJarBot;
 import RoboRaiders.hubbot.BrightnessDetection;
 
@@ -184,6 +185,163 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
                 //telemetry.update();
             }
         }
+    }
+
+    /**
+     * turning with PID
+     * @param robot
+     * @param rrPID
+     * @param degreesToTurn
+     * @param direction
+     */
+    public void imuTurnPID(RoboRaiders.AutonomousMethods.AutoOptions.RoboRaidersPID rrPID,
+                           JarJarBot robot,
+                           float degreesToTurn, String direction) {
+
+        double power = 0.0;
+        int loopcount = 0;
+
+
+        // Normally the motor powers for the left side are set to reverse (this allows the motors
+        // to turn in the same direction.  For turning however, set the motors on the left side of
+        // the robot to turn forward, which will turn the left motors in the opposite direction
+        // of the right motors, thus turning the robot.
+        robot.motorFrontLeft.setDirection(DcMotor.Direction.FORWARD);
+        robot.motorBackLeft.setDirection(DcMotor.Direction.FORWARD);
+
+        Logger L = new Logger("imuTurnPID");
+        rrPID.initialize();
+        telemetry.addLine().addData("in", "imuTurnPID");
+
+        currentHeading = 0.0;
+        currentHeading = robot.getIntegratedZAxis();
+
+
+        L.Debug("Start");
+        L.Debug("currentHeading: ", currentHeading);
+        L.Debug("degreesToTurn", degreesToTurn);
+
+        // robot.getHeading(); returns the current heading of the IMU
+
+        // When turning and reading the IMU...clockwise angles generally decrease, that is they
+        // get smaller.  Whereas, counter clockwise angles generally increase, that is they
+        // get larger.  Thus turning right requires the number of degrees to turn to be decremented
+        // from the current heading.  For turning left, the number of degrees to turn is incremented
+        // to the current heading.
+
+        if (direction.equals("right")) { //if the desired direction is right
+            finalHeading = currentHeading - degreesToTurn;
+            telemetry.addLine().addData("currentHeading", currentHeading);
+            telemetry.addLine().addData("finalHeading", finalHeading);
+
+            L.Debug("Turning Right");
+            L.Debug("finalHeading: ",finalHeading);
+
+            // power = rrPID.CalculatePIDPowers(finalHeading,currentHeading);
+            telemetry.addLine().addData("power", power);
+
+            L.Debug("Calculated PID Power (power): ",power);
+
+            //  robot.setDriveMotorPower(power, power, power, power); //the robot will turn right
+
+
+            // The robot will turn within plus or minus 3.5 degrees and needs to complete the turn
+            // in 20 iterations or less.  During testing it was found that the robot would still be
+            // applying small amounts of power in an attempt to get the robot to turn the last
+            // few degrees, however, the small amounts of power wasn't quite enough to over come the
+            // effects of friction on the robot
+
+            while((opModeIsActive() && (loopcount < 20 &&
+                    !(currentHeading < finalHeading + 3.5 && currentHeading > finalHeading - 3.5)))){
+                //&& Math.abs(power) > 0.1) {
+                currentHeading = robot.getIntegratedZAxis();
+                power = rrPID.CalculatePIDPowers(finalHeading,currentHeading) * 0.75;
+
+                loopcount++;
+
+                L.Debug("In While Loop");
+                L.Debug("finalHeading: ",finalHeading);
+                L.Debug("currentHeading: ",currentHeading);
+                L.Debug("Remaining Degrees: ",finalHeading - currentHeading);
+                L.Debug("Calculated PID Power (power): ",power);
+                L.Debug("loopcount", loopcount);
+
+
+                robot.setDriveMotorPower(power, power, power, power);
+
+                //robot.angles = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+                //currentHeading = robot.getIntegratedZAxis();
+                telemetry.addLine().addData("right", "right");
+                telemetry.addLine().addData("power", String.valueOf(power));
+                telemetry.addLine().addData("IntZ",String.valueOf(robot.getIntegratedZAxis()));
+                telemetry.addLine().addData("finalHeading",String.valueOf(finalHeading));
+                telemetry.addLine().addData("difference",String.valueOf(finalHeading - robot.getIntegratedZAxis()));
+                telemetry.update();
+
+            }
+            robot.setDriveMotorPower(0.0, 0.0, 0.0, 0.0); //stops robot
+            L.Debug("Out of While Loop");
+            L.Debug("finalHeading: ",finalHeading);
+            L.Debug("currentHeading: ",robot.getIntegratedZAxis());
+            L.Debug("Remaining Degrees: ",finalHeading - robot.getIntegratedZAxis());
+
+
+
+        }
+        else { //if the desired direction is left
+            finalHeading = currentHeading + degreesToTurn;
+
+            L.Debug("Turning Left");
+            L.Debug("finalHeading: ",finalHeading);
+
+
+            // The robot will turn within plus or minus 3.5 degrees and needs to complete the turn
+            // in 20 iterations or less.  During testing it was found that the robot would still be
+            // applying small amounts of power in an attempt to get the robot to turn the last
+            // few degrees, however, the small amounts of power wasn't quite enough to over come the
+            // effects of friction on the robot
+
+            while((opModeIsActive() && (loopcount < 20 &&
+                    !(currentHeading > finalHeading - 3.5 && currentHeading < finalHeading + 3.5)))){
+                //&& Math.abs(power) > 0.1) {
+                currentHeading = robot.getIntegratedZAxis();
+                power = rrPID.CalculatePIDPowers(finalHeading,currentHeading) * 0.75;
+
+                loopcount++;
+
+                L.Debug("In While Loop");
+                L.Debug("finalHeading: ",finalHeading);
+                L.Debug("currentHeading: ",currentHeading);
+                L.Debug("Remaining Degrees: ",finalHeading - currentHeading);
+                L.Debug("Calculated PID Power (power): ",power);
+                L.Debug("loopcount", loopcount);
+
+
+                robot.setDriveMotorPower(power, power, power, power);
+
+
+                //robot.angles = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+                //currentHeading = robot.getIntegratedZAxis();
+                telemetry.addLine().addData("left", "left");
+                //telemetry.addLine().addData("getHeading",String.valueOf(currentHeading));
+                telemetry.addLine().addData("IntZ",String.valueOf(robot.integratedZAxis));
+                telemetry.addLine().addData("finalHeading",String.valueOf(finalHeading));
+                telemetry.addLine().addData("difference",String.valueOf(finalHeading - robot.getIntegratedZAxis()));
+                telemetry.update();
+            }
+        }
+
+
+        robot.setDriveMotorPower(0.0, 0.0, 0.0, 0.0); //stops robot
+
+
+        // Reverse the motor direction on the left motors so that all motors spin in the same
+        // direction
+        robot.motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
+        robot.motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
+
+
+        L.Debug("End");
     }
 
     public int stoneDetection(){
