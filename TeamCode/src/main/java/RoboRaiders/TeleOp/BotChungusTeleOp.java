@@ -66,7 +66,8 @@ public class BotChungusTeleOp extends OpMode {
         currStateA = gamepad1.a;
         currStateB = gamepad1.b;
 
-
+        currStateLeftTrigger = gamepad1.left_trigger;
+        currStateRightTrigger = gamepad1.right_trigger;
 
         currStateRightBumper = gamepad1.right_bumper;
         currStateLeftBumper = gamepad1.left_bumper;
@@ -104,6 +105,7 @@ public class BotChungusTeleOp extends OpMode {
           robot.setStoneSwingServoIn();
       }
 
+      //Handles grabbing the foundation
       if (currStateRightTrigger > 0.0 ) {
           robot.setFoundationGrabberGrabbed();
       }
