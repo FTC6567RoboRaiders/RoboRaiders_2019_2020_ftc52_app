@@ -8,7 +8,7 @@ import RoboRaiders.Robot.Robot;
 
 @TeleOp (name= "BotLord Test TeleOp")
 
-public class JarJarsTeleOp extends OpMode {
+public class BotChungus extends OpMode {
 
     public Robot robot = new Robot();
 
