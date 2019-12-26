@@ -16,6 +16,8 @@ public class BotChungusTeleOp extends OpMode {
     float backRight;  // Power for right back motor
     float frontLeft;  // Power for left front motor
     float frontRight; // Power for right front motor
+    float liftMotor;  // Power for lift
+
     public boolean currStateX = false;
     public boolean currStateY = false;
     public boolean currStateA = false;
@@ -60,6 +62,10 @@ public class BotChungusTeleOp extends OpMode {
         // "setMotorPower" below. It sets the power of the motors to the joystick input values in
         // the floats.
 
+
+        liftMotor = gamepad2.right_stick_y;
+        robot.setLiftMotorPower(liftMotor);
+
         currStateX = gamepad2.x;
         currStateY = gamepad2.y;
 
@@ -75,13 +81,11 @@ public class BotChungusTeleOp extends OpMode {
     //Handles bringing the stone into the center of robot
 
       if (currStateLeftBumper){
-          robot.setInakePower(-.5);
+          robot.setInakePower(-1.0);
       }
-
       else if (currStateRightBumper){
-          robot.setInakePower(.5);
+          robot.setInakePower(1.0);
       }
-
       else {
           robot.setInakePower(0);
       }
@@ -89,18 +93,15 @@ public class BotChungusTeleOp extends OpMode {
       //Handles capturing the stone
       if (currStateX) {
         robot.setCaptureServoDown();
-
       }
       else if (currStateY) {
-          robot.setCaptureServoDown();
-
+          robot.setCaptureServoUp();
       }
 
       //Handles the swing
       if (currStateA) {
           robot.setStoneSwingServoOut();
       }
-
       else if (currStateB) {
           robot.setStoneSwingServoIn();
       }
@@ -110,7 +111,7 @@ public class BotChungusTeleOp extends OpMode {
           robot.setFoundationGrabberGrabbed();
       }
       else if (currStateLeftTrigger > 0.0 ) {
-          robot.setFOundationGrabberUnGrabbed();
+          robot.setFoundationGrabberUnGrabbed();
       }
     }
 

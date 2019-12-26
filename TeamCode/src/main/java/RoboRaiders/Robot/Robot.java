@@ -57,11 +57,11 @@ public class Robot {
 
     //Robot Constants
     private static final double CAPTURE_SERVO_UP = 0.7;
-    private static final double CAPTURE_SERVO_DOWN = 0.4;
-    private static final double SWING_SERVO_OUT = 0.85;                       //* from testing with SwingServoTester.java
+    private static final double CAPTURE_SERVO_DOWN = 0.3;
+    private static final double SWING_SERVO_OUT = 1.0;                       //* from testing with SwingServoTester.java
     private static final double SWING_SERVO_IN = 0.0;                         //* from testing with SwingServoTester.java
     private static final double FOUNDATION_SERVO_GRAB_LEFT = 0.5;
-    private static final double FOUNDATION_SERVO_GRAB_RIGHT = 0.85;
+    private static final double FOUNDATION_SERVO_GRAB_RIGHT = 0.9;
     private static final double FOUNDATION_SERVO_RELEASE_LEFT = 1.0;
     private static final double FOUNDATION_SERVO_RELEASE_RIGHT = 0.35;
 
@@ -159,6 +159,8 @@ public class Robot {
         motorFrontRight.setPower(rightFront);
 
     }
+
+    public void setLiftMotorPower(double liftPower) { liftMotor.setPower(liftPower); }
 
 
     //public void takeSkystoneDown(){ takeSkystone.setPosition(1.0);}
@@ -339,7 +341,7 @@ public class Robot {
         stoneCaptureServo.setPosition(position);
     }
 
-    public void setaptureServoUp () {
+    public void setCaptureServoUp () {
 
         setCaptureServoPosition(CAPTURE_SERVO_UP); //Captures the stone
     }
@@ -373,7 +375,7 @@ public class Robot {
         setfoundationGrabberPostion(FOUNDATION_SERVO_GRAB_LEFT, FOUNDATION_SERVO_GRAB_RIGHT);
 
     }
-    public void setFOundationGrabberUnGrabbed () {
+    public void setFoundationGrabberUnGrabbed () {
         setfoundationGrabberPostion(FOUNDATION_SERVO_RELEASE_LEFT, FOUNDATION_SERVO_RELEASE_RIGHT);
     }
 
