@@ -41,7 +41,7 @@ public class Robot {
 
     public BNO055IMU imu;
 
-    public DistanceSensor stoneRange = null;
+ //   public DistanceSensor stoneRange = null;
 
     /* Local OpMode Members */
     public HardwareMap hwMap = null;
@@ -56,12 +56,14 @@ public class Robot {
     public Orientation iza_angles;
 
     //Robot Constants
-    private static final double CAPTURE_SERVO_UP = 0.0;
-    private static final double CAPTURE_SERVO_DOWN = 1.0;
-    private static final double SWING_SERVO_OUT = 0.0;
-    private static final double SWING_SERVO_IN = 1.0;
-    private static final double GRABBER_SERVO_GRAB = 0.0;
-    private static final double GRABBER_SERVO_UNGRAB = 1.0;
+    private static final double CAPTURE_SERVO_UP = 0.7;
+    private static final double CAPTURE_SERVO_DOWN = 0.4;
+    private static final double SWING_SERVO_OUT = 0.85;                       //* from testing with SwingServoTester.java
+    private static final double SWING_SERVO_IN = 0.0;                         //* from testing with SwingServoTester.java
+    private static final double FOUNDATION_SERVO_GRAB_LEFT = 0.5;
+    private static final double FOUNDATION_SERVO_GRAB_RIGHT = 0.85;
+    private static final double FOUNDATION_SERVO_RELEASE_LEFT = 1.0;
+    private static final double FOUNDATION_SERVO_RELEASE_RIGHT = 0.35;
 
     //public ModernRoboticsI2cRangeSensor distance;
     //public double takeSkystoneUp = 0.0;
@@ -94,7 +96,7 @@ public class Robot {
         intakeMotorRight = hwMap.get (DcMotor.class, "intakeMotorRight");
         liftMotor = hwMap.get (DcMotor.class, "liftMotor");
 
-        stoneRange = hwMap.get(DistanceSensor.class, "sensor_range");
+        //stoneRange = hwMap.get(DistanceSensor.class, "sensor_range");
 
         // Defines the directions the motors will spin
         motorFrontLeft.setDirection(DcMotor.Direction.FORWARD);
@@ -137,7 +139,7 @@ public class Robot {
     }
 
         public ModernRoboticsI2cRangeSensor mrDistance;
-        Rev2mDistanceSensor sensorTimeOfFlight = (Rev2mDistanceSensor)stoneRange;
+  //      Rev2mDistanceSensor sensorTimeOfFlight = (Rev2mDistanceSensor)stoneRange;
 
     /**
      * This method will set the power for the drive motors
@@ -280,9 +282,9 @@ public class Robot {
         return heading;
     }
 
-    public double getRange(){
-        return stoneRange.getDistance(DistanceUnit.INCH);
-    }
+   // public double getRange(){
+   //     return stoneRange.getDistance(DistanceUnit.INCH);
+   //}
 
     public void resetIMU() {
 
@@ -337,14 +339,14 @@ public class Robot {
         stoneCaptureServo.setPosition(position);
     }
 
-    public void setSkystoneCaptureUp () {
+    public void setaptureServoUp () {
 
-        setCaptureServoPosition(CAPTURE_SERVO_UP); //Captures the skystone
+        setCaptureServoPosition(CAPTURE_SERVO_UP); //Captures the stone
     }
 
-    public void setSkystoneCaptureDown (){
+    public void setCaptureServoDown (){
 
-        setCaptureServoPosition (CAPTURE_SERVO_DOWN);
+        setCaptureServoPosition(CAPTURE_SERVO_DOWN);
     }
 
     public void setStoneSwingPosition (double position) {
@@ -362,17 +364,17 @@ public class Robot {
         setStoneSwingPosition(SWING_SERVO_IN);
     }
 
-    public void setfoundationGrabberPostion (double position) {
-        foundationGrabberRight.setPosition(position);
-        foundationGrabberLeft.setPosition(position);
+    public void setfoundationGrabberPostion (double posLeft, double posRight) {
+        foundationGrabberLeft.setPosition(posLeft);
+        foundationGrabberRight.setPosition(posRight);
     }
 
     public void setFoundationGrabberGrabbed () {
-        setfoundationGrabberPostion(GRABBER_SERVO_GRAB);
+        setfoundationGrabberPostion(FOUNDATION_SERVO_GRAB_LEFT, FOUNDATION_SERVO_GRAB_RIGHT);
 
     }
     public void setFOundationGrabberUnGrabbed () {
-        setfoundationGrabberPostion(GRABBER_SERVO_UNGRAB);
+        setfoundationGrabberPostion(FOUNDATION_SERVO_RELEASE_LEFT, FOUNDATION_SERVO_RELEASE_RIGHT);
     }
 
 

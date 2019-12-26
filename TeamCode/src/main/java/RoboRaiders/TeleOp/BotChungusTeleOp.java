@@ -70,7 +70,7 @@ public class BotChungusTeleOp extends OpMode {
         currStateRightTrigger = gamepad2.right_trigger;
 
         currStateRightBumper = gamepad2.right_bumper;
-        currStateLeftBumper = gamepad2.left_bumper;
+        currStateLeftBumper = gamepad2 .left_bumper;
 
     //Handles bringing the stone into the center of robot
 
@@ -88,11 +88,11 @@ public class BotChungusTeleOp extends OpMode {
 
       //Handles capturing the stone
       if (currStateX) {
-        robot.setSkystoneCaptureUp();
+        robot.setCaptureServoDown();
 
       }
       else if (currStateY) {
-          robot.setSkystoneCaptureDown();
+          robot.setCaptureServoDown();
 
       }
 

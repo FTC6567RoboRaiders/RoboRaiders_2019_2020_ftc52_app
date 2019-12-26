@@ -4,17 +4,16 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@Autonomous (name= "Servo Test")
+@Autonomous (name= "Swing Servo Test")
 
-public abstract class SwingServoTester extends LinearOpMode {
+public class SwingServoTester extends LinearOpMode {
 
-    public Servo stoneCaptureServo = null;
+
     public Servo stoneSwingServo = null;
-    public Servo foundationGrabberLeft = null;
-    public Servo foundationGrabberRight = null;
 
     public double servoPosition = 0.0;
 
+    @Override
     public void runOpMode() {
 
         stoneSwingServo = hardwareMap.get(Servo.class, "stoneSwingServo");
@@ -25,16 +24,14 @@ public abstract class SwingServoTester extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
-
             stoneSwingServo.setPosition(servoPosition);
-            sleep(500);
+            sleep(2000);
 
             telemetry.addData("Servo Position", "%5.2f", servoPosition);
             telemetry.addData(">", "Press Stop to end test." );
+            telemetry.update();
 
             servoPosition += 0.1;
-
-
         }
     }
 }

@@ -101,8 +101,8 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
 
     public void runIntake(Robot robot, double power) {
         robot.setInakePower(power);
-        while (opModeIsActive() && robot.getRange() > 1) {
-        }
+//        while (opModeIsActive() && robot.getRange() > 1) {
+//        }
 
         robot.setInakePower(0);
 
@@ -119,7 +119,7 @@ public abstract class JarJarAutonomousMethods extends LinearOpMode {
         robotSleep(1000);
         encodersMove(robot, 2, .3, "forward");
         robotSleep(1000);
-        runIntake(robot, -.5);
+        //runIntake(robot, -.5);
     }
 
 
