@@ -3,14 +3,18 @@ package RoboRaiders.AutonomousMethods;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
+import org.openftc.easyopencv.OpenCvWebcam;
 
 import RoboRaiders.Autonomous.RoboRaidersPipeline;
+import RoboRaiders.Autonomous.RoboRaidersPipelineWebcam;
 import RoboRaiders.Logger.Logger;
 import RoboRaiders.Robot.Robot;
+import RoboRaiders.hubbot.BrightnessDetectionWebcam;
 
 public abstract class RRAutonomousMethods extends LinearOpMode {
 
@@ -24,6 +28,20 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
     public float iza_newHeading;
     public Orientation iza_angles;
 
+
+    public void liftMotorRTPDriveWithStone(Robot robot, double liftPower, int position) {
+        robot.resetLiftEncoder();
+        robot.runLiftWithEncoderRTP();
+        robot.setLiftMotorTargetPosition(18); //18 encoders is equal to 1/8 inch up
+        robot.setLiftMotorPower(.3);
+    }
+
+    public void liftMotorRTPDriveWithoutStone(Robot robot, double liftPower, int position) {
+        robot.resetLiftEncoder();
+        robot.runLiftWithEncoderRTP();
+        robot.setLiftMotorTargetPosition(-18); //-18 encoders is equal to 1/8 inch down
+        robot.setLiftMotorPower(.3);
+    }
 
     public void encodersMoveRTP(Robot robot, double distance, double power, String direction){
         robot.resetEncoders();
@@ -210,6 +228,7 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
                 telemetry.update();
             }
         }
+        robot.setDriveMotorPower(0,0,0,0);
     }
 
     /**
@@ -399,6 +418,38 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
 
     }
 
+
+
+    public int stoneDetectionWebcam(){
+        OpenCvCamera webcam;
+        RoboRaidersPipelineWebcam stone_pipeline;
+        int pattern = 999;
+        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+        webcam = new OpenCvWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
+
+        webcam.openCameraDevice();
+        stone_pipeline = new RoboRaidersPipelineWebcam(pattern);
+        webcam.setPipeline(stone_pipeline);
+
+        webcam.startStreaming(320, 240, OpenCvCameraRotation.SIDEWAYS_RIGHT);
+
+        while (opModeIsActive() && stone_pipeline.getPattern() == 999) {
+            telemetry.addData("FRAME", webcam.getFrameCount());
+            telemetry.addData("FPS", String.format("%.2f", webcam.getFps()));
+            telemetry.addData("TFT MS", webcam.getTotalFrameTimeMs());
+            telemetry.addData("PT MS", webcam.getPipelineTimeMs());
+            telemetry.addData("OT MS", webcam.getOverheadTimeMs());
+            telemetry.addData("MAX FPS", webcam.getCurrentPipelineMaxFps());
+            telemetry.addData("PATTERN", stone_pipeline.getPattern());
+            telemetry.update();
+        }
+        webcam.stopStreaming();
+        telemetry.addData("PATTERN", stone_pipeline.getPattern());
+        telemetry.update();
+        return stone_pipeline.getPattern();
+
+    }
+
     public void stoneSampling(Robot robot){ //NOTE THE PATTERNS MAY OR MAY NOT BE SCREWED UP!!!
         int stoneLocation = stoneDetection();
 
@@ -407,10 +458,29 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
                 leftStone(robot);
                 break;
             case 3: //stone is on the left (middle)
-                middleStone(robot);
+                rightStone(robot);
                 break;
             case 2: //stone is on the right
+                middleStone(robot);
+                break;
+            case 999:
+                middleStone(robot);
+                break;
+        }
+    }
+
+    public void stoneSamplingWebcam(Robot robot){ //NOTE THE PATTERNS MAY OR MAY NOT BE SCREWED UP!!!
+        int stoneLocation = stoneDetectionWebcam();
+
+        switch (stoneLocation){
+            case 1: //stone is on leftmost (not if the frame)
+                leftStone(robot);
+                break;
+            case 3: //stone is on the left (middle)
                 rightStone(robot);
+                break;
+            case 2: //stone is on the right
+                middleStone(robot);
                 break;
             case 999:
                 middleStone(robot);

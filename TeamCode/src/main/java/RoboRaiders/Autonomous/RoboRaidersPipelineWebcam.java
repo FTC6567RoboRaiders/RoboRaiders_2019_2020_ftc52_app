@@ -9,7 +9,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
 
 import static org.opencv.core.CvType.CV_8UC1;
 
-public class RoboRaidersPipeline extends OpenCvPipeline{
+public class RoboRaidersPipelineWebcam extends OpenCvPipeline{
 
         int left_hue;
         int right_hue;
@@ -19,7 +19,7 @@ public class RoboRaidersPipeline extends OpenCvPipeline{
 
         int pattern;
 
-        public RoboRaidersPipeline(int pattern){ this.pattern = pattern;}
+        public RoboRaidersPipelineWebcam(int pattern){ this.pattern = pattern;}
 
         @Override
         public Mat processFrame(Mat input) {
@@ -31,15 +31,16 @@ public class RoboRaidersPipeline extends OpenCvPipeline{
                     (int) (input.cols() * (9f / 32f)), //the first number goes from left to right increasing, controls x axis
                     (int) (input.rows() * (5f / 32f)), //the first number here controls the y axis
                     (int) (input.cols() * (15f / 32f)),
-                    (int) (input.rows() * (7f / 32f))
+                    (int) (input.rows() * (15f / 32f))
+            };
+//because we rotated the camera, collumns are now rows and vice versa. Rows are now on the x-axis!
+            int[] right_rect = {
+                    (int) (input.cols() * (9f / 32f)),
+                    (int) (input.rows() * (17f / 32f)),
+                    (int) (input.cols() * (15f / 32f)),
+                    (int) (input.rows() * (27f / 32f))
             };
 
-            int[] right_rect = {
-                    (int) (input.cols() * (17f / 32f)),
-                    (int) (input.rows() * (5f / 32f)),
-                    (int) (input.cols() * (23f / 32f)),
-                    (int) (input.rows() * (7f / 32f))
-            };
 
             Imgproc.rectangle(
                     input,

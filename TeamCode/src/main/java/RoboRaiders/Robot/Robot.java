@@ -60,8 +60,8 @@ public class Robot {
     private static final double CAPTURE_SERVO_DOWN = 0.3;
     private static final double SWING_SERVO_OUT = 1.0;                       //* from testing with SwingServoTester.java
     private static final double SWING_SERVO_IN = 0.0;                         //* from testing with SwingServoTester.java
-    private static final double FOUNDATION_SERVO_GRAB_LEFT = 0.5;
-    private static final double FOUNDATION_SERVO_GRAB_RIGHT = 0.9;
+    private static final double FOUNDATION_SERVO_GRAB_LEFT = 0.45;
+    private static final double FOUNDATION_SERVO_GRAB_RIGHT = 0.95;
     private static final double FOUNDATION_SERVO_RELEASE_LEFT = 1.0;
     private static final double FOUNDATION_SERVO_RELEASE_RIGHT = 0.35;
 
@@ -167,6 +167,7 @@ public class Robot {
     public void setLiftMotorPower(double liftPower) { liftMotor.setPower(liftPower); }
 
 
+
     //public void takeSkystoneDown(){ takeSkystone.setPosition(1.0);}
     //public void takeSkystoneUp() {takeSkystone.setPosition(0.0);}
 
@@ -257,6 +258,9 @@ public class Robot {
         motorBackLeft.setTargetPosition(encoderPosition);
         motorBackRight.setTargetPosition(encoderPosition);
     }
+
+    public void setLiftMotorTargetPosition(int encoderPosition) {liftMotor.setTargetPosition(encoderPosition);}
+
     /**
      * This method will set the mode of all of the motors to run using encoder
      */
@@ -291,6 +295,15 @@ public class Robot {
         motorFrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    }
+    public void resetLiftEncoder() {
+        liftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    }
+    public void runLiftWithEncoder() {
+        liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
+    public void runLiftWithEncoderRTP() {
+        liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
     public float getHeading() {
 
