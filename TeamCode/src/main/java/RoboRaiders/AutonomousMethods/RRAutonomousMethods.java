@@ -37,6 +37,9 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
             robot.setDriveMotorPower(power, power, power, power);
 
             while ((double)robot.getSortedEncoderCount() < COUNTS && opModeIsActive()){
+                telemetry.addData("COUNTS", COUNTS);
+                telemetry.addData("Encoder Count", robot.getSortedEncoderCount());
+                telemetry.update();
             }
             robot.setDriveMotorPower(0, 0, 0, 0);
         }
@@ -46,6 +49,9 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
             robot.setDriveMotorPower(-power, -power, -power, -power);
 
             while ((double)robot.getSortedEncoderCount() > -COUNTS && opModeIsActive()){
+                telemetry.addData("COUNTS", COUNTS);
+                telemetry.addData("Encoder Count", robot.getSortedEncoderCount());
+                telemetry.update();
             }
             robot.setDriveMotorPower(0, 0, 0, 0);
         }
