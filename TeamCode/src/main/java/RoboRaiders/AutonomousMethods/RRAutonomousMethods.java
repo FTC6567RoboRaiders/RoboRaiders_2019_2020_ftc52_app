@@ -25,6 +25,32 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
     public Orientation iza_angles;
 
 
+    public void encodersMoveRTP(Robot robot, double distance, double power, String direction){
+        robot.resetEncoders();
+        robot.runWithEncodersSTP();
+
+        final double v = robot.driveTrainCalculateCounts(distance);
+        double COUNTS = v;
+
+        if (direction.equals("forward")) {
+            robot.setDTMotorTargetPosition((int)COUNTS);
+            robot.setDriveMotorPower(power, power, power, power);
+
+            while ((double)robot.getSortedEncoderCount() < COUNTS && opModeIsActive()){
+            }
+            robot.setDriveMotorPower(0, 0, 0, 0);
+        }
+
+        if (direction.equals("backward")) {
+            robot.setDTMotorTargetPosition(-(int)COUNTS);
+            robot.setDriveMotorPower(-power, -power, -power, -power);
+
+            while ((double)robot.getSortedEncoderCount() > -COUNTS && opModeIsActive()){
+            }
+            robot.setDriveMotorPower(0, 0, 0, 0);
+        }
+    }
+
     public void encodersMove(Robot robot, double distance, double power, String direction) { //sets the parameters
 
         robot.resetEncoders(); //resets encoders

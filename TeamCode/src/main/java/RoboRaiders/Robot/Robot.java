@@ -246,6 +246,13 @@ public class Robot {
         return mrDistance.getDistance(DistanceUnit.INCH);
 
     }
+
+    public void setDTMotorTargetPosition(int encoderPosition){
+        motorFrontLeft.setTargetPosition(encoderPosition);
+        motorFrontRight.setTargetPosition(encoderPosition);
+        motorBackLeft.setTargetPosition(encoderPosition);
+        motorBackRight.setTargetPosition(encoderPosition);
+    }
     /**
      * This method will set the mode of all of the motors to run using encoder
      */
@@ -255,6 +262,13 @@ public class Robot {
         motorFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
+
+    public void runWithEncodersSTP() {
+        motorBackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorBackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorFrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorFrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
 
     /**
