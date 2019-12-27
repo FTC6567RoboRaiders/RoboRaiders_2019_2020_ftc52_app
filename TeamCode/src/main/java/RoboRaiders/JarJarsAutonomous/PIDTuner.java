@@ -3,13 +3,13 @@ package RoboRaiders.JarJarsAutonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
-import RoboRaiders.AutonomousMethods.JarJarAutonomousMethods;
+import RoboRaiders.AutonomousMethods.RRAutonomousMethods;
 import RoboRaiders.Robot.PidUdpReceiver;
 import RoboRaiders.Robot.RobotTelemetryDisplay;
 
 @Autonomous
 @Disabled
-public class PIDTuner extends JarJarAutonomousMethods{
+public class PIDTuner extends RRAutonomousMethods {
 
    // public NostromoBotMotorDumper robot = new NostromoBotMotorDumper();
 

@@ -2,10 +2,7 @@ package RoboRaiders.Tests;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
-
-import RoboRaiders.AutonomousMethods.JarJarAutonomousMethods;
 
 @Autonomous (name= "Capture Servo Test")
 

@@ -1,13 +1,13 @@
 package RoboRaiders.AutonomousOptions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import RoboRaiders.AutonomousMethods.JarJarAutonomousMethods;
+import RoboRaiders.AutonomousMethods.RRAutonomousMethods;
 import RoboRaiders.Robot.Robot;
 import RoboRaiders.Robot.RobotTelemetryDisplay;
 
 @Autonomous
 
-public class AutonomousOptionsV1 extends JarJarAutonomousMethods {
+public class AutonomousOptionsV1 extends RRAutonomousMethods {
 
     public boolean getSkystone = false;
     public boolean crossSkyBridge = false;

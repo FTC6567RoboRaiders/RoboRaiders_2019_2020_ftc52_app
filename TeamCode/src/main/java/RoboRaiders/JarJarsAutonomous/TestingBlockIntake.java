@@ -2,13 +2,13 @@ package RoboRaiders.JarJarsAutonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import RoboRaiders.AutonomousMethods.JarJarAutonomousMethods;
+import RoboRaiders.AutonomousMethods.RRAutonomousMethods;
 import RoboRaiders.Robot.Robot;
 import RoboRaiders.Robot.RobotTelemetryDisplay;
 
 @Autonomous (name= "Testing Block Intake")
 
-public class TestingBlockIntake extends JarJarAutonomousMethods {
+public class TestingBlockIntake extends RRAutonomousMethods {
 
     Robot robot = new Robot();
 

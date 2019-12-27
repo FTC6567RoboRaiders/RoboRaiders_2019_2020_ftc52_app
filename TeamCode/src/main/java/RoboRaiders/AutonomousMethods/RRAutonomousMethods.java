@@ -12,7 +12,7 @@ import RoboRaiders.JarJarsAutonomous.RoboRaidersPipeline;
 import RoboRaiders.Logger.Logger;
 import RoboRaiders.Robot.Robot;
 
-public abstract class JarJarAutonomousMethods extends LinearOpMode {
+public abstract class RRAutonomousMethods extends LinearOpMode {
 
     public double motor_power;
     public double degreesToTurn;
