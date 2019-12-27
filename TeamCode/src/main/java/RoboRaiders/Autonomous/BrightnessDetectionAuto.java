@@ -1,25 +1,67 @@
-package RoboRaiders.JarJarsAutonomous;
+package RoboRaiders.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
+import org.openftc.easyopencv.OpenCvCamera;
+import org.openftc.easyopencv.OpenCvCameraRotation;
+import org.openftc.easyopencv.OpenCvInternalCamera;
 import org.openftc.easyopencv.OpenCvPipeline;
 
 import static org.opencv.core.CvType.CV_8UC1;
 
-public class RoboRaidersPipeline extends OpenCvPipeline{
+@Autonomous
+public class BrightnessDetectionAuto extends LinearOpMode {
+    OpenCvCamera phone_camera;
+    SamplePipeline stone_pipeline;
+    public int pattern = 999;
+    public void runOpMode() throws InterruptedException {
+        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
 
+        phone_camera = new OpenCvInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
+        phone_camera.openCameraDevice();
+
+        stone_pipeline = new SamplePipeline();
+        phone_camera.setPipeline(stone_pipeline);
+
+        phone_camera.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
+
+        waitForStart();
+
+        while (opModeIsActive() && pattern == 999) {
+        super.updateTelemetry(telemetry);
+        telemetry.addData("FRAME", phone_camera.getFrameCount());
+        telemetry.addData("FPS", String.format("%.2f", phone_camera.getFps()));
+        telemetry.addData("TFT MS", phone_camera.getTotalFrameTimeMs());
+        telemetry.addData("PT MS", phone_camera.getPipelineTimeMs());
+        telemetry.addData("OT MS", phone_camera.getOverheadTimeMs());
+        telemetry.addData("MAX FPS", phone_camera.getCurrentPipelineMaxFps());
+        telemetry.addData("LEFT RECT", stone_pipeline.left_hue + " " + stone_pipeline.left_br);
+        telemetry.addData("RIGHT RECT", stone_pipeline.right_hue + " " + stone_pipeline.right_br);
+        telemetry.addData("PATTERN", pattern);
+        telemetry.update();
+        }
+
+        phone_camera.stopStreaming();
+
+        telemetry.addData("PATTERN", pattern);
+        telemetry.update();
+
+        Thread.sleep(2000);
+     }
+
+    class SamplePipeline extends OpenCvPipeline {
         int left_hue;
         int right_hue;
 
         int left_br;
         int right_br;
 
-        int pattern;
 
-        public RoboRaidersPipeline(int pattern){ this.pattern = pattern;}
 
         @Override
         public Mat processFrame(Mat input) {
@@ -77,40 +119,30 @@ public class RoboRaidersPipeline extends OpenCvPipeline{
             left_br = get_brightness((int) left_mean.val[0], (int) left_mean.val[1], (int) left_mean.val[2]);
             right_br = get_brightness((int) right_mean.val[0], (int) right_mean.val[1], (int) right_mean.val[2]);
 
-            // The skystone is not in frame since the stones in frame are "bright"
             if (left_br > 100 && right_br > 100) pattern = 1;
-
-            // The skystone is in frame but located on the right
+            //skystone is not in frame
+            //above 100 is normal, bellow 100 is skystone
             else if (left_br > 100 && right_br < 100) pattern = 2;
-
-            // The skeystone is in frame but located on the left
+            //skystone is on right
             else if (left_br < 100 && right_br > 100) pattern = 3;
-
-            // The skystone has not been found, so look at the brightness of the stones in frame
-            // If both stones are not "bright"
+            //skystone is on left
             else if (left_br < 100 && right_br < 100) {
-
-                // The left stone in frame is brighter than the right stone in frame
                 if (left_br > right_br) {
+                    pattern = 1;
+                } else if (left_br < right_br) {
                     pattern = 2;
-                }
-
-                // The right stone in frame is brighter than the left stone in frame
-                else if (left_br < right_br) {
+                } else {
                     pattern = 3;
                 }
-
-                // Both stones are the same brightness so the stone is assumed to be out of frame
-                else {
-                    pattern = 1;
-                }
             }
-            setPattern(pattern);
-
-
+                telemetry.addData("position", pattern);
+                telemetry.update();
+                sleep(100);
 
             return input;
         }
+    }
+
 
     private int get_hue(int red, int green, int blue) {
 
@@ -141,14 +173,4 @@ public class RoboRaidersPipeline extends OpenCvPipeline{
     private int get_brightness(int red, int green, int blue) {
         return (int) (((double) (red + green + blue)) / 3);
     }
-
-    public void setPattern(int thePattern){
-            pattern = thePattern;
-    }
-
-    public int getPattern(){
-            return pattern;
-    }
-
-
 }

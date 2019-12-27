@@ -1,4 +1,4 @@
-package RoboRaiders.JarJarsAutonomous;
+package RoboRaiders.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 

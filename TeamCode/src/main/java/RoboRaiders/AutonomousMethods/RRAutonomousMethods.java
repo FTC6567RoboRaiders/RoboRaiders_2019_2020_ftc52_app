@@ -8,7 +8,7 @@ import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
 
-import RoboRaiders.JarJarsAutonomous.RoboRaidersPipeline;
+import RoboRaiders.Autonomous.RoboRaidersPipeline;
 import RoboRaiders.Logger.Logger;
 import RoboRaiders.Robot.Robot;
 
@@ -185,25 +185,27 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
 
         // robot.getHeading(); returns the current heading of the IMU
 
-        if (direction.equals("left")) { //if the desired direction is right
-            finalHeading = currentHeading - degreesToTurn;
+        if (direction.equals("left")) { //if the desired direction is left
+            finalHeading = currentHeading + degreesToTurn;
             robot.setDriveMotorPower(-power, power, -power, power); //the robot will turn right
-            while(opModeIsActive() && robot.getIntegratedZAxis() > finalHeading) {
+            while(opModeIsActive() && robot.getIntegratedZAxis() < finalHeading) {
                 //robot.angles = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
                 //currentHeading = robot.getIntegratedZAxis();
                 telemetry.addLine().addData("getHeading",String.valueOf(currentHeading));
+                telemetry.addLine().addData("finalheading",String.valueOf(finalHeading));
                 telemetry.addLine().addData("IntZ",String.valueOf(robot.integratedZAxis));
                 telemetry.update();
 
             }
         }
-        else { //if the desired direction is left
-            finalHeading = currentHeading + degreesToTurn;
-            robot.setDriveMotorPower(power, -power, power, -power); //the robot will turn left
-            while(opModeIsActive() && robot.getIntegratedZAxis() < finalHeading) {
+        else { //if the desired direction is right
+            finalHeading = currentHeading - degreesToTurn;
+            robot.setDriveMotorPower(power, -power, power, -power); //the robot will turn right
+            while(opModeIsActive() && robot.getIntegratedZAxis() > finalHeading) {
                 //robot.angles = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
                 //currentHeading = robot.getIntegratedZAxis();
                 telemetry.addLine().addData("getHeading",String.valueOf(currentHeading));
+                telemetry.addLine().addData("finalheading",String.valueOf(finalHeading));
                 telemetry.addLine().addData("IntZ",String.valueOf(robot.integratedZAxis));
                 telemetry.update();
             }
