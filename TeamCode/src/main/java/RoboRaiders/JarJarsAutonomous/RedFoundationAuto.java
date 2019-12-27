@@ -18,12 +18,16 @@ public class RedFoundationAuto extends RRAutonomousMethods {
         robot.initialize(hardwareMap);
         waitForStart();
 
-        encodersMoveRTP(robot, 30, .8, "backward"); //robot moves backwards 30 inches
+        encodersMoveRTP(robot, 10, .8, "backward"); //robot moves backwards 30 inches
+        encodersMoveStrafe(robot, 12, .5, "left"); //robot strafes to the middle of foundation
+        encodersMoveRTP(robot, 18, .8, "backward");
         robot.setFoundationGrabberGrabbed(); //foundation servos go down
-        encodersMoveRTP(robot, 15, .8, "forward"); //robot moves forwards 15 inches
+        robotSleep(2000);
+        encodersMoveRTP(robot, 20, .8, "forward"); //robot moves forwards 15 inches
         imuTurn(robot, 90, .6, "right"); //robot turns 90 degrees right
         encodersMoveRTP(robot, 20, .8, "backward"); //robot moves to wall
         robot.setFoundationGrabberUnGrabbed(); //foundation servos come up
+        robotSleep(2000);
         encodersMoveRTP(robot, 50, .8, "forward"); //robot parks under SkyBridge
     }
 }

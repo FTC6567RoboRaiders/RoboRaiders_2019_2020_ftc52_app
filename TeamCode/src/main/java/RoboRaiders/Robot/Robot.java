@@ -136,6 +136,10 @@ public class Robot {
         stoneSwingServo = hwMap.servo.get("stoneSwingServo");
         foundationGrabberLeft = hwMap.servo.get("foundationGrabberLeft");
         foundationGrabberRight = hwMap.servo.get("foundationGrabberRight");
+
+        setFoundationGrabberUnGrabbed();
+        setCaptureServoUp();
+        setStoneSwingServoIn();
     }
 
         public ModernRoboticsI2cRangeSensor mrDistance;

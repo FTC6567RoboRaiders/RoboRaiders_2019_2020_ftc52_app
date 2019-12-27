@@ -48,13 +48,15 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
             robot.setDTMotorTargetPosition(-(int)COUNTS);
             robot.setDriveMotorPower(-power, -power, -power, -power);
 
-            while ((double)robot.getSortedEncoderCount() > -COUNTS && opModeIsActive()){
+            while (-(double)robot.getSortedEncoderCount() > -COUNTS && opModeIsActive()){
                 telemetry.addData("COUNTS", COUNTS);
                 telemetry.addData("Encoder Count", robot.getSortedEncoderCount());
                 telemetry.update();
             }
             robot.setDriveMotorPower(0, 0, 0, 0);
         }
+        robot.resetEncoders();
+        robot.runWithoutEncoders();
     }
 
     public void encodersMove(Robot robot, double distance, double power, String direction) { //sets the parameters
@@ -189,9 +191,9 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
             while(opModeIsActive() && robot.getIntegratedZAxis() > finalHeading) {
                 //robot.angles = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
                 //currentHeading = robot.getIntegratedZAxis();
-                //telemetry.addLine().addData("getHeading",String.valueOf(currentHeading));
-                //telemetry.addLine().addData("IntZ",String.valueOf(robot.integratedZAxis));
-                //telemetry.update();
+                telemetry.addLine().addData("getHeading",String.valueOf(currentHeading));
+                telemetry.addLine().addData("IntZ",String.valueOf(robot.integratedZAxis));
+                telemetry.update();
 
             }
         }
@@ -201,9 +203,9 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
             while(opModeIsActive() && robot.getIntegratedZAxis() < finalHeading) {
                 //robot.angles = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
                 //currentHeading = robot.getIntegratedZAxis();
-                //telemetry.addLine().addData("getHeading",String.valueOf(currentHeading));
-                //telemetry.addLine().addData("IntZ",String.valueOf(robot.integratedZAxis));
-                //telemetry.update();
+                telemetry.addLine().addData("getHeading",String.valueOf(currentHeading));
+                telemetry.addLine().addData("IntZ",String.valueOf(robot.integratedZAxis));
+                telemetry.update();
             }
         }
     }
