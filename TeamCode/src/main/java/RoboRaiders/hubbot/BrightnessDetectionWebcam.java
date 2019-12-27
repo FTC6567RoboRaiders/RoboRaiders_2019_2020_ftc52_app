@@ -125,17 +125,17 @@ public class BrightnessDetectionWebcam extends LinearOpMode {
             if (left_br > 100 && right_br > 100) pattern = 1;
             //skystone is not in frame
             //above 100 is normal, bellow 100 is skystone
-            else if (left_br > 100 && right_br < 100) pattern = 2;
+            else if (left_br > 100 && right_br < 100) pattern = 3;
             //skystone is on left
-            else if (left_br < 100 && right_br > 100) pattern = 3;
+            else if (left_br < 100 && right_br > 100) pattern = 2;
             //skystone is on right
             else if (left_br < 100 && right_br < 100) {
                 if (left_br > right_br) {
-                    pattern = 1;
+                    pattern = 3;
                 } else if (left_br < right_br) {
                     pattern = 2;
                 } else {
-                    pattern = 3;
+                    pattern = 1;
                 }
             }
                 telemetry.addData("position", pattern);

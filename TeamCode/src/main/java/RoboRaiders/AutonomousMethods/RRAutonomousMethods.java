@@ -488,7 +488,6 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
         }
     }
 
-
     public void leftStone(Robot robot){
         encodersMove(robot, 20, .4, "forward");
         robotSleep(1000);
