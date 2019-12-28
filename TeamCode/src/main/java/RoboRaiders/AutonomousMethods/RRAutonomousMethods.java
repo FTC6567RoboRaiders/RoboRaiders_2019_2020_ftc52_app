@@ -29,7 +29,7 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
     public Orientation iza_angles;
 
 
-    public void liftMotorRTPDriveWithStone(Robot robot, double liftPower, int position) {
+    public void liftMotorRTPDriveWithStone(Robot robot) {
         robot.resetLiftEncoder();
         robot.runLiftWithEncoderRTP();
         robot.setLiftMotorTargetPosition(18); //18 encoders is equal to 1/8 inch up
@@ -501,10 +501,18 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
     }
 
     public void middleStone(Robot robot){
-        encodersMove(robot, 18, .4, "forward");
-        robotSleep(1000);
-        stoneSampleServo(robot);
-
+        encodersMoveRTP(robot, 18, .8, "forward");
+        imuTurn(robot, 90, .8, "left");
+        encodersMoveRTP(robot, 6, .8, "backward");
+        encodersMoveStrafe(robot, 13, .8, "right");
+        runIntake(robot, 1.0);
+        encodersMoveRTP(robot, 10, .8, "forward");
+        double startTouchTime = System.currentTimeMillis();
+        while (!robot.isStoneTouchSensorPressed() && System.currentTimeMillis()-startTouchTime < 3000) {}
+        runIntake(robot, 0.0);
+        robot.setCaptureServoDown();
+        liftMotorRTPDriveWithStone(robot);
+        encodersMoveStrafe(robot, 13, .8, "left");
     }
 
     public void rightStone(Robot robot){

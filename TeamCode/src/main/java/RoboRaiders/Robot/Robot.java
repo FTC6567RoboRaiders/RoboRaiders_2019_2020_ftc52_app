@@ -39,6 +39,8 @@ public class Robot {
     public Servo foundationGrabberLeft = null;
     public Servo foundationGrabberRight = null;
 
+    public TouchSensor stoneTouchSensor = null;
+
     public BNO055IMU imu;
 
  //   public DistanceSensor stoneRange = null;
@@ -96,6 +98,8 @@ public class Robot {
         intakeMotorRight = hwMap.get (DcMotor.class, "intakeMotorRight");
         liftMotor = hwMap.get (DcMotor.class, "liftMotor");
 
+        stoneTouchSensor = hwMap.touchSensor.get("stoneTouchSensor");
+
         //stoneRange = hwMap.get(DistanceSensor.class, "sensor_range");
 
         // Defines the directions the motors will spin
@@ -106,7 +110,7 @@ public class Robot {
         intakeMotorRight.setDirection(DcMotor.Direction.REVERSE);
         intakeMotorLeft.setDirection(DcMotor.Direction.REVERSE);
 
-//have the motors on the drivetrain break here.
+        //have the motors on the drivetrain break here.
         // Set all motors to zero power
         motorFrontRight.setPower(0.0);
         motorFrontLeft.setPower(0.0);
@@ -163,6 +167,8 @@ public class Robot {
         motorFrontRight.setPower(rightFront);
 
     }
+
+    public boolean isStoneTouchSensorPressed(){ return stoneTouchSensor.isPressed(); }
 
     public void setLiftMotorPower(double liftPower) { liftMotor.setPower(liftPower); }
 
