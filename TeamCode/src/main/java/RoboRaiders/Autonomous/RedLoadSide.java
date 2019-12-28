@@ -15,8 +15,10 @@ public class RedLoadSide extends RRAutonomousMethods {
     public void runOpMode() {
 
         robot.initialize(hardwareMap);
+        telemetry.addLine("initialized");
+        telemetry.update();
         waitForStart();
-        stoneSampling(robot);
+        stoneSamplingWebcam(robot);
 
     }
 }

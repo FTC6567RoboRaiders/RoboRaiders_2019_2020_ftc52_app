@@ -81,13 +81,13 @@ public class BotChungusTeleOp extends OpMode {
     //Handles bringing the stone into the center of robot
 
       if (currStateLeftBumper){
-          robot.setInakePower(-1.0);
+          robot.setIntakePower(-1.0);
       }
       else if (currStateRightBumper){
-          robot.setInakePower(1.0);
+          robot.setIntakePower(1.0);
       }
       else {
-          robot.setInakePower(0);
+          robot.setIntakePower(0);
       }
 
       //Handles capturing the stone
