@@ -103,10 +103,10 @@ public class Robot {
         //stoneRange = hwMap.get(DistanceSensor.class, "sensor_range");
 
         // Defines the directions the motors will spin
-        motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
-        motorFrontRight.setDirection(DcMotor.Direction.FORWARD);
-        motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
-        motorBackRight.setDirection(DcMotor.Direction.FORWARD);
+        motorFrontLeft.setDirection(DcMotor.Direction.FORWARD);
+        motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
+        motorBackLeft.setDirection(DcMotor.Direction.FORWARD);
+        motorBackRight.setDirection(DcMotor.Direction.REVERSE);
         intakeMotorRight.setDirection(DcMotor.Direction.FORWARD);
         intakeMotorLeft.setDirection(DcMotor.Direction.REVERSE);
 
