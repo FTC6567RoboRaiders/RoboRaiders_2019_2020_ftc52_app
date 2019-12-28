@@ -499,7 +499,7 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
         imuTurn(robot, 76, .3, "left");
         encodersMoveRTP(robot, 14, .6, "backward");
         encodersMoveStrafe(robot, 19, .5, "right");
-        runIntake(robot, 0.7);
+        runIntake(robot, -0.7);
         encodersMoveRTP(robot, 10, .2, "forward");
         double startTouchTime = System.currentTimeMillis();
         while (!robot.isStoneTouchSensorPressed() && System.currentTimeMillis()-startTouchTime < 3000) {}
