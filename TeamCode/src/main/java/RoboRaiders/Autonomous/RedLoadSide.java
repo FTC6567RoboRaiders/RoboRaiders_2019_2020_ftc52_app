@@ -16,6 +16,7 @@ public class RedLoadSide extends RRAutonomousMethods {
 
         robot.initialize(hardwareMap);
         waitForStart();
+        stoneSampling(robot);
 
     }
 }

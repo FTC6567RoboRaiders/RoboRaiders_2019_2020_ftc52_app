@@ -496,7 +496,6 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
         encodersMove(robot, 1, .3, "forward");
         robotSleep(1000);
         robotSleep(1000);
-        stoneSampleServo(robot);
 
     }
 
@@ -520,7 +519,6 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
         robotSleep(1000);
         encodersMoveStrafe(robot,5,.5,"left");
         robotSleep(1000);
-        stoneSampleServo(robot);
 
     }
 
