@@ -368,9 +368,9 @@ public class Robot {
 
         return integratedZAxis;
     }
-    public void setInakePower(double intake){
+    public void setIntakePower(double intake){
         intakeMotorLeft.setPower(intake);
-        intakeMotorRight.setPower(-1*intake);
+        intakeMotorRight.setPower(intake);
     }
 
     public void setCaptureServoPosition (double position) {
