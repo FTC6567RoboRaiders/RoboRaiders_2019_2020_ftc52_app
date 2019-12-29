@@ -491,7 +491,7 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
          */
 
         resetStoneMechanism(robot);
-        encodersMoveStrafe(robot, 10, 0.5, "right");
+        encodersMoveStrafe(robot, 5, 0.5, "right");
 
 
 
@@ -547,13 +547,16 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
 
     public void middle2ndSkyStone(Robot robot){
        encodersMoveRTP(robot, 82, .8, "forward");
-       encodersMoveStrafe(robot, 15, .5, "right");
+       encodersMoveStrafe(robot, 17, .5, "right");
        runIntake(robot, -1.0);
+       encodersMoveRTP(robot, 10, .2, "forward");
        double startTouchTime = System.currentTimeMillis();
        while (!robot.isStoneTouchSensorPressed() && System.currentTimeMillis()-startTouchTime < 1500) {}
        runIntake(robot, 0.0);
        robot.setCaptureServoDown();
        robotSleep(500);
+       encodersMoveStrafe(robot, 15, .8, "left");
+       encodersMoveRTP(robot, 60, .8, "backward");
     }
 
     public void left2ndSkyStone(Robot robot){
@@ -575,7 +578,7 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
     public void stoneOnFoundation(Robot robot){
         int liftCount = (int)robot.liftCalculateCounts(16);
         robot.setLiftMotorTargetPosition(liftCount);
-        robot.setLiftMotorPower(0.5);
+        robot.setLiftMotorPower(0.8);
         while (opModeIsActive() && robot.getCurrentLiftPosition() < liftCount){}
         robot.setLiftMotorPower(0.0);
         robot.setStoneSwingServoOut();
@@ -588,7 +591,7 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
         robotSleep(500);
         int liftPositionDown = (int)robot.getCurrentLiftPosition() - (int)robot.liftCalculateCounts(16);
         robot.setLiftMotorTargetPosition(liftPositionDown);
-        robot.setLiftMotorPower(0.5);
+        robot.setLiftMotorPower(0.8);
         while (opModeIsActive() && robot.getCurrentLiftPosition() > liftPositionDown){}
         robot.setLiftMotorPower(0.0);
         robot.resetLiftEncoder();
