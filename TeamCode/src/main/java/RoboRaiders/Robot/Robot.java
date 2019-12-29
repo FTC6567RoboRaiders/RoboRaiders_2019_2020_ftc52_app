@@ -110,6 +110,14 @@ public class Robot {
         intakeMotorRight.setDirection(DcMotor.Direction.FORWARD);
         intakeMotorLeft.setDirection(DcMotor.Direction.REVERSE);
 
+        motorFrontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        motorFrontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        motorBackLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        motorBackRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        intakeMotorLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        intakeMotorRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        liftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
         //have the motors on the drivetrain break here.
         // Set all motors to zero power
         motorFrontRight.setPower(0.0);
@@ -311,6 +319,7 @@ public class Robot {
     public void runLiftWithEncoderRTP() {
         liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
+    public int getCurrentLiftPosition(){return liftMotor.getCurrentPosition();}
     public float getHeading() {
 
         float heading;
