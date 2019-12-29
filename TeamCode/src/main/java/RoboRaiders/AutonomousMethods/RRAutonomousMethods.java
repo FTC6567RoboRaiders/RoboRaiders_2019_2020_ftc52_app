@@ -602,6 +602,45 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
     public void crossSkyBridge(Robot robot){
         encodersMoveStrafe(robot, 35, .4, "right");
     }
+
+    public void strafingStraight (Robot robot, double distance, double power, double intendedHeading, String direction) {
+        double power_adjustment;
+        double lPower;
+        double rPower;
+        robot.resetLiftEncoder();
+        robot.runWithEncoders();
+
+        final double v = robot.driveTrainCalculateCounts(distance);
+        double COUNTS = v; //COUNTS is now equal to the value calculated
+
+        if (direction.equals("right")) { //if the desired direction is right
+
+            robot.setDriveMotorPower(power, -power, -power, power); //start strafing right
+
+            while (robot.getSortedEncoderCount() < COUNTS && opModeIsActive()) { //while the current count is
+                //still less than the desired count and the opMode has not been stopped
+
+                power_adjustment = (robot.getIntegratedZAxis() - intendedHeading) / 100.0;
+
+                if (power_adjustment > 0.05) {
+                    power_adjustment = 0.05;
+                }
+
+                lPower = power + power_adjustment; //left motor power adjustment
+                rPower = power - power_adjustment; // Right motor power adjustment
+
+                robot.setDriveMotorPower(lPower, -rPower, -lPower, rPower);
+
+
+
+                telemetry.addData("COUNTS", COUNTS);
+                telemetry.addData("Encoder Count", robot.getSortedEncoderCount());
+                telemetry.addData("Left Power", lPower).addData( "Right Power", rPower);
+                telemetry.update();
+            }
+
+    }
+
 }
 
 
