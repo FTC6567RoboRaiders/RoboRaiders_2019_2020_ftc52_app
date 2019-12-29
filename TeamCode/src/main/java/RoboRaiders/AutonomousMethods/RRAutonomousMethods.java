@@ -467,6 +467,8 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
     public void stoneSamplingWebcam(Robot robot){ //NOTE THE PATTERNS MAY OR MAY NOT BE SCREWED UP!!!
         int stoneLocation = stoneDetectionWebcam();
 
+        // Gets first sky stone in the quarry.  The first skystone is furtherest away from the
+        // field perimeter
         switch (stoneLocation){
             case 1: //stone is on leftmost (not if the frame)
                 leftStone(robot);
@@ -479,6 +481,31 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
                 break;
             case 999:
                 middleStone(robot);
+                break;
+        }
+
+        /**
+         * at this point the robot has deposited the first stone on the foundation!
+         * reset the robot's lift and swing arm and have it strafe back into position
+         * for the return trip
+         */
+
+        // Could add an option here that says, if we don't want to do the second skystone
+        // then just go and park
+        // Get second sky stone in quarry.  The second skystone is closest to the field
+        // perimeter
+        switch (stoneLocation){
+            case 1: //stone is on leftmost (not if the frame)
+                left2ndSkyStone(robot);
+                break;
+            case 3: //stone is on the left (middle)
+                right2ndSkyStone(robot);
+                break;
+            case 2: //stone is on the right
+                middle2ndSkyStone(robot);
+                break;
+            case 999:
+                middel2ndSkyStone(robot);
                 break;
         }
     }
