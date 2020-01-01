@@ -1,10 +1,12 @@
 package RoboRaiders.Robot;
 
+import android.graphics.Color;
 import android.hardware.Sensor;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
@@ -39,11 +41,13 @@ public class Robot {
     public Servo foundationGrabberLeft = null;
     public Servo foundationGrabberRight = null;
 
-    public TouchSensor stoneTouchSensor = null;
+    public TouchSensor liftTouchSensor = null;
 
     public BNO055IMU imu;
 
- //   public DistanceSensor stoneRange = null;
+    public DistanceSensor stoneDistanceSensor = null;
+    public ColorSensor colorSensor = null;
+
 
     /* Local OpMode Members */
     public HardwareMap hwMap = null;
@@ -66,6 +70,7 @@ public class Robot {
     private static final double FOUNDATION_SERVO_GRAB_RIGHT = 0.95;
     private static final double FOUNDATION_SERVO_RELEASE_LEFT = 1.0;
     private static final double FOUNDATION_SERVO_RELEASE_RIGHT = 0.35;
+    private static final int    COLOR_SENSOR_SCALE_FACTOR = 255;             // Scale factor used for color sensor
 
     //public ModernRoboticsI2cRangeSensor distance;
     //public double takeSkystoneUp = 0.0;
@@ -98,9 +103,6 @@ public class Robot {
         intakeMotorRight = hwMap.get (DcMotor.class, "intakeMotorRight");
         liftMotor = hwMap.get (DcMotor.class, "liftMotor");
 
-        stoneTouchSensor = hwMap.touchSensor.get("stoneTouchSensor");
-
-        //stoneRange = hwMap.get(DistanceSensor.class, "sensor_range");
 
         // Defines the directions the motors will spin
         motorFrontLeft.setDirection(DcMotor.Direction.FORWARD);
@@ -152,10 +154,16 @@ public class Robot {
         setFoundationGrabberUnGrabbed();
         setCaptureServoUp();
         setStoneSwingServoIn();
+
+        // Define sensors
+        colorSensor = hwMap.get(ColorSensor.class, "colorSensor");
+        stoneDistanceSensor = hwMap.get(DistanceSensor.class, "stoneDistanceSensor");
+        liftTouchSensor = hwMap.touchSensor.get("liftTouchSensor");
+
     }
 
-        public ModernRoboticsI2cRangeSensor mrDistance;
-  //      Rev2mDistanceSensor sensorTimeOfFlight = (Rev2mDistanceSensor)stoneRange;
+
+
 
     /**
      * This method will set the power for the drive motors
@@ -176,7 +184,12 @@ public class Robot {
 
     }
 
-    public boolean isStoneTouchSensorPressed(){ return stoneTouchSensor.isPressed(); }
+    /**
+     * Returns if the lift touch sensor is press (true) or if it is not press (false)
+     * @return boolean true - is pressed, false - is not pressed
+     */
+    public boolean isLiftTouchSensorPressed(){ return liftTouchSensor.isPressed(); }
+
 
     public void setLiftMotorPower(double liftPower) { liftMotor.setPower(liftPower); }
 
@@ -260,11 +273,14 @@ public class Robot {
 
         return averageCount;
     }
-    public double getSensorDistance() {
 
-        return mrDistance.getDistance(DistanceUnit.INCH);
+    /**
+     * This will return the distance in centimeters
+     * @return distance (CM)
+     */
+    public double getSensorDistance() {return stoneDistanceSensor.getDistance(DistanceUnit.CM); }
 
-    }
+
 
     public void setDTMotorTargetPosition(int encoderPosition){
         motorFrontLeft.setTargetPosition(encoderPosition);
@@ -423,6 +439,32 @@ public class Robot {
     }
     public void setFoundationGrabberUnGrabbed () {
         setfoundationGrabberPostion(FOUNDATION_SERVO_RELEASE_LEFT, FOUNDATION_SERVO_RELEASE_RIGHT);
+    }
+
+    /**
+     * Gets hue from Color Sensor
+     * @return hue
+     */
+    public float getHue(){
+
+        float hsv[] = {0F, 0F, 0F};
+        convertToHSV(colorSensor.red(), colorSensor.green(), colorSensor.blue(), hsv);
+        return hsv[0];
+    }
+
+    /**
+     * Converts RGB to HSV
+     * @param red component
+     * @param green component
+     * @param blue component
+     * @param hsv returned
+     */
+    public void convertToHSV(int red, int green, int blue, float hsv[]){
+        Color.RGBToHSV((int) (red * COLOR_SENSOR_SCALE_FACTOR),
+                (int) (green * COLOR_SENSOR_SCALE_FACTOR),
+                (int) (blue * COLOR_SENSOR_SCALE_FACTOR),
+                hsv);
+
     }
 
 

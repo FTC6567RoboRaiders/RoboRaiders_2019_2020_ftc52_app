@@ -603,6 +603,15 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
         encodersMoveStrafe(robot, 35, .4, "right");
     }
 
+
+    /**
+     * Will keep
+     * @param robot
+     * @param distance
+     * @param power
+     * @param intendedHeading
+     * @param direction
+     */
     public void strafingStraight (Robot robot, double distance, double power, double intendedHeading, String direction) {
         double power_adjustment;
         double lPower;
@@ -632,13 +641,12 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
                 robot.setDriveMotorPower(lPower, -rPower, -lPower, rPower);
 
 
-
                 telemetry.addData("COUNTS", COUNTS);
                 telemetry.addData("Encoder Count", robot.getSortedEncoderCount());
-                telemetry.addData("Left Power", lPower).addData( "Right Power", rPower);
+                telemetry.addData("Left Power", lPower).addData("Right Power", rPower);
                 telemetry.update();
             }
-
+        }
     }
 
 }
