@@ -18,8 +18,18 @@ public class RoboRaidersPipelineWebcam extends OpenCvPipeline{
         int right_br;
 
         int pattern;
+        float leftRec[]  = new float[4];
+        float rightRec[] = new float[4];
 
-        public RoboRaidersPipelineWebcam(int pattern){ this.pattern = pattern;}
+        public RoboRaidersPipelineWebcam(int pattern, float[] leftRec, float[] rightRec){
+
+            this.pattern = pattern;
+            for (int i=0; i<4; i++) {
+                this.leftRec[i] = leftRec[i];
+                this.rightRec[i] = rightRec[i];
+            }
+
+        }
 
         @Override
         public Mat processFrame(Mat input) {
@@ -28,17 +38,17 @@ public class RoboRaidersPipelineWebcam extends OpenCvPipeline{
 
             int[] left_rect = {
                     //the second number here possibly represents the amount of sections you are splitting the screen into??   32
-                    (int) (input.cols() * (9f / 32f)), //the first number goes from left to right increasing, controls x axis
-                    (int) (input.rows() * (5f / 32f)), //the first number here controls the y axis
-                    (int) (input.cols() * (15f / 32f)),
-                    (int) (input.rows() * (15f / 32f))
+                    (int) (input.cols() * (leftRec[0] / 32f)), //the first number goes from left to right increasing, controls x axis
+                    (int) (input.rows() * (leftRec[1] / 32f)), //the first number here controls the y axis
+                    (int) (input.cols() * (leftRec[2] / 32f)),
+                    (int) (input.rows() * (leftRec[3] / 32f))
             };
 //because we rotated the camera, collumns are now rows and vice versa. Rows are now on the x-axis!
             int[] right_rect = {
-                    (int) (input.cols() * (9f / 32f)),
-                    (int) (input.rows() * (17f / 32f)),
-                    (int) (input.cols() * (15f / 32f)),
-                    (int) (input.rows() * (27f / 32f))
+                    (int) (input.cols() * (rightRec[0] / 32f)),
+                    (int) (input.rows() * (rightRec[1] / 32f)),
+                    (int) (input.cols() * (rightRec[2] / 32f)),
+                    (int) (input.rows() * (rightRec[3] / 32f))
             };
 
 

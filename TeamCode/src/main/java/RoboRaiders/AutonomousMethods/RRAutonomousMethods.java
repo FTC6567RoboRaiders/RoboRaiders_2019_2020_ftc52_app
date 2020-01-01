@@ -416,6 +416,10 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
 
 
     public int stoneDetectionWebcam(){
+
+        float leftRec[]  = {9f, 5f, 15f, 15f};      // Set the left bounding rectangle for the CV pipeline
+        float rightRec[] = {9f, 17f, 15f, 27f};     // Set the right bounding rectangle for the CV pipeline
+
         OpenCvCamera webcam;
         RoboRaidersPipelineWebcam stone_pipeline;
         int pattern = 999;
@@ -423,7 +427,9 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
         webcam = new OpenCvWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
 
         webcam.openCameraDevice();
-        stone_pipeline = new RoboRaidersPipelineWebcam(pattern);
+
+        stone_pipeline = new RoboRaidersPipelineWebcam(pattern, leftRec, rightRec);
+
         webcam.setPipeline(stone_pipeline);
 
         webcam.startStreaming(320, 240, OpenCvCameraRotation.SIDEWAYS_RIGHT);
