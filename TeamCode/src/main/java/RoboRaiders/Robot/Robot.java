@@ -40,6 +40,8 @@ public class Robot {
     public Servo stoneSwingServo = null;
     public Servo foundationGrabberLeft = null;
     public Servo foundationGrabberRight = null;
+    public Servo capstonePincher = null;
+    public Servo capstoneElbow = null;
 
     public TouchSensor liftTouchSensor = null;
 
@@ -71,6 +73,10 @@ public class Robot {
     private static final double FOUNDATION_SERVO_RELEASE_LEFT = 1.0;
     private static final double FOUNDATION_SERVO_RELEASE_RIGHT = 0.35;
     private static final int    COLOR_SENSOR_SCALE_FACTOR = 255;             // Scale factor used for color sensor
+    private static final double CAPSTONE_PINCHER_CLOSED = 1.0;
+    private static final double CAPSTONE_PINCHER_OPEN = 0.0;
+    private static final double CAPSTONE_ELBOW_UP = 1.0;
+    private static final double CAPSTONE_ELBOW_DOWN = 0.0;
 
     //public ModernRoboticsI2cRangeSensor distance;
     //public double takeSkystoneUp = 0.0;
@@ -150,10 +156,13 @@ public class Robot {
         stoneSwingServo = hwMap.servo.get("stoneSwingServo");
         foundationGrabberLeft = hwMap.servo.get("foundationGrabberLeft");
         foundationGrabberRight = hwMap.servo.get("foundationGrabberRight");
+        capstoneElbow = hwMap.servo.get("capstoneElbow");
+        capstonePincher = hwMap.servo.get("capstonePincher");
 
         setFoundationGrabberUnGrabbed();
         setCaptureServoUp();
         setStoneSwingServoIn();
+
 
         // Define sensors
         colorSensor = hwMap.get(ColorSensor.class, "colorSensor");
@@ -439,6 +448,30 @@ public class Robot {
     }
     public void setFoundationGrabberUnGrabbed () {
         setfoundationGrabberPostion(FOUNDATION_SERVO_RELEASE_LEFT, FOUNDATION_SERVO_RELEASE_RIGHT);
+    }
+
+    public void setCapstonePincherPosition (double position) {
+        capstonePincher.setPosition(position);
+    }
+
+    public void setCapstonePincherOpen () {
+        setCapstonePincherPosition(CAPSTONE_PINCHER_OPEN);
+    }
+
+    public void setCapstonePincherClosed () {
+        setCapstonePincherPosition(CAPSTONE_PINCHER_CLOSED);
+    }
+
+    public void setCapstoneElbowPosition (double position) {
+        capstoneElbow.setPosition(position);
+    }
+
+    public void setCapstoneElbowDown () {
+        setCapstoneElbowPosition(CAPSTONE_ELBOW_DOWN);
+    }
+
+    public void setCaptstoneElbowUp () {
+        setCapstoneElbowPosition(CAPSTONE_ELBOW_UP);
     }
 
     /**
