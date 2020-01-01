@@ -278,7 +278,7 @@ public class Robot {
      * This will return the distance in centimeters
      * @return distance (CM)
      */
-    public double getSensorDistance() {return stoneDistanceSensor.getDistance(DistanceUnit.CM); }
+    public double getStoneDistance() {return stoneDistanceSensor.getDistance(DistanceUnit.CM); }
 
 
 

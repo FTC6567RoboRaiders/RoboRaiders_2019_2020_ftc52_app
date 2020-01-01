@@ -534,7 +534,7 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
         runIntake(robot, -1.0);
         encodersMoveRTP(robot, 10, .2, "forward");
         double startTouchTime = System.currentTimeMillis();
-        while (!robot.isStoneTouchSensorPressed() && System.currentTimeMillis()-startTouchTime < 1500) {}
+        while (robot.getStoneDistance() <= 1.1 && System.currentTimeMillis()-startTouchTime < 1500) {} //keep going as long as it is under 1.5 seconds and the distance sensor is under 1 cm
         runIntake(robot, 0.0);
         robot.setCaptureServoDown();
         robotSleep(500);
@@ -551,7 +551,7 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
        runIntake(robot, -1.0);
        encodersMoveRTP(robot, 10, .2, "forward");
        double startTouchTime = System.currentTimeMillis();
-       while (!robot.isStoneTouchSensorPressed() && System.currentTimeMillis()-startTouchTime < 1500) {}
+       while (robot.getStoneDistance() <= 1.1 && System.currentTimeMillis()-startTouchTime < 1500) {}
        runIntake(robot, 0.0);
        robot.setCaptureServoDown();
        robotSleep(500);
