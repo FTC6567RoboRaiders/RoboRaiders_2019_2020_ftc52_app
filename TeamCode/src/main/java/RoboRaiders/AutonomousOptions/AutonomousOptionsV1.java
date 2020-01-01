@@ -10,7 +10,7 @@ import RoboRaiders.Robot.RobotTelemetryDisplay;
 public class AutonomousOptionsV1 extends RRAutonomousMethods {
 
     public boolean getSkystone = false;
-    public boolean crossSkyBridge = false;
+    public boolean parkSkyBridge = false;
     public boolean selectionsAreGood = false;
 
     public Robot robot = new Robot();
@@ -29,11 +29,11 @@ public class AutonomousOptionsV1 extends RRAutonomousMethods {
         while (!selectionsAreGood) {
 
             getSkystone = myAO.selectGetSkystone();
-            crossSkyBridge = myAO.crossSkyBridge();
+            parkSkyBridge = myAO.crossSkyBridge();
             telemetry.setAutoClear(false);
             telemetry.addLine().addData("Autonomous", "Selections");
             telemetry.addLine().addData("get Skystone", getSkystone ? "Yes  " : "No  ");
-            telemetry.addLine().addData("cross SkyBridge", crossSkyBridge ? "Yes " : "No ");
+            telemetry.addLine().addData("cross SkyBridge", parkSkyBridge ? "Yes " : "No ");
             telemetry.update();
 
             // Verify that the autonomous selections are good, if so we are ready to rumble.  If not, well ask again.
@@ -46,18 +46,18 @@ public class AutonomousOptionsV1 extends RRAutonomousMethods {
         gamepad1.reset();
         rtd.displayRobotTelemetry("Initialized Waiting for Start");
         rtd.displayRobotTelemetry("get Skystone",getSkystone ? "Yes" : "No");
-        rtd.displayRobotTelemetry("cross SkyBridge ", crossSkyBridge ? "Yes " : "No ");
+        rtd.displayRobotTelemetry("cross SkyBridge ", parkSkyBridge ? "Yes " : "No ");
         waitForStart();
 
         telemetry.setAutoClear(true);
         telemetry.update();
 
         if(getSkystone){
-            stoneSampling(robot);
+            stoneSamplingRed(robot);
         }
 
-        if(crossSkyBridge){
-            crossSkyBridge(robot);
+        if(parkSkyBridge){
+            parkSkyBridge(robot);
         }
     }
 }

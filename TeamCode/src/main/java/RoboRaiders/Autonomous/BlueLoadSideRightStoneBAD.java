@@ -7,7 +7,7 @@ import RoboRaiders.Robot.Robot;
 
 @Autonomous
 
-public class RedLoadSide extends RRAutonomousMethods {
+public class BlueLoadSideRightStoneBAD extends RRAutonomousMethods {
 
     Robot robot = new Robot();
 
@@ -18,7 +18,12 @@ public class RedLoadSide extends RRAutonomousMethods {
         telemetry.addLine("initialized");
         telemetry.update();
         waitForStart();
-        stoneSamplingWebcamRed(robot);
+        rightStoneRed(robot);
 
     }
 }
+
+
+
+
+
