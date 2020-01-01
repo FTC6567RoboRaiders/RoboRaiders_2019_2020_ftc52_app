@@ -516,14 +516,21 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
     }
 
     public void leftStone(Robot robot){
-        encodersMove(robot, 20, .4, "forward");
-        robotSleep(1000);
-        encodersMoveStrafe(robot, 7.5, .1, "right");
-        robotSleep(1000);
-        encodersMove(robot, 1, .3, "forward");
-        robotSleep(1000);
-        robotSleep(1000);
-
+        encodersMoveRTP(robot, 18, .8, "forward");
+        imuTurn(robot, 83, .2, "left");
+        encodersMoveRTP(robot, 10, .6, "backward");
+        encodersMoveStrafe(robot, 19, .5, "right");
+        runIntake(robot, -1.0);
+        encodersMoveRTP(robot, 10, .2, "forward");
+        double startTouchTime = System.currentTimeMillis();
+        while (robot.getStoneDistance() <= 1.1 && System.currentTimeMillis()-startTouchTime < 1500){}
+        runIntake(robot, 0.0);
+        robot.setCaptureServoDown();
+        robotSleep(500);
+        encodersMoveStrafe(robot, 13, .8, "left");
+        encodersMoveRTP(robot, 70, .8, "backward");
+        encodersMoveStrafe(robot, 10, .5, "left");
+        stoneOnFoundation(robot);
     }
 
     public void middleStone(Robot robot){
