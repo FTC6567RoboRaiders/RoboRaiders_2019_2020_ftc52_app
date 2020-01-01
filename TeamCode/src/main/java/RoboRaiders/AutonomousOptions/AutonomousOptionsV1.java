@@ -22,7 +22,7 @@ public class AutonomousOptionsV1 extends RRAutonomousMethods {
         RoboRaiders.AutonomousOptions.AutoOptions myAO = new RoboRaiders.AutonomousOptions.AutoOptions(this);
 
         // Set up robot telemetry
-        RobotTelemetryDisplay rtd = new RobotTelemetryDisplay(this, "JarJar");
+        RobotTelemetryDisplay rtd = new RobotTelemetryDisplay(this, "BotChungus");
 
 
         // While the drivers haven't made up their mind, keep asking what they want to do
