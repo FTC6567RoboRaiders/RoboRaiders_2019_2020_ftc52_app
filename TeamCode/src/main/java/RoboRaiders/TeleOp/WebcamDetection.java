@@ -57,7 +57,7 @@ public class WebcamDetection extends LinearOpMode {
         waitForStart();
 
         startTime = System.currentTimeMillis();
-        while (opModeIsActive() && System.currentTimeMillis() - startTime < 5000) {
+        while (opModeIsActive() && (System.currentTimeMillis() - startTime) < 5000) {
             super.updateTelemetry(telemetry);
             telemetry.addData("PATTERN", stone_pipeline.getPattern());
         }
@@ -70,7 +70,7 @@ public class WebcamDetection extends LinearOpMode {
         leftRec[3] = 15f;
 
         rightRec[0] = 9f;
-        rightRec[1] = 17f;
+        rightRec[1] = 13f;
         rightRec[2] = 15f;
         rightRec[3] = 23f;
 
@@ -80,12 +80,17 @@ public class WebcamDetection extends LinearOpMode {
         webcam.startStreaming(320,240,OpenCvCameraRotation.SIDEWAYS_RIGHT);
 
         startTime = System.currentTimeMillis();
-        while (opModeIsActive() && System.currentTimeMillis() - startTime < 5000) {
+        while (opModeIsActive() && (System.currentTimeMillis() - startTime) < 5000) {
             super.updateTelemetry(telemetry);
             telemetry.addData("PATTERN", stone_pipeline.getPattern());
         }
 
         webcam.stopStreaming();
+
+
+
+
+        webcam.closeCameraDevice();   // The last thing done
 
     }
 }
