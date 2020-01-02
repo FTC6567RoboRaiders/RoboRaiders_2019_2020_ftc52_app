@@ -173,6 +173,11 @@ public class Robot {
 
 
 
+    //**********************************************************************************************
+    //
+    // DRIVE TRAIN METHODS
+    //
+    //**********************************************************************************************
 
     /**
      * This method will set the power for the drive motors
@@ -182,8 +187,6 @@ public class Robot {
      * @param leftBack   power setting for the left back motor
      * @param rightBack  power setting for the right back motor
      */
-
-
     public void setDriveMotorPower(double leftFront, double rightFront, double leftBack, double rightBack) {
 
         motorFrontLeft.setPower(leftFront);
@@ -193,22 +196,9 @@ public class Robot {
 
     }
 
-    /**
-     * Returns if the lift touch sensor is press (true) or if it is not press (false)
-     * @return boolean true - is pressed, false - is not pressed
-     */
-    public boolean isLiftTouchSensorPressed(){ return liftTouchSensor.isPressed(); }
-
-
-    public void setLiftMotorPower(double liftPower) { liftMotor.setPower(liftPower); }
-
-
-
-    //public void takeSkystoneDown(){ takeSkystone.setPosition(1.0);}
-    //public void takeSkystoneUp() {takeSkystone.setPosition(0.0);}
 
     /**
-     * Calculates the number of encoder counts to travel a given distance
+     * Calculates the number of encoder counts to travel a given distance for the drive train motors
      * @param distance
      * @return
      */
@@ -224,32 +214,14 @@ public class Robot {
         COUNTS = PULSES * ROTATIONS; //gives the counts
 
         return COUNTS;
-
-
     }
-
 
     /**
-     * Calculates the number of encoder counts to travel a given distance for the lift
-     * @param distance
-     * @return
+     * Takes the four drive train encoder values and sorts them using a bubble sort algorithm from
+     * lowest to highest.  Throws out the lowest and highest values in the sorted list and averages
+     * the two remaining values
+     * @return average of the two middle encoder counts
      */
-    public double liftCalculateCounts(double distance) {
-
-        double COUNTS;
-
-        double DIAMETER = 2.5; //diameter of lift spool
-        double GEAR_RATIO = (1.0 / 1.0); //gear ratio
-        double PULSES = 1120; //encoder counts in one revolution - neverest 40 motor
-        double CIRCUMFERENCE = Math.PI * DIAMETER; //gives you circumference
-        double ROTATIONS = (distance / CIRCUMFERENCE) * GEAR_RATIO; //gives the rotations
-        COUNTS = PULSES * ROTATIONS; //gives the counts
-
-        return COUNTS;
-
-
-    }
-
     public int getSortedEncoderCount() {
 
         int[] encoderArray = new int[4];
@@ -264,11 +236,8 @@ public class Robot {
         int Temp;
 
         for (I = 0; I < 3; I++) {
-
             for (J = I + 1; J < 4; J++) {
-
                 if (encoderArray[I] < encoderArray[J]) {
-
                 }
                 else {
 
@@ -284,13 +253,9 @@ public class Robot {
     }
 
     /**
-     * This will return the distance in centimeters
-     * @return distance (CM)
+     * Sets the target encoder value for the drive train motors
+     * @param encoderPosition
      */
-    public double getStoneDistance() {return stoneDistanceSensor.getDistance(DistanceUnit.CM); }
-
-
-
     public void setDTMotorTargetPosition(int encoderPosition){
         motorFrontLeft.setTargetPosition(encoderPosition);
         motorFrontRight.setTargetPosition(encoderPosition);
@@ -298,10 +263,8 @@ public class Robot {
         motorBackRight.setTargetPosition(encoderPosition);
     }
 
-    public void setLiftMotorTargetPosition(int encoderPosition) {liftMotor.setTargetPosition(encoderPosition);}
-
-    /**
-     * This method will set the mode of all of the motors to run using encoder
+     /**
+     * This method will set the mode of all of the drive train motors to run using encoder
      */
     public void runWithEncoders() {
 
@@ -311,6 +274,9 @@ public class Robot {
         motorBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
+    /**
+     * This method will set the mode all of the drive train motors to RUN_TO_POSITION
+     */
     public void runWithEncodersSTP() {
         motorBackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorBackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -328,6 +294,11 @@ public class Robot {
         motorBackLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorBackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
+
+    /**
+     * This will set the mode of the drive train motors to STOP_AND_RESET_ENCODER, which will zero
+     * the encoder count but also set the motors into a RUN_WITHOUT_ENCODER mode
+     */
     public void resetEncoders() {
 
         motorFrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -335,16 +306,36 @@ public class Robot {
         motorBackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
-    public void resetLiftEncoder() {
-        liftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-    }
-    public void runLiftWithEncoder() {
-        liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-    }
-    public void runLiftWithEncoderRTP() {
-        liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-    }
-    public int getCurrentLiftPosition(){return liftMotor.getCurrentPosition();}
+
+    /**
+     * These methods will get individual encoder position from any of the drive train motors
+     * @return the encoder position
+     */
+    public double getBackLeftDriveEncoderCounts() { return motorBackLeft.getCurrentPosition(); }
+    public double getBackRightDriveEncoderCounts() { return motorBackRight.getCurrentPosition(); }
+    public double getFrontLeftDriveEncoderCounts() { return motorFrontLeft.getCurrentPosition(); }
+    public double getFrontRightDriveEncoderCounts() { return motorFrontRight.getCurrentPosition(); }
+
+
+    //**********************************************************************************************
+    //
+    // END DRIVE TRAIN METHODS
+    //
+    //**********************************************************************************************
+
+
+
+    //**********************************************************************************************
+    //
+    // IMU METHODS
+    //
+    //**********************************************************************************************
+
+
+    /**
+     * Gets the current heading from the IMU
+     * @return current heading in degrees
+     */
     public float getHeading() {
 
         float heading;
@@ -355,23 +346,19 @@ public class Robot {
         return heading;
     }
 
-   // public double getRange(){
-   //     return stoneRange.getDistance(DistanceUnit.INCH);
-   //}
 
+    /**
+     * Re-initializes the IMU
+     */
     public void resetIMU() {
 
         imu.initialize(parameters);
     }
 
-    public double getBackLeftDriveEncoderCounts() { return motorBackLeft.getCurrentPosition(); }
-    public double getBackRightDriveEncoderCounts() { return motorBackRight.getCurrentPosition(); }
-    public double getFrontLeftDriveEncoderCounts() { return motorFrontLeft.getCurrentPosition(); }
-    public double getFrontRightDriveEncoderCounts() { return motorFrontRight.getCurrentPosition(); }
-
-
     /**
-     * Initialize the Vuforia localization engine.
+     * Calculates and returns an integrate Z-Axis (aka heading).  This handles when the heading crosses
+     * 180 or -180
+     * @return integrated Z-Axis
      */
     public double getIntegratedZAxis() {
 
@@ -402,77 +389,174 @@ public class Robot {
 
         return integratedZAxis;
     }
+
+    //**********************************************************************************************
+    //
+    // END IMU METHODS
+    //
+    //**********************************************************************************************
+
+
+    //**********************************************************************************************
+    //
+    // INTAKE METHODS
+    //
+    //**********************************************************************************************
+
+    /**
+     * Sets the intake power for the intake motors
+     * @param intake - power to set the intake motors to
+     */
     public void setIntakePower(double intake){
         intakeMotorLeft.setPower(intake);
         intakeMotorRight.setPower(intake);
     }
 
+    //**********************************************************************************************
+    //
+    // END INTAKE METHODS
+    //
+    //**********************************************************************************************
+
+
+    //**********************************************************************************************
+    //
+    // SERVO METHODS
+    //
+    //**********************************************************************************************
+
+
+    /**
+     * Sets the capture servo position to the passed in position
+     * @param position the position the capture servo is to rotate to
+     */
     public void setCaptureServoPosition (double position) {
 
         stoneCaptureServo.setPosition(position);
     }
 
+    /**
+     * Sets the capture servo position to the up position
+     */
     public void setCaptureServoUp () {
 
         setCaptureServoPosition(CAPTURE_SERVO_UP); //Captures the stone
     }
 
+    /**
+     * Sets the capture servo position to the down position
+     */
     public void setCaptureServoDown (){
 
         setCaptureServoPosition(CAPTURE_SERVO_DOWN);
     }
 
+    /**
+     * Sets the stone swing servo position
+     * @param position the position the stone swing servo is to rotate to
+     */
     public void setStoneSwingPosition (double position) {
 
         stoneSwingServo.setPosition(position);
     }
 
+    /**
+     * Sets the stone swing servo position to out (outside of the robot's footprint)
+     */
     public void setStoneSwingServoOut () {
 
         setStoneSwingPosition(SWING_SERVO_OUT);
     }
 
+    /**
+     * Sets the stone swing servo position to in (inside of the robot's footprint)
+     */
     public void setStoneSwingServoIn () {
 
         setStoneSwingPosition(SWING_SERVO_IN);
     }
 
+    /**
+     * Sets the foundation grabber servos position
+     * @param posLeft - position of the left foundation grabber servo
+     * @param posRight - position of the right foundation grabber servo
+     */
     public void setfoundationGrabberPostion (double posLeft, double posRight) {
         foundationGrabberLeft.setPosition(posLeft);
         foundationGrabberRight.setPosition(posRight);
     }
 
+    /**
+     * Sets the foundation grabber servos to the grabbed or down position
+     */
     public void setFoundationGrabberGrabbed () {
         setfoundationGrabberPostion(FOUNDATION_SERVO_GRAB_LEFT, FOUNDATION_SERVO_GRAB_RIGHT);
 
     }
+
+    /**
+     * Sets the foundation grabber servos to the ungrabbed or up position
+     */
     public void setFoundationGrabberUnGrabbed () {
         setfoundationGrabberPostion(FOUNDATION_SERVO_RELEASE_LEFT, FOUNDATION_SERVO_RELEASE_RIGHT);
     }
 
+    /**
+     * Sets the capstone pincher servo position
+     * @param position - the position of the capstone pincher servo
+     */
     public void setCapstonePincherPosition (double position) {
         capstonePincher.setPosition(position);
     }
 
+    /**
+     * Sets the capstone pincher servo position to open
+     */
     public void setCapstonePincherOpen () {
         setCapstonePincherPosition(CAPSTONE_PINCHER_OPEN);
     }
 
+    /**
+     * Sets the capstone pincher servo position to closed
+     */
     public void setCapstonePincherClosed () {
         setCapstonePincherPosition(CAPSTONE_PINCHER_CLOSED);
     }
 
+    /**
+     * Sets the capstone elbow position
+     * @param position - the position of the capstone elbow serov
+     */
     public void setCapstoneElbowPosition (double position) {
         capstoneElbow.setPosition(position);
     }
 
+    /**
+     * Sets the capstone elbow position to down
+     */
     public void setCapstoneElbowDown () {
         setCapstoneElbowPosition(CAPSTONE_ELBOW_DOWN);
     }
 
+    /**
+     * Sets the capstone elbow position to up
+     */
     public void setCaptstoneElbowUp () {
         setCapstoneElbowPosition(CAPSTONE_ELBOW_UP);
     }
+
+    //**********************************************************************************************
+    //
+    // END SERVO METHODS
+    //
+    //**********************************************************************************************
+
+
+    //**********************************************************************************************
+    //
+    // COLOR SENSOR METHODS
+    //
+    //**********************************************************************************************
 
     /**
      * Gets hue from Color Sensor
@@ -500,7 +584,130 @@ public class Robot {
 
     }
 
+    //**********************************************************************************************
+    //
+    // END COLOR SENSOR METHODS
+    //
+    //**********************************************************************************************
 
- }
+
+    //**********************************************************************************************
+    //
+    // LIFT TOUCH SENSOR METHODS
+    //
+    //**********************************************************************************************
+
+    /**
+     * Returns if the lift touch sensor is press (true) or if it is not press (false)
+     * @return boolean true - is pressed, false - is not pressed
+     */
+    public boolean isLiftTouchSensorPressed(){ return liftTouchSensor.isPressed(); }
+
+    //**********************************************************************************************
+    //
+    // END LIFT TOUCH SENSOR METHODS
+    //
+    //**********************************************************************************************
+
+
+    //**********************************************************************************************
+    //
+    // LIFT MOTOR METHODS
+    //
+    //**********************************************************************************************
+
+    /**
+     * Sets the power of the lift motor
+     * @param liftPower - the power to be applied to the lift motor
+     */
+
+    public void setLiftMotorPower(double liftPower) { liftMotor.setPower(liftPower); }
+
+
+    /**
+     * Calculates the number of encoder counts to travel a given distance for the lift
+     * @param distance
+     * @return
+     */
+    public double liftCalculateCounts(double distance) {
+
+        double COUNTS;
+
+        double DIAMETER = 2.5; //diameter of lift spool
+        double GEAR_RATIO = (1.0 / 1.0); //gear ratio
+        double PULSES = 1120; //encoder counts in one revolution - neverest 40 motor
+        double CIRCUMFERENCE = Math.PI * DIAMETER; //gives you circumference
+        double ROTATIONS = (distance / CIRCUMFERENCE) * GEAR_RATIO; //gives the rotations
+        COUNTS = PULSES * ROTATIONS; //gives the counts
+
+        return COUNTS;
+    }
+
+    /**
+     * Sets the encoder target position for the lift motor
+     * @param encoderPosition - the encoder position
+     */
+    public void setLiftMotorTargetPosition(int encoderPosition) {liftMotor.setTargetPosition(encoderPosition);}
+
+    /**
+     * Sets the lift motor to the STOP_AND_RESET_ENCODER mode, which will zero the encoder count and
+     * set the mode to RUN_WITHOUT_ENCODER.
+     */
+    public void resetLiftEncoder() {
+        liftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    }
+
+    /**
+     * Sets the lift motor to the RUN_USING_ENCODER mode
+     */
+    public void runLiftWithEncoder() {
+        liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
+
+    /**
+     * Sets the lift motor to the RUN_TO_POSITION mode
+     */
+    public void runLiftWithEncoderRTP() {
+        liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    }
+
+    /**
+     * Gets the lift motor's encoder current position
+     * @return the current position of the lift motor
+     */
+    public int getCurrentLiftPosition(){return liftMotor.getCurrentPosition();}
+
+    //**********************************************************************************************
+    //
+    // END LIFT MOTOR METHODS
+    //
+    //**********************************************************************************************
+
+
+    //**********************************************************************************************
+    //
+    // DISTANCE SENSOR METHODS
+    //
+    //**********************************************************************************************
+
+    /**
+     * This will return the distance in centimeters
+     * @return distance (CM)
+     */
+    public double getStoneDistance() {return stoneDistanceSensor.getDistance(DistanceUnit.CM); }
+
+    // public double getRange(){
+    //     return stoneRange.getDistance(DistanceUnit.INCH);
+    //}
+
+    //**********************************************************************************************
+    //
+    // END DISTANCE SENSOR METHODS
+    //
+    //**********************************************************************************************
+
+
+
+}
 
 
