@@ -34,15 +34,16 @@ public class WebcamDetection extends LinearOpMode {
 
 
 
+        // red side
         leftRec[0] = 9f;
         leftRec[1] = 5f;
         leftRec[2] = 15f;
         leftRec[3] = 15f;
 
         rightRec[0] = 9f;
-        rightRec[1] = 17f;
+        rightRec[1] = 15f;
         rightRec[2] = 15f;
-        rightRec[3] = 27f;
+        rightRec[3] = 25f;
 
 
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
@@ -64,15 +65,17 @@ public class WebcamDetection extends LinearOpMode {
 
         webcam.stopStreaming();
 
+
+        // blue side
         leftRec[0] = 9f;
-        leftRec[1] = 3f;
+        leftRec[1] = 2f;
         leftRec[2] = 15f;
-        leftRec[3] = 15f;
+        leftRec[3] = 11f;
 
         rightRec[0] = 9f;
-        rightRec[1] = 13f;
+        rightRec[1] = 10f;
         rightRec[2] = 15f;
-        rightRec[3] = 23f;
+        rightRec[3] = 22f;
 
         webcam.openCameraDevice();
         stone_pipeline = new RoboRaidersPipelineWebcam(pattern,leftRec,rightRec);

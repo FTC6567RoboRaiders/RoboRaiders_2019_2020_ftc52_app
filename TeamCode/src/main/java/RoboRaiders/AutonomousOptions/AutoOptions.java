@@ -56,10 +56,34 @@ public class AutoOptions {
         this.op = op;
     }
 
+    public boolean selectAlliance() {
+        String[] locations = new String[]{"Yes", "No"};
+
+        int index = makeSelection("Blue Alliance?", locations);
+
+        return index == 0;
+    }
+
+    public boolean selectLoadSide() {
+        String[] locations = new String[]{"Yes", "No"};
+
+        int index = makeSelection("Load Side?", locations);
+
+        return index == 0;
+    }
+
+    public boolean selectRepoFoundation() {
+        String[] locations = new String[]{"Yes", "No"};
+
+        int index = makeSelection("Reposition Foundation?", locations);
+
+        return index == 0;
+    }
+
     public boolean selectGetSkystone() {
         String[] locations = new String[]{"Yes", "No"};
 
-        int index = makeSelection("get Skystone?", locations);
+        int index = makeSelection("Get Skystone?", locations);
 
         return index == 0;
     }
