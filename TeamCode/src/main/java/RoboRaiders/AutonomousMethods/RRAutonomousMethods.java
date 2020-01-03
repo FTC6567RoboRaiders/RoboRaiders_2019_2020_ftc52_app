@@ -794,7 +794,7 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
         robotSleep(2000);
         encodersMoveRTP(robot, 30, .8, "backward"); //robot moves to wall
         encodersMove(robot, 5, .8, "forward");
-        encodersMoveStrafe(robot, 8, .5, "left");
+        encodersMoveStrafe(robot, 15, .5, "right");
         encodersMoveRTP(robot, 30, .8, "forward");
 
     }
@@ -812,7 +812,7 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
         robotSleep(2000);
         encodersMoveRTP(robot, 30, .8, "backward"); //robot moves to wall
         encodersMove(robot, 5, .8, "forward");
-        encodersMoveStrafe(robot, 8, .5, "right");
+        encodersMoveStrafe(robot, 15, .5, "left");
         encodersMoveRTP(robot, 30, .8, "forward"); //robot parks under SkyBridge
 
 
