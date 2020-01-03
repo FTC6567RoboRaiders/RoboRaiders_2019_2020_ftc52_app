@@ -569,11 +569,11 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
         robotSleep(500);
         liftMotorRTPDriveWithStone(robot);
         encodersMoveStrafe(robot, 13, .8, "right");
-        encodersMoveRTP(robot, 70, .8, "backward");
-        encodersMoveStrafe(robot, 10, .5, "right");
-        stoneOnFoundation(robot);
-        resetStoneMechanism(robot);
-        encodersMoveStrafe(robot, 5, 0.5, "left");
+        encodersMoveRTP(robot, 50, .8, "backward");
+//        encodersMoveStrafe(robot, 10, .5, "right");
+//        stoneOnFoundation(robot);
+//        resetStoneMechanism(robot);
+//        encodersMoveStrafe(robot, 5, 0.5, "left");
     }
 
     public void rightStoneBlue(Robot robot){
@@ -591,10 +591,10 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
         encodersMoveRTP(robot, 20, .8, "backward");
         imuTurn(robot, 55, .5, "right");
         encodersMoveStrafe(robot, 20, .5, "right");
-        encodersMoveRTP(robot, 59, .8, "backward");
-        stoneOnFoundation(robot);
-        resetStoneMechanism(robot);
-        encodersMoveStrafe(robot, 5, 0.5, "left");
+        encodersMoveRTP(robot, 39, .8, "backward");
+//        stoneOnFoundation(robot);
+//        resetStoneMechanism(robot);
+//        encodersMoveStrafe(robot, 5, 0.5, "left");
     }
 
     public void middleStoneBlue(Robot robot){
@@ -611,11 +611,11 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
         robotSleep(500);
         liftMotorRTPDriveWithStone(robot);
         encodersMoveStrafe(robot, 13, .8, "right");
-        encodersMoveRTP(robot, 67, .8, "backward");
-        encodersMoveStrafe(robot, 10, .5, "right");
-        stoneOnFoundation(robot);
-        resetStoneMechanism(robot);
-        encodersMoveStrafe(robot, 5, 0.5, "left");
+        encodersMoveRTP(robot, 47, .8, "backward");
+//        encodersMoveStrafe(robot, 10, .5, "right");
+//        stoneOnFoundation(robot);
+//        resetStoneMechanism(robot);
+//        encodersMoveStrafe(robot, 5, 0.5, "left");
     }
 
     public void leftStoneRed(Robot robot){
@@ -632,11 +632,11 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
         robotSleep(500);
         liftMotorRTPDriveWithStone(robot);
         encodersMoveStrafe(robot, 13, .8, "left");
-        encodersMoveRTP(robot, 70, .8, "backward");
-        encodersMoveStrafe(robot, 10, .5, "left");
-        stoneOnFoundation(robot);
-        resetStoneMechanism(robot);
-        encodersMoveStrafe(robot, 5, 0.5, "right");
+        encodersMoveRTP(robot, 50, .8, "backward");
+//        encodersMoveStrafe(robot, 10, .5, "left");
+//        stoneOnFoundation(robot);
+//        resetStoneMechanism(robot);
+//        encodersMoveStrafe(robot, 5, 0.5, "right");
     }
 
     public void middleStoneRed(Robot robot){
@@ -653,28 +653,28 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
         robotSleep(500);
         liftMotorRTPDriveWithStone(robot);
         encodersMoveStrafe(robot, 13, .8, "left");
-        encodersMoveRTP(robot, 67, .8, "backward");
-        encodersMoveStrafe(robot, 10, .5, "left");
-        stoneOnFoundation(robot);
-        resetStoneMechanism(robot);
-        encodersMoveStrafe(robot, 5, 0.5, "right");
+        encodersMoveRTP(robot, 47, .8, "backward");
+//        encodersMoveStrafe(robot, 10, .5, "left");
+//        stoneOnFoundation(robot);
+//        resetStoneMechanism(robot);
+//        encodersMoveStrafe(robot, 5, 0.5, "right");
     }
 
-    public void middle2ndSkyStoneRed(Robot robot){
-       encodersMoveRTP(robot, 82, .8, "forward");
-       encodersMoveStrafe(robot, 17, .5, "right");
-       runIntake(robot, -1.0);
-       encodersMoveRTP(robot, 10, .2, "forward");
-       double startTouchTime = System.currentTimeMillis();
-       while (robot.getStoneDistance() <= 1.1 && System.currentTimeMillis()-startTouchTime < 1500) {}
-       runIntake(robot, 0.0);
-       robot.setCaptureServoDown();
-       robotSleep(500);
-       encodersMoveStrafe(robot, 15, .8, "left");
-       encodersMoveRTP(robot, 60, .8, "backward");
-        resetStoneMechanism(robot);
-        encodersMoveStrafe(robot, 5, 0.5, "right");
-    }
+//    public void middle2ndSkyStoneRed(Robot robot){
+//       encodersMoveRTP(robot, 82, .8, "forward");
+//       encodersMoveStrafe(robot, 17, .5, "right");
+//       runIntake(robot, -1.0);
+//       encodersMoveRTP(robot, 10, .2, "forward");
+//       double startTouchTime = System.currentTimeMillis();
+//       while (robot.getStoneDistance() <= 1.1 && System.currentTimeMillis()-startTouchTime < 1500) {}
+//       runIntake(robot, 0.0);
+//       robot.setCaptureServoDown();
+//       robotSleep(500);
+//       encodersMoveStrafe(robot, 15, .8, "left");
+//       encodersMoveRTP(robot, 60, .8, "backward");
+//        resetStoneMechanism(robot);
+//        encodersMoveStrafe(robot, 5, 0.5, "right");
+//    }
 
     public void left2ndSkyStoneRed(Robot robot){
 
@@ -699,10 +699,10 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
         encodersMoveRTP(robot, 20, .8, "backward");
         imuTurn(robot, 30, .5, "left");
         encodersMoveStrafe(robot, 20, .5, "left");
-        encodersMoveRTP(robot, 59, .8, "backward");
-        stoneOnFoundation(robot);
-        resetStoneMechanism(robot);
-        encodersMoveStrafe(robot, 5, 0.5, "right");
+        encodersMoveRTP(robot, 39, .8, "backward");
+//        stoneOnFoundation(robot);
+//        resetStoneMechanism(robot);
+//        encodersMoveStrafe(robot, 5, 0.5, "right");
 
     }
 
@@ -764,8 +764,58 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
         encodersMoveRTP(robot, 30, .8, "forward"); //robot parks under SkyBridge
     }
 
-    public void parkSkyBridge(Robot robot){
-        encodersMoveRTP(robot, 38, .5, "forward");
+    public void parkSkyBridgeBlue(Robot robot){
+        encodersMoveRTP(robot, 20, .5, "forward");
+        encodersMoveStrafe(robot, 15, .5, "left");
+    }
+
+    public void parkSkyBridgeRed(Robot robot){
+        encodersMoveRTP(robot, 20, .5, "forward");
+        encodersMoveStrafe(robot, 15, .5, "right");
+    }
+
+    public void deliverStone(Robot robot){
+        imuTurn(robot, 180, .5, "right");
+        runIntake(robot, 1.0);
+        encodersMoveRTP(robot, 10, .8, "forward");
+        runIntake(robot, 0.0);
+    }
+
+    public void loadSideFoundationRed(Robot robot){
+        encodersMoveRTP(robot, 15, .8, "backward");
+        imuTurn(robot, 70, .6, "left");
+        encodersMoveRTP(robot, 5, .5, "backward");
+        robot.setFoundationGrabberGrabbed(); //foundation servos go down
+        robotSleep(2000);
+        encodersMoveRTP(robot, 25, .8, "forward"); //robot moves forwards 15 inches
+        imuTurn(robot, 70, .6, "right"); //robot turns 90 degrees right
+        //robotSleep(1000);
+        robot.setFoundationGrabberUnGrabbed(); //foundation servos come up
+        robotSleep(2000);
+        encodersMoveRTP(robot, 30, .8, "backward"); //robot moves to wall
+        encodersMove(robot, 5, .8, "forward");
+        encodersMoveStrafe(robot, 8, .5, "left");
+        encodersMoveRTP(robot, 30, .8, "forward");
+
+    }
+
+    public void loadSideFoundationBlue(Robot robot){
+        encodersMoveRTP(robot, 15, .8, "backward");
+        imuTurn(robot, 70, .6, "right");
+        encodersMoveRTP(robot, 5, .5, "backward");
+        robot.setFoundationGrabberGrabbed(); //foundation servos go down
+        robotSleep(2000);
+        encodersMoveRTP(robot, 25, .8, "forward"); //robot moves forwards 15 inches
+        imuTurn(robot, 70, .6, "left"); //robot turns 90 degrees right
+        //robotSleep(1000);
+        robot.setFoundationGrabberUnGrabbed(); //foundation servos come up
+        robotSleep(2000);
+        encodersMoveRTP(robot, 30, .8, "backward"); //robot moves to wall
+        encodersMove(robot, 5, .8, "forward");
+        encodersMoveStrafe(robot, 8, .5, "right");
+        encodersMoveRTP(robot, 30, .8, "forward"); //robot parks under SkyBridge
+
+
     }
 
 

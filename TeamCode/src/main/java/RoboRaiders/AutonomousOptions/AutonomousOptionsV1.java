@@ -69,16 +69,19 @@ public class AutonomousOptionsV1 extends RRAutonomousMethods {
             if(loadSide){
                 //do load stuff
                 if(getSkystone){
-                    //get Skystone
+                    //get Skystone once this is done, the robot will be past the Skybridge on the build side
+                    // halfway between the bridge and the wall however the stone is not released
                     stoneSamplingWebcamBlue(robot);
                     if (repoFoundation){
                         //foundation yes
+                        loadSideFoundationBlue(robot);
                     }
                     else{
                         //foundation no
+                        deliverStone(robot);
                     }
                     //park code
-                    parkSkyBridge(robot);
+                    parkSkyBridgeBlue(robot);
                 }
                 else{
                     //don't get Skystone and park
@@ -101,16 +104,19 @@ public class AutonomousOptionsV1 extends RRAutonomousMethods {
             if(loadSide){
                 //do load stuff
                 if(getSkystone){
-                    //get Skystone
+                    //get Skystone once this is done, the robot will be past the Skybridge on the build side
+                    //halfway between the bridge and the wall however the stone is not released
                     stoneSamplingWebcamRed(robot);
                     if (repoFoundation){
                         //foundation yes
+                        loadSideFoundationRed(robot);
                     }
                     else{
                         //foundation no
+                        deliverStone(robot);
                     }
                     //park code
-                    parkSkyBridge(robot);
+                    parkSkyBridgeRed(robot);
                 }
                 else{
                     //don't get Skystone and park
