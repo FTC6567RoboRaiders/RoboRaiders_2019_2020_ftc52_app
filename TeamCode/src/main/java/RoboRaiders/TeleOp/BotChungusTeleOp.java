@@ -63,7 +63,7 @@ public class BotChungusTeleOp extends OpMode {
         // the floats.
 
 
-        liftMotor = gamepad2.right_stick_y;
+        liftMotor = gamepad2.left_stick_y;
         robot.setLiftMotorPower(liftMotor);
 
         currStateX = gamepad2.x;

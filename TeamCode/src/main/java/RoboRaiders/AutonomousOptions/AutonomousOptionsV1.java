@@ -88,18 +88,21 @@ public class AutonomousOptionsV1 extends RRAutonomousMethods {
                 //do build stuff
                 if(repoFoundation){
                     //foundation yes
+                    blueFoundation(robot);
                 }
                 else{
                     //foundation no
                 }
             }
         }
+
         else{
             //do red stuff
             if(loadSide){
                 //do load stuff
                 if(getSkystone){
                     //get Skystone
+                    stoneSamplingWebcamRed(robot);
                     if (repoFoundation){
                         //foundation yes
                     }
@@ -116,6 +119,7 @@ public class AutonomousOptionsV1 extends RRAutonomousMethods {
             else{
                 //do build stuff
                 if(repoFoundation){
+                    redFoundation(robot);
                     //foundation yes
                 }
                 else{
