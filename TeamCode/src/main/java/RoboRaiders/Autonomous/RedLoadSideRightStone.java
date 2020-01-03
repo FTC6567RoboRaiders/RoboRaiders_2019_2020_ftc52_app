@@ -21,7 +21,7 @@ public class RedLoadSideRightStone extends RRAutonomousMethods {
         rightStoneRed(robot);
         resetStoneMechanism(robot);
         encodersMoveStrafe(robot, 10, .8, "right");
-        parkSkyBridge(robot);
+        //parkSkyBridge(robot);
 
     }
 }
