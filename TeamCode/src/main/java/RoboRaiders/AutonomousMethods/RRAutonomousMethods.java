@@ -685,7 +685,7 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
     }
 
     public void rightStoneRed(Robot robot){
-        encodersMove(robot, 18, .8, "forward");
+        encodersMoveRTP(robot, 18, .8, "forward");
         encodersMoveStrafe(robot, 23, .5, "right");
         imuTurn(robot, 25, .5, "left");
         runIntake(robot, -1.0);
@@ -765,26 +765,27 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
     }
 
     public void parkSkyBridgeBlue(Robot robot){
-        encodersMoveRTP(robot, 20, .5, "forward");
-        encodersMoveStrafe(robot, 15, .5, "left");
+        encodersMoveRTP(robot, 10, .5, "backward");
+        encodersMoveStrafe(robot, 5, .5, "right");
     }
 
     public void parkSkyBridgeRed(Robot robot){
-        encodersMoveRTP(robot, 20, .5, "forward");
-        encodersMoveStrafe(robot, 15, .5, "right");
+        encodersMoveRTP(robot, 10, .5, "backward");
+        encodersMoveStrafe(robot, 5, .5, "left");
     }
 
     public void deliverStone(Robot robot){
-        imuTurn(robot, 180, .5, "right");
+        imuTurn(robot, 160, .5, "right");
+        robot.setCaptureServoUp();
         runIntake(robot, 1.0);
-        encodersMoveRTP(robot, 10, .8, "forward");
+        encodersMoveRTP(robot, 10, .8, "backward");
         runIntake(robot, 0.0);
     }
 
     public void loadSideFoundationRed(Robot robot){
-        encodersMoveRTP(robot, 15, .8, "backward");
+        encodersMoveRTP(robot, 25, .8, "backward");
         imuTurn(robot, 70, .6, "left");
-        encodersMoveRTP(robot, 5, .5, "backward");
+        encodersMoveRTP(robot, 12.5, .5, "backward");
         robot.setFoundationGrabberGrabbed(); //foundation servos go down
         robotSleep(2000);
         encodersMoveRTP(robot, 25, .8, "forward"); //robot moves forwards 15 inches
@@ -796,15 +797,15 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
         stoneOnFoundation(robot);
         resetStoneMechanism(robot);
         encodersMove(robot, 5, .8, "forward");
-        encodersMoveStrafe(robot, 15, .5, "right");
+        encodersMoveStrafe(robot, 5, .5, "right");
         encodersMoveRTP(robot, 30, .8, "forward");
 
     }
 
     public void loadSideFoundationBlue(Robot robot){
-        encodersMoveRTP(robot, 15, .8, "backward");
+        encodersMoveRTP(robot, 25, .8, "backward");
         imuTurn(robot, 70, .6, "right");
-        encodersMoveRTP(robot, 5, .5, "backward");
+        encodersMoveRTP(robot, 12.5, .5, "backward");
         robot.setFoundationGrabberGrabbed(); //foundation servos go down
         robotSleep(2000);
         encodersMoveRTP(robot, 25, .8, "forward"); //robot moves forwards 15 inches
@@ -816,7 +817,7 @@ public abstract class RRAutonomousMethods extends LinearOpMode {
         stoneOnFoundation(robot);
         resetStoneMechanism(robot);
         encodersMove(robot, 5, .8, "forward");
-        encodersMoveStrafe(robot, 15, .5, "left");
+        encodersMoveStrafe(robot, 5, .5, "left");
         encodersMoveRTP(robot, 30, .8, "forward"); //robot parks under SkyBridge
 
 

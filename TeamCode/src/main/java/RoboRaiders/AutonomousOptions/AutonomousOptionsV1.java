@@ -60,6 +60,8 @@ public class AutonomousOptionsV1 extends RRAutonomousMethods {
         rtd.displayRobotTelemetry("Move Foundation",repoFoundation ? "Yes" : "No");
         waitForStart();
 
+        robot.setCapstoneElbowUp();
+
         telemetry.setAutoClear(true);
         telemetry.update();
 

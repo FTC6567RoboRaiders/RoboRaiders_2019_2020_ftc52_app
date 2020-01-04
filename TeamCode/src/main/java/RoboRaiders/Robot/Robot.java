@@ -69,14 +69,15 @@ public class Robot {
     private static final double SWING_SERVO_OUT = 1.0;                       //* from testing with SwingServoTester.java
     private static final double SWING_SERVO_IN = 0.0;                         //* from testing with SwingServoTester.java
     private static final double FOUNDATION_SERVO_GRAB_LEFT = 0.45;
-    private static final double FOUNDATION_SERVO_GRAB_RIGHT = 0.95;
+    private static final double FOUNDATION_SERVO_GRAB_RIGHT = 0.9;
     private static final double FOUNDATION_SERVO_RELEASE_LEFT = 1.0;
     private static final double FOUNDATION_SERVO_RELEASE_RIGHT = 0.35;
     private static final int    COLOR_SENSOR_SCALE_FACTOR = 255;             // Scale factor used for color sensor
-    private static final double CAPSTONE_PINCHER_CLOSED = 1.0;
-    private static final double CAPSTONE_PINCHER_OPEN = 0.0;
-    private static final double CAPSTONE_ELBOW_UP = 1.0;
-    private static final double CAPSTONE_ELBOW_DOWN = 0.0;
+    private static final double CAPSTONE_PINCHER_CLOSED = 0.35;
+    private static final double CAPSTONE_PINCHER_OPEN = 0.45;
+    private static final double CAPSTONE_ELBOW_UP = 0.05;
+    private static final double CAPSTONE_ELBOW_DOWN = 0.7;
+    private static final double CAPSTONE_ELBOW_INIT = 0.3;
 
     //public ModernRoboticsI2cRangeSensor distance;
     //public double takeSkystoneUp = 0.0;
@@ -162,6 +163,8 @@ public class Robot {
         setFoundationGrabberUnGrabbed();
         setCaptureServoUp();
         setStoneSwingServoIn();
+        setCapstoneElbowInit();
+        setCapstonePincherClosed();
 
 
         // Define sensors
@@ -541,9 +544,14 @@ public class Robot {
     /**
      * Sets the capstone elbow position to up
      */
-    public void setCaptstoneElbowUp () {
+    public void setCapstoneElbowUp () {
         setCapstoneElbowPosition(CAPSTONE_ELBOW_UP);
     }
+
+    /**
+     * Sets the capstone elbow position to the initialized setting
+     */
+    public void setCapstoneElbowInit (){setCapstoneElbowPosition(CAPSTONE_ELBOW_INIT);}
 
     //**********************************************************************************************
     //

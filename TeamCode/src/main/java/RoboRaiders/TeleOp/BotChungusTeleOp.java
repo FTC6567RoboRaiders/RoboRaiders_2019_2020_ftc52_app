@@ -26,6 +26,12 @@ public class BotChungusTeleOp extends OpMode {
     public boolean currStateLeftBumper = false;
     public double currStateRightTrigger = 0.0;
     public double currStateLeftTrigger = 0.0;
+    public boolean currRightDPadState = false;
+    public boolean currLeftDPadState = false;
+    public boolean prevLeftDPadState = false;
+    public double pushTimeDPadLeft = 0.0;
+    public double dropTimeStamp = 0.0;
+    public boolean releaseState = false;
 
     @Override
     public void init() { /*This is the initialization routine that the robot undergoes. */
@@ -78,6 +84,9 @@ public class BotChungusTeleOp extends OpMode {
         currStateRightBumper = gamepad2.right_bumper;
         currStateLeftBumper = gamepad2 .left_bumper;
 
+        currRightDPadState = gamepad2.dpad_right;
+        currLeftDPadState = gamepad2.dpad_left;
+
     //Handles bringing the stone into the center of robot
 
       if (currStateLeftBumper){
@@ -113,6 +122,35 @@ public class BotChungusTeleOp extends OpMode {
       else if (currStateLeftTrigger > 0.0 ) {
           robot.setFoundationGrabberUnGrabbed();
       }
+
+      //capstone
+        //was the left d pad pushed, and it wasn't pushed the last time through
+        if (currLeftDPadState && !prevLeftDPadState) {
+            prevLeftDPadState = true; //this was pushed the previous time
+            pushTimeDPadLeft = System.currentTimeMillis(); //this is the time the d pad was pushed
+            currLeftDPadState = false; //forget that it was currently pushed
+            robot.setCapstoneElbowDown(); //position the elbow servo down
+        }
+
+        //was the button previously pushed, and has a quarter of a second expired?
+        if (prevLeftDPadState && (System.currentTimeMillis() - pushTimeDPadLeft)>250) {
+            prevLeftDPadState = false; //we are done processing the d pad push
+            robot.setCapstonePincherOpen(); //open the pincher servo
+            pushTimeDPadLeft = 0.0; //reset the time
+            dropTimeStamp = System.currentTimeMillis();
+            releaseState = true;
+        }
+
+        if (releaseState && (System.currentTimeMillis() - dropTimeStamp)>100) {
+            robot.setCapstoneElbowUp();
+            releaseState = false;
+            dropTimeStamp = 0.0;
+        }
+
+        if(currRightDPadState){
+            robot.setCapstoneElbowUp(); //set the elbow servo to up
+            prevLeftDPadState = false; //stop left d pad processing
+        }
     }
 
     @Override
