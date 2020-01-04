@@ -133,7 +133,7 @@ public class BotChungusTeleOp extends OpMode {
         }
 
         //was the button previously pushed, and has a quarter of a second expired?
-        if (prevLeftDPadState && (System.currentTimeMillis() - pushTimeDPadLeft)>250) {
+        if (prevLeftDPadState && (System.currentTimeMillis() - pushTimeDPadLeft)>500) {
             prevLeftDPadState = false; //we are done processing the d pad push
             robot.setCapstonePincherOpen(); //open the pincher servo
             pushTimeDPadLeft = 0.0; //reset the time
