@@ -102,10 +102,19 @@ public class BotChungusTeleOp extends OpMode {
       //Handles capturing the stone
       if (currStateX) {
         robot.setCaptureServoDown();
+        robot.setCapstoneElbowUp();
       }
       else if (currStateY) {
           robot.setCaptureServoUp();
+          robot.setCapstoneElbowInit();
       }
+
+//      if (robot.isLiftTouchSensorPressed()){
+//          robot.setCapstoneElbowInit();
+//      }
+//      else{
+//          robot.setCapstoneElbowUp();
+//      }
 
       //Handles the swing
       if (currStateA) {
@@ -157,10 +166,6 @@ public class BotChungusTeleOp extends OpMode {
     public void stop() {
 
     }
-
-
-
-
 
 
     double scaleInput(double dVal) {        // When implemented above, this double scales the joystick input values

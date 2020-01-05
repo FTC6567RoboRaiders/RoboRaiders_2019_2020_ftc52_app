@@ -27,8 +27,8 @@ public class intakeTest extends LinearOpMode {
 
         waitForStart();
 
-        intakeMotorLeft.setPower(-.5);
-        intakeMotorRight.setPower(-.5);
+        intakeMotorLeft.setPower(-1.0);
+        intakeMotorRight.setPower(-1.0);
         while (opModeIsActive()){}
         intakeMotorRight.setPower(0.0);
         intakeMotorLeft.setPower(0.0);
