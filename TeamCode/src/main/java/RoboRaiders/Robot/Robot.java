@@ -73,9 +73,9 @@ public class Robot {
     private static final double FOUNDATION_SERVO_RELEASE_LEFT = 1.0;
     private static final double FOUNDATION_SERVO_RELEASE_RIGHT = 0.35;
     private static final int    COLOR_SENSOR_SCALE_FACTOR = 255;             // Scale factor used for color sensor
-    private static final double CAPSTONE_PINCHER_CLOSED = 0.35;
-    private static final double CAPSTONE_PINCHER_OPEN = 0.45;
-    private static final double CAPSTONE_ELBOW_UP = 0.05;
+    private static final double CAPSTONE_PINCHER_CLOSED = 0.4;
+    private static final double CAPSTONE_PINCHER_OPEN = 0.6;
+    private static final double CAPSTONE_ELBOW_UP = 0.1;
     private static final double CAPSTONE_ELBOW_DOWN = 0.7;
     private static final double CAPSTONE_ELBOW_INIT = 0.3;
 

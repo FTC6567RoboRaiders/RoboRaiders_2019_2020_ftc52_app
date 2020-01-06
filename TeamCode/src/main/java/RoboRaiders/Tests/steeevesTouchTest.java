@@ -33,6 +33,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 
 /*
  * This is an example LinearOpMode that shows how to use
@@ -56,16 +57,18 @@ public class steeevesTouchTest extends LinearOpMode {
      * The lower (first) pin stays unconnected.*
      */
 
-    DigitalChannel digitalTouch;  // Hardware Device Object
+  //  DigitalChannel digitalTouch;  // Hardware Device Object
+    TouchSensor liftTouchSensor = null;
 
     @Override
     public void runOpMode() {
 
         // get a reference to our digitalTouch object.
-        digitalTouch = hardwareMap.get(DigitalChannel.class, "sensor_digital");
+    //    digitalTouch = hardwareMap.get(DigitalChannel.class, "sensor_digital");
+        liftTouchSensor = hardwareMap.touchSensor.get("sensor_digital");
 
         // set the digital channel to input.
-        digitalTouch.setMode(DigitalChannel.Mode.INPUT);
+      //  digitalTouch.setMode(DigitalChannel.Mode.INPUT);
 
         // wait for the start button to be pressed.
         waitForStart();
@@ -76,10 +79,11 @@ public class steeevesTouchTest extends LinearOpMode {
 
             // send the info back to driver station using telemetry function.
             // if the digital channel returns true it's HIGH and the button is unpressed.
-            if (digitalTouch.getState() == true) {
-                telemetry.addData("Digital Touch", "Is Not Pressed");
-            } else {
+        //    if (digitalTouch.getState() == true) {
+            if (liftTouchSensor.isPressed()) {
                 telemetry.addData("Digital Touch", "Is Pressed");
+            } else {
+                telemetry.addData("Digital Touch", "Is Not Pressed");
             }
 
             telemetry.update();

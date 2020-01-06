@@ -1,14 +1,15 @@
 package RoboRaiders.TeleOp;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
 
 import RoboRaiders.Robot.Robot;
 
-@TeleOp (name="BotChungus TeleOp")
-
-public class BotChungusTeleOp extends OpMode {
+@TeleOp (name="BotChungusDontUSE TeleOp")
+@Disabled
+public class BotChungusTeleOpDontUSE extends OpMode {
 
     public Robot robot = new Robot();
 
@@ -135,13 +136,13 @@ public class BotChungusTeleOp extends OpMode {
       // ELSE - the touch sensor is not pressed AND the left dpad is not pressed AND the left dpad
       // was not pressed previously
 //      else if (!robot.isLiftTouchSensorPressed() && !currLeftDPadState && !prevLeftDPadState) {
-//      else if (!robot.isLiftTouchSensorPressed()) {
-//          robot.setCapstoneElbowUp();
-//      }
+      else if (!robot.isLiftTouchSensorPressed()) {
+          robot.setCapstoneElbowUp();
+      }
 
       //capstone
       //was the left d pad pushed, and it wasn't pushed the last time through
-      if (currLeftDPadState && !prevLeftDPadState) {
+      if (currLeftDPadState && !prevLeftDPadState && robot.isLiftTouchSensorPressed()) {
           prevLeftDPadState = true; //this was pushed the previous time
           pushTimeDPadLeft = System.currentTimeMillis(); //this is the time the d pad was pushed
           currLeftDPadState = false; //forget that it was currently pushed
@@ -149,7 +150,7 @@ public class BotChungusTeleOp extends OpMode {
       }
 
       //was the button previously pushed, and has a quarter of a second expired?
-      if (prevLeftDPadState && (System.currentTimeMillis() - pushTimeDPadLeft)>1000) {
+      if (prevLeftDPadState && (System.currentTimeMillis() - pushTimeDPadLeft)>600) {
           prevLeftDPadState = false; //we are done processing the d pad push
           robot.setCapstonePincherOpen(); //open the pincher servo
           pushTimeDPadLeft = 0.0; //reset the time
@@ -157,7 +158,7 @@ public class BotChungusTeleOp extends OpMode {
           releaseState = true;
       }
 
-      if (releaseState && (System.currentTimeMillis() - dropTimeStamp)>1000) {
+      if (releaseState && (System.currentTimeMillis() - dropTimeStamp)>500) {
           robot.setCapstoneElbowUp();
           releaseState = false;
           dropTimeStamp = 0.0;
