@@ -99,6 +99,7 @@ public class AutonomousOptionsV1 extends RRAutonomousMethods {
                     //foundation no
                 }
             }
+            robot.setCapstoneElbowInit();
         }
 
         else{
@@ -134,6 +135,7 @@ public class AutonomousOptionsV1 extends RRAutonomousMethods {
                     //foundation no
                 }
             }
+            robot.setCapstoneElbowInit();
         }
 
 
