@@ -55,6 +55,7 @@ import java.util.Locale;
 
 
 @TeleOp(name="Example: Blue Vision Demo")
+@Disabled
 public class ExampleBlueVisionDemo extends OpMode {
     private ExampleBlueVision blueVision;
     private Camera myCamera;

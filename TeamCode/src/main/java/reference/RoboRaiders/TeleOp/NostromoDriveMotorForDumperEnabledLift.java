@@ -1,5 +1,6 @@
 package RoboRaiders.TeleOp;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
@@ -11,6 +12,7 @@ import RoboRaiders.Robot.NostromoBotMotorDumper;
  */
 
 @TeleOp(name="Teleop: Lets Drive Lift Enabled")
+@Disabled
 
 public class NostromoDriveMotorForDumperEnabledLift extends OpMode {
 

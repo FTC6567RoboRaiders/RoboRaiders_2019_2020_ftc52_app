@@ -9,6 +9,7 @@ import RoboRaiders.Robot.RobotTelemetryDisplay;
 
 public class AutonomousOptionsV1 extends RRAutonomousMethods {
 
+    public boolean wait              = false;          // wait?
     public boolean allianceBlue      = false;          // Default Red Alliance
     public boolean loadSide          = false;          // Default Build side
     public boolean getSkystone       = false;          // Default to not get a skystone
@@ -30,6 +31,7 @@ public class AutonomousOptionsV1 extends RRAutonomousMethods {
         // While the drivers haven't made up their mind, keep asking what they want to do
         while (!selectionsAreGood) {
 
+            wait = myAO.selectWait();
             allianceBlue = myAO.selectAlliance();
             loadSide = myAO.selectLoadSide();
             getSkystone = myAO.selectGetSkystone();
@@ -38,6 +40,7 @@ public class AutonomousOptionsV1 extends RRAutonomousMethods {
 
             telemetry.setAutoClear(false);
             telemetry.addLine().addData("Autonomous", "Selections");
+            telemetry.addLine().addData("Wait?: ", wait ? "Yes" : "No");
             telemetry.addLine().addData("Alliance: ", allianceBlue ? "Blue" : "Red ");
             telemetry.addLine().addData("Field Side: ", loadSide ? "Load  " : "Build  ");
             telemetry.addLine().addData("Get Skystone: ", getSkystone ? "Yes  " : "No  ");
@@ -54,6 +57,7 @@ public class AutonomousOptionsV1 extends RRAutonomousMethods {
 
         gamepad1.reset();
         rtd.displayRobotTelemetry("Initialized Waiting for Start");
+        rtd.displayRobotTelemetry("Wait? ", wait ? "Yes" : "No");
         rtd.displayRobotTelemetry("Alliance ",allianceBlue ? "Blue" : "Red");
         rtd.displayRobotTelemetry("Field Side",loadSide ? "Load" : "Build");
         rtd.displayRobotTelemetry("Get Skystone",getSkystone ? "Yes" : "No");
@@ -64,6 +68,11 @@ public class AutonomousOptionsV1 extends RRAutonomousMethods {
 
         telemetry.setAutoClear(true);
         telemetry.update();
+
+
+        if (wait){                          //wait 5 seconds
+            robotSleep(5000);
+        }
 
         //determine alliance
         if(allianceBlue){
@@ -99,7 +108,7 @@ public class AutonomousOptionsV1 extends RRAutonomousMethods {
                     //foundation no
                 }
             }
-            robot.setCapstoneElbowInit();
+//            robot.setCapstoneElbowInit();
         }
 
         else{
@@ -135,25 +144,10 @@ public class AutonomousOptionsV1 extends RRAutonomousMethods {
                     //foundation no
                 }
             }
-            robot.setCapstoneElbowInit();
+//            robot.setCapstoneElbowInit();
         }
 
+        robot.setCapstoneElbowInit();
 
-
-        if(getSkystone){
-            stoneSamplingRed(robot);
-        }
-
-        if(allianceBlue){
-
-        }
-
-        if(loadSide){
-
-        }
-
-        if(repoFoundation){
-
-        }
     }
 }

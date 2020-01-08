@@ -23,6 +23,7 @@
 
 //package org.openftc.easyopencv.examples;
 package RoboRaiders.hubbot;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -51,6 +52,7 @@ import RoboRaiders.Logger.Logger;
  * purposes. We also show how to get data from the pipeline to your OpMode.
  */
 @TeleOp
+@Disabled
 public class PipelineStageSwitchingExampleReversed extends LinearOpMode
 {
     OpenCvCamera phoneCam;

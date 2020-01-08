@@ -1,11 +1,12 @@
 package RoboRaiders.Tests;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.Servo;
 
 @Autonomous (name= "Capstone Servos Test")
-
+@Disabled
 public class capstoneServosTester extends LinearOpMode{
 
     //public Servo capstonePincher = null;

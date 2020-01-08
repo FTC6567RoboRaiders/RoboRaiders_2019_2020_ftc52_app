@@ -1,13 +1,14 @@
 package RoboRaiders.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import RoboRaiders.AutonomousMethods.RRAutonomousMethods;
 import RoboRaiders.Robot.Robot;
 import RoboRaiders.Robot.RobotTelemetryDisplay;
 
 @Autonomous (name= "Testing Block Intake")
-
+@Disabled
 public class TestingBlockIntake extends RRAutonomousMethods {
 
     Robot robot = new Robot();

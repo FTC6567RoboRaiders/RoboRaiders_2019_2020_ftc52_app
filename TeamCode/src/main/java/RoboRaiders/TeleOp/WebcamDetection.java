@@ -1,4 +1,5 @@
 package RoboRaiders.TeleOp;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -19,6 +20,7 @@ import RoboRaiders.Autonomous.RoboRaidersPipelineWebcam;
 import static org.opencv.core.CvType.CV_8UC1;
 
 @TeleOp
+@Disabled
 public class WebcamDetection extends LinearOpMode {
     public static final String TAG = "Vuforia Navigation Sample";
     int pattern = 999;

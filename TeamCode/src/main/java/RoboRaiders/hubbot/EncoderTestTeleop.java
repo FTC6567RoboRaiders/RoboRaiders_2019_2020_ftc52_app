@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp(name = "Hubbot Encoder Teleop", group = "Hubbot")
+@Disabled
 public class EncoderTestTeleop extends LinearOpMode {
 
   private DcMotor motor1;

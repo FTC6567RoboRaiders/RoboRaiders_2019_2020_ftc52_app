@@ -1,6 +1,7 @@
 package RoboRaiders.hubbot;
 
 import com.disnodeteam.dogecv.detectors.skystone.SkystoneDetector;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -15,6 +16,7 @@ import easyopencv.examples.WebcamExample;
 
 
 @TeleOp(name="Gold Example", group="DogeCV")
+@Disabled
 
 public class DogeTest extends LinearOpMode
 {

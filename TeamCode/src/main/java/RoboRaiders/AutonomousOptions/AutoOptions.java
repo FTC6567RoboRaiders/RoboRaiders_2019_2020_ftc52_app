@@ -56,6 +56,13 @@ public class AutoOptions {
         this.op = op;
     }
 
+    public boolean selectWait() {
+        String[] locations = new String[]{"Yes", "No"};
+
+        int index = makeSelection("Wait?", locations);
+
+        return index == 0;
+    }
     public boolean selectAlliance() {
         String[] locations = new String[]{"Yes", "No"};
 

@@ -1,5 +1,6 @@
 package RoboRaiders.TeleOp;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -10,7 +11,7 @@ import RoboRaiders.Robot.NostromoBotMotorDumper;
  */
 
 @TeleOp(name="Teleop: Lets Figure out the Dump Wrist Position")
-
+@Disabled
 
 public class PositionServo extends OpMode {
 

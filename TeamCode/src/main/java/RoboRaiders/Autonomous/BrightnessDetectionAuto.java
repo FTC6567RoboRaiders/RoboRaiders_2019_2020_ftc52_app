@@ -1,5 +1,6 @@
 package RoboRaiders.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.opencv.core.Core;
@@ -15,6 +16,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
 import static org.opencv.core.CvType.CV_8UC1;
 
 @Autonomous
+@Disabled
 public class BrightnessDetectionAuto extends LinearOpMode {
     OpenCvCamera phone_camera;
     SamplePipeline stone_pipeline;

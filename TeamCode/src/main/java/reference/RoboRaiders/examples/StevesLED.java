@@ -30,6 +30,7 @@
 package RoboRaiders.examples;
 
 import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -49,7 +50,7 @@ import java.util.concurrent.TimeUnit;
  * Displays the first pattern upon init.
  */
 @TeleOp(name="Steeeves Blinkin Example")
-
+@Disabled
 public class StevesLED extends OpMode {
 
     /*
