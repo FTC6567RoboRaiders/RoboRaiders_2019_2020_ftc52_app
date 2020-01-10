@@ -42,7 +42,7 @@ public class BotChungusTeleOp extends OpMode {
         //to mirror each other.
         // telemetry.addData("Initialized", true);
 
-        robot.setCapstoneElbowUp();
+        robot.setCapstoneElbowUp();  // Keep the elbow up after init
         telemetry.update();
     }
 
