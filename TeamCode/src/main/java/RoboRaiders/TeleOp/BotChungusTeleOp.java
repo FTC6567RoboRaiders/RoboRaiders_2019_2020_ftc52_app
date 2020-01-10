@@ -102,11 +102,11 @@ public class BotChungusTeleOp extends OpMode {
         //Handles capturing the stone
         if (currStateX) {
             robot.setCaptureServoDown();
-            robot.setCapstoneElbowUp();
+     //       robot.setCapstoneElbowUp();
         }
         else if (currStateY) {
             robot.setCaptureServoUp();
-            robot.setCapstoneElbowInit();
+     //       robot.setCapstoneElbowInit();
         }
 
       //Handles the swing

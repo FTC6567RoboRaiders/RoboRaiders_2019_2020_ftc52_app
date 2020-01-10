@@ -147,7 +147,7 @@ public class AutonomousOptionsV1 extends RRAutonomousMethods {
 //            robot.setCapstoneElbowInit();
         }
 
-        robot.setCapstoneElbowInit();
+        //robot.setCapstoneElbowInit();
 
     }
 }
