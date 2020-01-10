@@ -40,7 +40,9 @@ public class BotChungusTeleOp extends OpMode {
                    //in order to negate the fact that the
         //motors are placed on the robot
         //to mirror each other.
-        telemetry.addData("Initialized", true);
+        // telemetry.addData("Initialized", true);
+
+        robot.setCapstoneElbowUp();
         telemetry.update();
     }
 
